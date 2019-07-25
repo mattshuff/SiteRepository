@@ -1,8 +1,8 @@
 <?php
- $hostname = "localhost";
- $username = "root";
- $password = "";
- $databaseName = "recipeappdb";
+$hostname = "localhost";
+$username = "u902155560_admin";
+$password = "uew6UoDPmnb1";
+$databaseName = "u902155560_main";
 
  $connect = mysqli_connect($hostname, $username, $password, $databaseName);
  $sql = "SELECT * FROM `recipes`";
