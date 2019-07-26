@@ -2,11 +2,18 @@ $(document).ready(function () {
     console.log("test");
 
 })
-
-
-function hold(){
-    console.log("ayaya");
-}
+$(function() {
+    $('myform').submit(function() {
+        alert("test");
+        $.ajax({
+            type: 'POST',
+            url: 'submit.php',
+            data: { username: $(this).name.value, 
+                    password: $(this).password.value }
+        });
+        return false;
+    }); 
+})
 
 function test(){
     var Content = document.getElementById("ToDoInput").value;
