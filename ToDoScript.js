@@ -6,10 +6,10 @@ $(document).ready(function () {
           success: function (data) {
     
             var DataArray = data.split("*");
+            var ul = document.getElementById("ToDoList");
 
             for (var x = 0; x < DataArray.length; x++) {
-    
-              var ul = document.getElementById("ToDoList");
+              
               var li = document.createElement("li");
               li.appendChild(document.createTextNode(DataArray[x]));
               ul.appendChild(li);
