@@ -3,7 +3,6 @@ $(document).ready(function () {
 
 })
 function SubmitToDB(){
-
     console.log("ayaya");
 
     var Content = document.getElementById("ToDoInput").value;

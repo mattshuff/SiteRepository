@@ -9,5 +9,6 @@ $Search = $_GET['QueryValue'];
 $sql = "INSERT INTO ToDo (ToDoContent) VALUES ('";
 $sql .= $Search;
 $sql .= "')";
+echo "fail";
 
 ?>
