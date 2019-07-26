@@ -2,7 +2,9 @@ $(document).ready(function () {
     console.log("test");
 
 })
-
+function test(){
+    alert("123");
+}
 
 $("#submit").submit(function( event ) {
 
