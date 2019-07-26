@@ -35,7 +35,9 @@ $(document).ready(function () {
     var Input = document.getElementById("textinput");
     Input.addEventListener("keydown", function (event) {
         if (event.key === 'Enter') {
-            alert("success");
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(Input.value));
+            ul.appendChild(li);
 
             $.ajax({
                 url: "AddToDo.php",
