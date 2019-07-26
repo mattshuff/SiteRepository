@@ -14,7 +14,7 @@ $(document).ready(function () {
               li.appendChild(document.createTextNode(DataArray[x]));
 
               li.onclick = function () {
-                    var HoverValue = this.value;
+                    var HoverValue = this.innerHTML;
 
                     $.ajax({
                         url: 'DeleteToDo.php',
