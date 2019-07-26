@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    $("#submit").submit(function (event) {
+    console.log("test");
+
+function Submit(){
         var Content = document.getElementById("ToDoInput").value;
         var x = document.getElementById("ToDoList");
 
@@ -13,7 +15,7 @@ $(document).ready(function () {
             },
             success: function (Data) {
                 alert("success");
-            },
+            }
         })
-    })
+    }
 })
