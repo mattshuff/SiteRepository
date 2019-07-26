@@ -10,5 +10,11 @@ $sql = "INSERT INTO ToDo (ToDoContent) VALUES ('";
 $sql .= $Search;
 $sql .= "')";
 
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
 echo $sql;
 ?>
