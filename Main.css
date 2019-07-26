@@ -1,12 +1,13 @@
-
-  
+* {
+    box-sizing: border-box;
+  }
   
   /* Create three equal columns that floats next to each other */
   .column {
     float: left;
     width: 33.33%;
-    padding-right: 20px;
-
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
   }
   
   /* Clear floats after the columns */
@@ -17,64 +18,44 @@
   }
 body {
     background-color: #2C2F33;
+    font-family: "klavika_bdbold";
     color: antiquewhite;
-    font-size: 22px;
+    font-size: 40px;
     padding-bottom: 5px;
-    font-family: 'Helvetica';
-    font-weight: normal;
-    font-style: normal;
-    color: antiquewhite;
-    word-wrap: normal;
 }
 input[type=text] {
-    padding:1px; 
-    border-color: antiquewhite;
-    border-width: 3px;
+    padding:5px; 
+    border:none;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     background:#2C2F33;
+    font-family: "klavika_bdbold";
     color: antiquewhite;
 }
 li, ul{
     display: block;
     list-style-type: disc;
-    padding: 1px;
-    font-size: 22px;
-
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 1px;
+    padding-left: 20px;
+    font-size: 24px;
 }
 #subtitle {
     padding-top: 5px;
     font-size: 32px;
     margin: 0;
 }
-#h1 {
+#heading {
     padding: 0;
     margin: 0;
 }
-#SearchColumn{
-  width:auto;
-}
-
-.itemconfiguration
-{
-		height:650px;
-		width:215px;
-		/* background-color:#CCC; */		
-        overflow-y:auto;
-		float:left;
-		position:relative;
-		margin-left:-10px;
-}
-.left_contentlist{
-width:215px;
-float:left;
-padding:0 0 0 0px;
-position:relative;
-float:left;
-
-}
-#IngredientsNotes{
-word-wrap: normal;
-white-space: pre;
-}
-#NotesColumn{
-  width:40%;
+@font-face {
+    font-family: 'klavika_bdbold';
+    src: url('./Fonts/ufonts.com_klavika-bold-opentype-webfont.woff2') format('woff2'),
+         url('./Fonts/ufonts.com_klavika-bold-opentype-webfont.woff') format('woff'),
+         url('./Fonts/ufonts.com_klavika-bold-opentype-webfont.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    color: antiquewhite;
 }
