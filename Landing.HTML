@@ -13,7 +13,7 @@
 
         <h2 id="subtitle">to do:</h2>
 
-        <form id = "myform">
+        <form id = "myform" action ="#">
             <input type="text" id="TextInput">
             <input type = "submit">
         </form>
@@ -29,3 +29,18 @@
 
     </div>
 </body>
+
+<script>
+$(function() {
+    $('myform').submit(function() {
+        alert("test");
+        $.ajax({
+            type: 'POST',
+            url: 'submit.php',
+            data: { username: $(this).name.value, 
+                    password: $(this).password.value }
+        });
+        return false;
+    }); 
+})
+</script>
