@@ -2,7 +2,7 @@ $(document).ready(function () {
     console.log("test");
     var Input = document.getElementById("textinput");
     Input.addEventListener("keydown", function (event) {
-        if (event.key = 13) {
+        if (event.key === 'Enter') {
             alert("success");
 
             $.ajax({

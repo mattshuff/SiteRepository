@@ -10,5 +10,5 @@ $sql = "INSERT INTO ToDo (ToDoContent) VALUES ('";
 $sql .= $Search;
 $sql .= "')";
 
-echo "123";
+echo $sql;
 ?>
