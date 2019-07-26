@@ -1,21 +1,10 @@
-
-  
-  
-  /* Create three equal columns that floats next to each other */
   .column {
     float: left;
     width: 33.33%;
     padding-right: 20px;
+  }
 
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-body {
+body,a {
     background-color: #2C2F33;
     color: antiquewhite;
     font-size: 22px;
@@ -38,7 +27,6 @@ li, ul{
     list-style-type: disc;
     padding: 1px;
     font-size: 22px;
-
 }
 #subtitle {
     padding-top: 5px;
@@ -52,7 +40,9 @@ li, ul{
 #SearchColumn{
   width:auto;
 }
-
+#NotesColumn{
+  width:40%;
+}
 .itemconfiguration
 {
 		height:650px;
@@ -69,12 +59,9 @@ float:left;
 padding:0 0 0 0px;
 position:relative;
 float:left;
-
 }
 #IngredientsNotes{
 word-wrap: normal;
 white-space: pre;
 }
-#NotesColumn{
-  width:40%;
-}
+
