@@ -12,35 +12,13 @@
     <div class="column">
 
         <h2 id="subtitle">to do:</h2>
-
-        <form id = "myform" action ="#">
-            <input type="text" id="TextInput">
-            <input type = "submit">
-        </form>
+        <input id = "textinput">
 
         <li id="ToDoList"></li>
-
     </div>
 
     <div class="column">
-
         <h2 id="subtitle">more apps:</h2>
         <a href="RecipeApp/Main.html">recipe app</a>
-
     </div>
 </body>
-
-<script>
-$(function() {
-    $('myform').submit(function() {
-        alert("test");
-        $.ajax({
-            type: 'POST',
-            url: 'submit.php',
-            data: { username: $(this).name.value, 
-                    password: $(this).password.value }
-        });
-        return false;
-    }); 
-})
-</script>
