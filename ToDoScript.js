@@ -1,12 +1,12 @@
 $(document).ready(function () {
     console.log("test");
 
-    $( "#submit" ).submit(function( event ) {
+    $("#submit").submit(function( event ) {
+
+        console.log("ayaya");
 
         var Content = document.getElementById("ToDoInput").value;
         var x = document.getElementById("ToDoList");
-
-        console.log("ayaya");
 
         $.ajax({
             url: "AddToDo.php",
