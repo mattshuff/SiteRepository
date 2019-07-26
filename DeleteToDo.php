@@ -8,7 +8,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $Search = $_GET['QueryValue'];
 $sql = "DELETE FROM `ToDo` WHERE `ToDoContent` = '";
 $sql .= $Search;
-$sql .= "')";
+$sql .= "'";
 echo $sql;
 
 if (mysqli_query($connect, $sql)) {
