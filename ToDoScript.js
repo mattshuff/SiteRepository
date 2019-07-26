@@ -12,6 +12,19 @@ $(document).ready(function () {
               
               var li = document.createElement("li");
               li.appendChild(document.createTextNode(DataArray[x]));
+
+              li.onclick = function () {
+                    var HoverValue = this.value;
+
+                    $.ajax({
+                        url: 'DeleteToDo.php',
+                        type: 'GET',
+                        data: {
+                            QueryValue: String(HoverValue)
+                        },
+                    })
+                }
+
               ul.appendChild(li);
             }
         }
