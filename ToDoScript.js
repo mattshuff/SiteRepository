@@ -2,11 +2,7 @@ $(document).ready(function () {
     console.log("test");
 
 })
-function test(){
-    alert("123");
-}
-
-$("#submit").submit(function( event ) {
+function SubmitToDB(){
 
     console.log("ayaya");
 
@@ -23,5 +19,8 @@ $("#submit").submit(function( event ) {
             alert("success");
         }
     })
-})
+}
+
+            
+
 
