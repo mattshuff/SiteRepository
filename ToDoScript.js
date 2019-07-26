@@ -12,6 +12,7 @@ $(document).ready(function () {
               var ul = document.getElementById("ToDoList");
               var li = document.createElement("li");
               li.appendChild(document.createTextNode(DataArray[x]));
+              ul.appendChild(li);
             }
         }
     })
