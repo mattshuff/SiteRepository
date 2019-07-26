@@ -1,21 +1,21 @@
 $(document).ready(function () {
     console.log("test");
+    var Input = document.getElementById("textinput");
+    Input.addEventListener("keyup", function (event) {
+        if (event.keyCode = 13) {
+            alert("success");
 
-document.getElementById("textinput").addEventListener("keyup",function(event){
-    if(event.keyCode=13){
-        alert("success");
-    }
-    $.ajax({
-        url: "RecipeMouseOver.php",
-        type: 'GET',
-        data: {
-          QueryValue: String(MouseOverValue)
-        },
+            $.ajax({
+                url: "AddToDo.php",
+                type: 'GET',
+                data: {
+                    QueryValue: String(Input.value)
+                },
 
-        success: function (Data) {
-   
+                success: function (Data) {
+
+                },
+            })
         }
-      });
-    }
-    )
+    })
 })
