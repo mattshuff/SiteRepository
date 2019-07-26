@@ -1,7 +1,10 @@
 $(document).ready(function () {
     console.log("test");
 
-    $( "#submit" ).submit(function( event ) {
+    $('#submit').keydown(function() {
+        var key = e.which;
+        if (key == 13) {
+
         var Content = document.getElementById("ToDoInput").value;
         var x = document.getElementById("ToDoList");
 
@@ -17,5 +20,7 @@ $(document).ready(function () {
                 alert("success");
             }
         })
-    })
+    }
 })
+})
+
