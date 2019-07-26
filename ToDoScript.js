@@ -5,6 +5,9 @@ $(document).ready(function () {
 function SubmitToDB(){
     console.log("ayaya");
 
+
+}
+function test(){
     var Content = document.getElementById("ToDoInput").value;
     var x = document.getElementById("ToDoList");
 
