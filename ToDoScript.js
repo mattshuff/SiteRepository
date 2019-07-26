@@ -10,7 +10,7 @@ $(document).ready(function () {
                 QueryValue: String(Content),
             },
             success: function (Data) {
-
+                alert("success");
             },
         })
     })
