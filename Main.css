@@ -14,6 +14,7 @@ body,a {
     font-style: normal;
     color: antiquewhite;
     word-wrap: normal;
+    text-decoration: none;
 }
 input[type=text] {
     padding:1px; 
