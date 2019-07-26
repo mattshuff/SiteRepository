@@ -1,8 +1,8 @@
 $(document).ready(function () {
     console.log("test");
     var Input = document.getElementById("textinput");
-    Input.addEventListener("keyup", function (event) {
-        if (event.keyCode = 13) {
+    Input.addEventListener("keydown", function (event) {
+        if (event.key = 13) {
             alert("success");
 
             $.ajax({
