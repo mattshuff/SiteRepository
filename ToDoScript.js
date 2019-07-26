@@ -2,10 +2,8 @@ $(document).ready(function () {
     console.log("test");
 
 })
-function SubmitToDB(){
+function hold(){
     console.log("ayaya");
-
-
 }
 function test(){
     var Content = document.getElementById("ToDoInput").value;
