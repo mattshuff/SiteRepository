@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#submit").submit(function (event) {
-        var Content = document.getElementById("ToDoInput").innerText;
+        var Content = document.getElementById("ToDoInput").value;
         console.log("hehe");
         alert(Content);
 
