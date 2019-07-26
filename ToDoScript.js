@@ -23,6 +23,7 @@ $(document).ready(function () {
                             QueryValue: String(HoverValue)
                         },
                     })
+                    $(this).remove();
                 }
 
               ul.appendChild(li);
