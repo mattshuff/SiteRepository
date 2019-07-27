@@ -78,12 +78,17 @@ ul {
 
 }
 
-#IngredientsNotes, #MethodNotes {
+#IngredientsNotes {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre;
-  width: 30%
-  
+  width: 30%  
+}
+#MethodNotes {
+  width: 500px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre;
 }
 
 #NotesColumn {
