@@ -23,7 +23,7 @@ body {
   font-style: normal;
   color: antiquewhite;
   word-wrap: normal;
-  width:980px;
+  
 
 }
 
@@ -82,6 +82,7 @@ ul {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre;
+  width: 30%
   
 }
 
