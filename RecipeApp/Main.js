@@ -1,23 +1,35 @@
+// Disable caching of AJAX responses
 $.ajaxSetup({
-  // Disable caching of AJAX responses
   cache: false
 });
 
+//general functions
 function div_show() {
   document.getElementById('popupform').style.display = "block";
-  }
-  //Function to Hide Popup
-  function div_hide(){
+}
+//Function to Hide Popup
+function div_hide() {
   document.getElementById('popupform').style.display = "none";
-  }
+}
 
+//run on startup
 $(document).ready(function () {
 
+  //input popup stuff
   var AddNewRecipeButton = document.getElementById("AddNew");
-  AddNewRecipeButton.addEventListener('click',function(){
+  AddNewRecipeButton.addEventListener('click', function () {
     div_show();
-
   })
+var PopUpSubmitButton = document.getElementById("RecipeInputSubmit");
+PopUpSubmitButton.addEventListener('click',function(){
+  var RecipeName = document.getElementById("RecipeNameInput").value;
+  var RecipeIngredients = document.getElementById("RecipeIngredientsInput").value;
+  var RecipeMethod = document.getElementById("RecipeMethodInput").value;
+
+  alert(RecipeName);
+  alert(RecipeIngredients);
+  alert(RecipeMethod);
+})
 
 
 
