@@ -18,8 +18,6 @@ $insert = "INSERT INTO `recipes`(`RecipeName`, `RecipeIngredients`, `RecipeNotes
 $values = "VALUES ('".$RecipeName."','".$RecipeIngredients."','".$RecipeMethod."')";
 $sql = $insert.$values;
 
-
-
 if (mysqli_query($connect, $sql)) {
     echo "New record created successfully";
 } else {
