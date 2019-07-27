@@ -25,7 +25,7 @@ body {
     font-style: normal;
     color: antiquewhite;
     word-wrap: normal;
-    position:relative;
+    
 }
 input[type=text] {
     padding:1px; 
@@ -83,7 +83,9 @@ white-space: pre;
   position:absolute;
     bottom:0;
     right:0;
-    width: 10%;
-    height: 10%;
+  
+}
+.wrapper {
+  position:relative;
 }
 
