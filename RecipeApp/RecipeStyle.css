@@ -110,6 +110,7 @@ li, ul {
   overflow: auto
 }
 a{
+  padding:5px;
   color: inherit;
   text-decoration: inherit;
 
