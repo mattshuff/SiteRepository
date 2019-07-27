@@ -38,6 +38,13 @@ li, ul{
 #h1 {
     padding: 0;
     margin: 0;
+    padding:5px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 44px;
+    word-wrap: normal;
+    text-align: left;
+    font-weight: bold;
 }
 #SearchColumn{
   width:auto;
