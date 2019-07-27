@@ -15,6 +15,9 @@ function div_hide() {
 //run on startup
 $(document).ready(function () {
 
+  //link back to main page 
+  var TitleButton = document.getElementById("MainTitle");
+
   //input popup stuff
   var AddNewRecipeButton = document.getElementById("AddNew");
   AddNewRecipeButton.addEventListener('click', function () {

@@ -42,12 +42,7 @@ li, ul {
   font-size: 22px;
 
 }
-#heading{
-  font-size: 32px;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
+
 #subtitle {
   padding-top: 5px;
   font-size: 32px;
@@ -113,4 +108,8 @@ li, ul {
   position: fixed;
   background-color: #313131;
   overflow: auto
+}
+.a,a:hover,a:active,a:visited{
+  text-decoration: none;
+
 }
