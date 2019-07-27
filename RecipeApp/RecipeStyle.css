@@ -78,7 +78,7 @@ ul {
 }
 
 #IngredientsNotes, #MethodNotes {
-  word-wrap: normal;
+  word-wrap: break-word;
   white-space: pre;
 }
 
