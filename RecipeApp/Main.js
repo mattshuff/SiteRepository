@@ -37,7 +37,7 @@ PopUpSubmitButton.addEventListener('click',function(){
       RecipeMethod: String(RecipeMethod)
     },
     success: function (data) {
-      alert("recipe submitted!");
+     div_hide();
     }
   })
 
