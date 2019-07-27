@@ -13,7 +13,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $RecipeName = $_GET['RecipeName'];
 $RecipeIngredients = $_GET['RecipeIngredients'];
 $RecipeMethod = $_GET['RecipeMethod'];
-echo $RecipeMethod;
+
 $sql = "INSERT INTO `recipes`(`RecipeName`, `RecipeIngredients`, `RecipeNotes`) VALUES (".$RecipeName.",".$RecipeIngredients.",".$RecipeMethod.")";
 
 
@@ -21,6 +21,6 @@ $sql = "INSERT INTO `recipes`(`RecipeName`, `RecipeIngredients`, `RecipeNotes`) 
 if (mysqli_query($connect, $sql)) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($connect);
+    echo "Error: " . $sql . "<br>". "<br>". "<br>" . mysqli_error($connect);
 }
 ?>
