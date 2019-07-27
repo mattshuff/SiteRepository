@@ -43,7 +43,7 @@ $(document).ready(function () {
                 var HoverValue = this.innerHTML;
 
                 $.ajax({
-                    url: '/LandingPage/DeleteToDo.php',
+                    url: 'LandingPage/DeleteToDo.php',
                     type: 'GET',
                     data: {
                         QueryValue: String(HoverValue)
