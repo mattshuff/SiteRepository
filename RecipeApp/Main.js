@@ -38,6 +38,7 @@ PopUpSubmitButton.addEventListener('click',function(){
     },
     success: function (data) {
      div_hide();
+     location.reload(); 
     }
   })
 
