@@ -4,7 +4,7 @@ $username = "u902155560_admin";
 $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-
+echo $databaseName;
 $RecipeName = $_GET['RecipeName'];
 $RecipeIngredients = $_GET['RecipeIngredients'];
 $RecipeMethod = $_GET['RecipeMethod'];
