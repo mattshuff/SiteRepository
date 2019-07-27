@@ -110,6 +110,7 @@ li, ul {
   overflow: auto
 }
 .a,a:hover,a:active,a:visited{
-  text-decoration: none;
+  color: inherit;
+  text-decoration: inherit;
 
 }
