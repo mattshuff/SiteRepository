@@ -22,13 +22,26 @@ $(document).ready(function () {
   })
 var PopUpSubmitButton = document.getElementById("RecipeInputSubmit");
 PopUpSubmitButton.addEventListener('click',function(){
+
+  //get values
   var RecipeName = document.getElementById("RecipeNameInput").value;
   var RecipeIngredients = document.getElementById("RecipeIngredientsInput").value;
   var RecipeMethod = document.getElementById("RecipeMethodInput").value;
 
-  alert(RecipeName);
-  alert(RecipeIngredients);
-  alert(RecipeMethod);
+  $.ajax({
+    url: "NewRecipe.php",
+    type: 'GET',
+    data: {
+      RecipeName: String(RecipeName),
+      RecipeIngredients: String(RecipeIngredients),
+      RecipeMethod: String(RecipeMethod)
+    },
+    success: function (data) {
+      alert("recipe submitted!");
+    }
+  })
+
+
 })
 
 
