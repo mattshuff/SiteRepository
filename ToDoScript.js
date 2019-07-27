@@ -39,6 +39,19 @@ $(document).ready(function () {
             var ul = document.getElementById("ToDoList");
             var li = document.createElement("li");
             li.appendChild(document.createTextNode(Input.value));
+            li.onclick = function () {
+                var HoverValue = this.innerHTML;
+
+                $.ajax({
+                    url: 'DeleteToDo.php',
+                    type: 'GET',
+                    data: {
+                        QueryValue: String(HoverValue)
+                    },
+                })
+                $(this).remove();
+            }
+
             ul.appendChild(li);
 
             $.ajax({
@@ -49,7 +62,7 @@ $(document).ready(function () {
                 },
 
                 success: function (Data) {
-                    Input.innerHTML="";
+                    Input.value="";
                 },               
             })
         }
