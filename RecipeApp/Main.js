@@ -15,7 +15,6 @@ $(document).ready(function () {
 
   var AddNewRecipeButton = document.getElementById("AddNew");
   AddNewRecipeButton.addEventListener('click',function(){
-    div_hide();
     div_show();
 
   })
