@@ -46,6 +46,7 @@ $(document).ready(function () {
   var ExitButton = document.getElementById("EscapeRecipeInput");
   ExitButton.addEventListener('close',function(){
     div_hide();
+    console.log("done");
   })
 
   //populates list and then gives everything the hover function
