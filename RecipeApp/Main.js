@@ -2,12 +2,29 @@ $.ajaxSetup({
   // Disable caching of AJAX responses
   cache: false
 });
+
+function div_show() {
+  document.getElementById('popupform').style.display = "block";
+  }
+  //Function to Hide Popup
+  function div_hide(){
+  document.getElementById('popupform').style.display = "none";
+  }
+
 $(document).ready(function () {
+
+  var AddNewRecipeButton = document.getElementById("AddNew");
+  AddNewRecipeButton.addEventListener('click',function(){
+    div_hide();
+    div_show();
+
+  })
+
+
 
   //populates list and then gives everything the hover function
   $.ajax(
-    'IngredientSearch.php',
-    {
+    'IngredientSearch.php', {
       success: function (data) {
 
         var DataArray = data.split("*");
