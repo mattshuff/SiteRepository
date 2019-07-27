@@ -48,7 +48,9 @@ $(document).ready(function () {
                     QueryValue: String(Input.value)
                 },
 
-                success: function (Data) {},               
+                success: function (Data) {
+                    Input.innerHTML="";
+                },               
             })
         }
     })
