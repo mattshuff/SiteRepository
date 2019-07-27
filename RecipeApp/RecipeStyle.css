@@ -35,8 +35,7 @@ input[type=text] {
   color: antiquewhite;
 }
 
-li,
-ul {
+li, ul {
   display: block;
   list-style-type: disc;
   padding: 1px;
