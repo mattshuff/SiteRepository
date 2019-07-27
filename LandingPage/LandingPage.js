@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //populate to do 
     $.ajax(
-        'LoadToDo.php',
+        "LandingPage/LoadToDo.php",
         {
           success: function (data) {
     
