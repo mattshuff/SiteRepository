@@ -85,11 +85,11 @@ ul {
   width: 30%  
 }
 #MethodNotes {
-  width: 500px;
+  width: 800px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre;
-  overflow: auto;
+  overflow: hidden;
 }
 
 #NotesColumn {
