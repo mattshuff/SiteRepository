@@ -15,7 +15,7 @@ $RecipeIngredients = $_GET['RecipeIngredients'];
 $RecipeMethod = $_GET['RecipeMethod'];
 echo $RecipeMethod;
 $sql = "INSERT INTO `recipes`(`RecipeName`, `RecipeIngredients`, `RecipeNotes`) VALUES ("
-$sql = $sql.$RecipeName.",".$RecipeIngredients.",".$RecipeMethod.")";
+$sql.$RecipeName.",".$RecipeIngredients.",".$RecipeMethod.")";
 echo $sql;
 
 
