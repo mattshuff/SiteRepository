@@ -109,7 +109,7 @@ li, ul {
   background-color: #313131;
   overflow: auto
 }
-.a,a:hover,a:active,a:visited{
+a{
   color: inherit;
   text-decoration: inherit;
 
