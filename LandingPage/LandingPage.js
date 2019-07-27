@@ -43,7 +43,7 @@ $(document).ready(function () {
                 var HoverValue = this.innerHTML;
 
                 $.ajax({
-                    url: 'DeleteToDo.php',
+                    url: 'LandingPage/DeleteToDo.php',
                     type: 'GET',
                     data: {
                         QueryValue: String(HoverValue)
@@ -55,7 +55,7 @@ $(document).ready(function () {
             ul.appendChild(li);
 
             $.ajax({
-                url: "AddToDo.php",
+                url: "LandingPage/AddToDo.php",
                 type: 'GET',
                 data: {
                     QueryValue: String(Input.value)
