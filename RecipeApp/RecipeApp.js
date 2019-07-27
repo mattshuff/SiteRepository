@@ -15,9 +15,6 @@ function div_hide() {
 //run on startup
 $(document).ready(function () {
 
-  //link back to main page 
-  var TitleButton = document.getElementById("MainTitle");
-
   //input popup stuff
   var AddNewRecipeButton = document.getElementById("AddNew");
   AddNewRecipeButton.addEventListener('click', function () {
@@ -45,6 +42,10 @@ $(document).ready(function () {
         location.reload();
       }
     })
+  })
+  var ExitButton = document.getElementById("EscapeRecipeInput");
+  ExitButton.addEventListener('close',function(){
+    div_hide();
   })
 
   //populates list and then gives everything the hover function
