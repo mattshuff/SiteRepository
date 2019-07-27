@@ -25,6 +25,7 @@ body {
     font-style: normal;
     color: antiquewhite;
     word-wrap: normal;
+    position:relative;
 }
 input[type=text] {
     padding:1px; 
