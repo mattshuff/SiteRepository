@@ -12,7 +12,7 @@ function div_hide() {
   document.getElementById('popupform').style.display = "none";
 }
 
-//run on startup
+//run on document ready
 $(document).ready(function () {
 
   //input popup stuff
@@ -20,6 +20,8 @@ $(document).ready(function () {
   AddNewRecipeButton.addEventListener('click', function () {
     div_show();
   })
+
+  //submit popup
   var PopUpSubmitButton = document.getElementById("RecipeInputSubmit");
   PopUpSubmitButton.addEventListener('click', function () {
 
@@ -43,12 +45,14 @@ $(document).ready(function () {
       }
     })
   })
+
+  //exit popup
   var ExitButton = document.getElementById("EscapeRecipeInput");
   ExitButton.addEventListener('click',function(){
     div_hide();
   })
 
-  //populates list and then gives everything the hover function
+  //populates list and then gives everything the hover and onclick functions
   $.ajax(
     'IngredientSearch.php', {
       success: function (data) {
@@ -88,6 +92,8 @@ $(document).ready(function () {
       }
     })
 
+
+    
   //live search feature:
   var input = document.getElementById('TextInput');
   input.addEventListener('keyup', function () {
