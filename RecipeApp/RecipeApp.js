@@ -92,7 +92,7 @@ $(document).ready(function () {
   var input = document.getElementById('TextInput');
   input.addEventListener('keyup', function () {
     var x = document.getElementById('RecipeList');
-    //$(x).empty();
+    $(x).empty();
 
     $.ajax({
       url: "LiveSearchQuery.php",
@@ -131,7 +131,6 @@ $(document).ready(function () {
               }
             });
           }
-
           ul.appendChild(li);
         }
       }
