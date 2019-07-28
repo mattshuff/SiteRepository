@@ -4,7 +4,6 @@
     <link rel="stylesheet" type="text/css" href="RecipeStyle.css">
     <meta charset="UTF-8">
 </head>
-
 <body>
 
     <a href="https://matt-shuff.co.uk/" id = "MainTitle">MATT-SHUFF.co.uk</a>
@@ -12,18 +11,19 @@
 
     <div class="column" id="SearchColumn">
         <h1 id="subtitle">Search:</h1>
-
-        <form action="/IngredientSearch.php">
+       
             <input type="text" id="TextInput">
-        </form>
-
+        
         <div class="left_contentlist">
-            <div class="itemconfiguration" style="padding-left: 30px;">
+            <div class="ScrollingList">
+
                 <ul id="RecipeList"></ul>
                 <p id="AddNew">Add New Recipe...</p>
 
+                <!–– Popup Function  ––>
                 <div id="popupform">
-                        <p id="EscapeRecipeInput">exit input</p>
+
+                    <p id="EscapeRecipeInput">exit recipe input</p>
                     <P>Recipe Name:</P>
                     <input id="RecipeNameInput" type="text" placeholder="Search Recipes...">
 
@@ -31,12 +31,10 @@
                     <textarea id="RecipeIngredientsInput" rows="4" cols="50"></textarea>
 
                     <P>Recipe Method:</P>
-                    <textarea id="RecipeMethodInput" rows="4" cols="50"></textarea>
-                    <br>
-                    <p id="RecipeInputSubmit">submit</p>
+                    <textarea id="RecipeMethodInput" rows="4" cols="50"></textarea><br>
                     
+                    <p id="RecipeInputSubmit">submit</p>                   
                 </div>
-
             </div>
         </div>
     </div>
@@ -56,4 +54,5 @@
 
         <p id="MethodNotes"> </p>
     </div>
+    
 </body>

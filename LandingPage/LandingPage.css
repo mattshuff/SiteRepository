@@ -52,15 +52,15 @@ li, ul{
 #NotesColumn{
   width:40%;
 }
-.itemconfiguration
+.ScrollingList
 {
 		height:650px;
-		width:215px;
-		/* background-color:#CCC; */		
-        overflow-y:auto;
+		width:215px;	
+    overflow-y:auto;
 		float:left;
 		position:relative;
-		margin-left:-10px;
+    margin-left:-10px;
+    padding-left: 30px;
 }
 .left_contentlist{
 width:215px;
