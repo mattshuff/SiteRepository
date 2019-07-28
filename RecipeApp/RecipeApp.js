@@ -41,6 +41,11 @@ $(document).ready(function () {
       },
       success: function (data) {
         div_hide();
+
+        RecipeName.value="";
+        RecipeIngredients.value="";
+        RecipeMethod.value="";
+        
         location.reload();
       }
     })

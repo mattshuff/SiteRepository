@@ -1,0 +1,86 @@
+.column {
+    float: left;
+    width: 33.33%;
+    padding-right: 20px;
+  }
+
+body,a {
+    background-color: #2C2F33;
+    color: antiquewhite;
+    font-size: 22px;
+    padding-bottom: 5px;
+    font-family: 'Helvetica';
+    font-weight: normal;
+    font-style: normal;
+    color: antiquewhite;
+    word-wrap: normal;
+    text-decoration: none;
+}
+input[type=text] {
+    padding:1px; 
+    border-color: antiquewhite;
+    border-width: 3px;
+    background:#2C2F33;
+    color: antiquewhite;
+}
+li, ul{
+    display: block;
+    list-style-type: disc;
+    padding: 1px;
+    font-size: 22px;
+}
+#subtitle {
+    padding-top: 5px;
+    font-size: 32px;
+    margin: 0;
+
+}
+#h1 {
+    padding: 0;
+    margin: 0;
+    padding:5px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 44px;
+    word-wrap: normal;
+    text-align: left;
+    font-weight: bold;
+}
+#SearchColumn{
+  width:auto;
+}
+#NotesColumn{
+  width:40%;
+}
+.itemconfiguration
+{
+		height:650px;
+		width:215px;
+		/* background-color:#CCC; */		
+        overflow-y:auto;
+		float:left;
+		position:relative;
+		margin-left:-10px;
+}
+.left_contentlist{
+width:215px;
+float:left;
+padding:0 0 0 0px;
+position:relative;
+float:left;
+}
+#IngredientsNotes{
+word-wrap: normal;
+white-space: pre;
+}
+#mainTitle{
+  font-family: arial,Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  padding:5px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 44px;
+  word-wrap: normal;
+  text-align: left;
+  font-weight: bold;
+}
+
