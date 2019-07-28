@@ -43,9 +43,8 @@ $(document).ready(function () {
             li.onclick = function () {
                 var HoverValue = this.innerHTML;
                 
-
                 $.ajax({
-                    url: "http://www.matt-shuff.co.uk/LandingPage/DeleteToDo.php",
+                    url: "LandingPage/AddToDo.php",
                     type: 'GET',
                     data: {
                         QueryValue: String(HoverValue)
