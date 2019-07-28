@@ -42,7 +42,8 @@ $(document).ready(function () {
 
             li.onclick = function () {
                 var HoverValue = this.innerHTML;
-
+                
+                
                 $.ajax({
                     url: "https://matt-shuff.co.uk/LandingPage/DeleteToDo.php",
                     type: 'GET',
