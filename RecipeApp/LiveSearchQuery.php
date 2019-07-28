@@ -11,7 +11,6 @@ $Search = $_GET['QueryValue'];
 $sql = "SELECT * FROM `recipes` WHERE `RecipeName` LIKE '";
 $sql .= $Search;
 $sql .= "%'";
-echo $sql;
 
 $result = $connect->query($sql);
 
