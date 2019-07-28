@@ -39,11 +39,12 @@ $(document).ready(function () {
             var ul = document.getElementById("ToDoList");
             var li = document.createElement("li");
             li.appendChild(document.createTextNode(Input.value));
+
             li.onclick = function () {
                 var HoverValue = this.innerHTML;
 
                 $.ajax({
-                    url: "LandingPage/DeleteToDo.php",
+                    url: "https://matt-shuff.co.uk/LandingPage/DeleteToDo.php",
                     type: 'GET',
                     data: {
                         QueryValue: String(HoverValue)
