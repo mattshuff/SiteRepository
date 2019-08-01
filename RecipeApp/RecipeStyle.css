@@ -33,6 +33,7 @@ input[type=text] {
   border-width: 3px;
   background: #2C2F33;
   color: antiquewhite;
+  float: left;
 }
 
 li, ul {
