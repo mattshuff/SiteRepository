@@ -10,5 +10,20 @@ jQuery.ajax({
     }
 })
 
-var p = document.getElementById("test");
-p.innerHTML = Data;
+Data = JSON.parse(Data);
+
+var label = "Time Series (Daily)";
+var timeData = Data[label];
+
+dates = [];
+values = [];
+
+console.log(timeData);
+
+//iterate through our data, get dates and closing values
+for (const key of Object.keys(timeData)) {
+    //this add the time to our dates
+    dates.push(key);
+    //this add the closing values to our values array
+    values.push(timeData[key]["4. close"]);
+}
