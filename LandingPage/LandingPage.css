@@ -3,7 +3,11 @@
       width: 33.33%;
       padding-right: 20px;
   }
-  
+
+  li {
+      cursor: pointer;
+  }
+
   body,
   a {
       background-color: #2C2F33;
@@ -17,7 +21,7 @@
       word-wrap: normal;
       text-decoration: none;
   }
-  
+
   input[type=text] {
       padding: 1px;
       border-color: antiquewhite;
@@ -25,7 +29,7 @@
       background: #2C2F33;
       color: antiquewhite;
   }
-  
+
   li,
   ul {
       display: block;
@@ -33,21 +37,21 @@
       padding: 1px;
       font-size: 22px;
   }
-  
+
   #subtitle {
       padding-top: 5px;
       font-size: 32px;
       margin: 0;
   }
-  
+
   #SearchColumn {
       width: auto;
   }
-  
+
   #NotesColumn {
       width: 40%;
   }
-  
+
   .ScrollingList {
       height: 650px;
       width: 215px;
@@ -57,7 +61,7 @@
       margin-left: -10px;
       padding-left: 30px;
   }
-  
+
   .left_contentlist {
       width: 215px;
       float: left;
@@ -65,12 +69,12 @@
       position: relative;
       float: left;
   }
-  
+
   #IngredientsNotes {
       word-wrap: normal;
       white-space: pre;
   }
-  
+
   #mainTitle {
       font-family: arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       padding: 5px;
