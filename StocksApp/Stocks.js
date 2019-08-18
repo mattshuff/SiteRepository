@@ -6,7 +6,7 @@ jQuery.ajax({
     dataType: 'json',
     contentType: "application/json",
     success: function (data) {
-        Data = data;
+        Data == data;
     }
 })
 
