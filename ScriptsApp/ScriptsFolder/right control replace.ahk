@@ -1,3 +1,0 @@
-﻿AppsKey::
-   SendRaw, RControl     
-Return
