@@ -10,7 +10,7 @@ jQuery.ajax({
     }
 })
 
-Data = JSON.parse(Data);
+
 
 var label = "Time Series (Daily)";
 var timeData = Data[label];
