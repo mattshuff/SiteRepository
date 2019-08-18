@@ -4,9 +4,6 @@
       padding-right: 20px;
   }
 
-  li {
-      cursor: pointer;
-  }
 
   body,
   a {
@@ -36,6 +33,7 @@
       list-style-type: disc;
       padding: 1px;
       font-size: 22px;
+      cursor: pointer;
   }
 
   #subtitle {
@@ -52,7 +50,7 @@
       width: 40%;
   }
 
-  .ScrollingList {
+  #ToDoList {
       height: 650px;
       width: 215px;
       overflow-y: auto;
