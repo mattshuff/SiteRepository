@@ -24,6 +24,6 @@ jQuery.ajax({
             values.push(timeData[key]["4. close"]);
         }
 
-        console.log(Object.keys(timeData)[1]);
+        console.log(Object.keys(timeData)[1][0]);
     }
 })
