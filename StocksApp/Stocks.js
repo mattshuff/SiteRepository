@@ -23,7 +23,7 @@ jQuery.ajax({
             //this add the closing values to our values array
             values.push(timeData[key]["4. close"]);
         }
-
-        console.log(Object.keys(timeData)[0][0][0]);
+        label = "1. open"
+        console.log(timeData[0].label);
     }
 })
