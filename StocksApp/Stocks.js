@@ -24,7 +24,6 @@ $.ajax({
             //this add the closing values to our values array
             values.push(timeData[key]["4. close"]);
         }
-        label = "1. open"
-        console.log(timeData[key]["4. close"]);
+        console.log(dates[0] + " " + vales[0]);
     }
 })
