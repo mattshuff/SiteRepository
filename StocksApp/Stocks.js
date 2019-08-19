@@ -46,9 +46,7 @@ $.ajax({
                 xValueFormatString: "DD MMM",
                 yValueFormatString: "$##0.00",
                 dataPoints: [
-                    { x: dates[0], y: values[0] },
-                    { x: new Date(2016, 07, 01), y: 76.727997 },
-                
+                    { x: dates[0], y: values[0] },                
                 ]
             }]
         });
