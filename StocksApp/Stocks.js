@@ -23,5 +23,7 @@ jQuery.ajax({
             //this add the closing values to our values array
             values.push(timeData[key]["4. close"]);
         }
+
+        console.log(Object.keys(timeData)[1]);
     }
 })
