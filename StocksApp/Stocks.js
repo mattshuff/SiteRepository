@@ -18,6 +18,7 @@ $.ajax({
 
         //iterate through our data, get dates and closing values
         for (const key of Object.keys(timeData)) {
+            console.log(key);
             //this add the time to our dates
             dates.push(key);
             //this add the closing values to our values array
