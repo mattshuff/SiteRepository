@@ -34,10 +34,12 @@ a {
     font-weight: bold;
 }
 #FiveDayHistory{
+    display: inline-block;
     color:red;
     position: relative;
 }
 #SixMonthHistory{
+    display: inline-block;
 position: relative;
 color:blue;
 }
