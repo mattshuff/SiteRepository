@@ -1,9 +1,12 @@
+//wait until the page is ready
 $(document).ready(function () {
 
-var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=SPY&apikey=DET6IF6YAHK5PGVO';
+    //url of API call, eventually this will be constructed using the Tickers.txt
+var APIurl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=SPY&apikey=DET6IF6YAHK5PGVO';
 
+//ajax call to fetch the API
 $.ajax({
-    url: url,
+    url: APIurl,
     dataType: 'json',
     contentType: "application/json",
     success: function (data) {
@@ -16,23 +19,24 @@ $.ajax({
         dates = [];
         values = [];
 
+        //log to console for debugging
         console.log(timeData);
 
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
-            var x = new Date(date);
-            var y = x.toLocaleDateString("en-GB");
+            var DateVar = new Date(date);
+            var DateString = DateVar.toLocaleDateString("en-GB");
 
-            if(y.includes(',')){
-                y = y.replace(',',"");
+            var ClosingValue = timeData[date]["4. close"]
+
+            if(ClosingValue.includes(',')){
+                DateString = DateString.replace(',',"");
                 console.log("FIRE");
             }
             
-            dates.push(y);
-            values.push(timeData[date]["4. close"]);
+            dates.push(DateString);
+            values.push(ClosingValue);
         }
-
-
         
         var combined = [];
         var i;
