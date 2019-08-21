@@ -22,35 +22,14 @@ $.ajax({
             dates.push(date);
             values.push(timeData[date]["4. close"]);
         }
-
-        //draw data to graph
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            title:{
-                text: "test graph"
-            },
-            axisX:{
-                valueFormatString: "DD MMM",
-                crosshair: {
-                    enabled: true,
-                    snapToDataPoint: true
-                }
-            },
-            axisY: {
-                title: "Closing Price (in USD)",
-                includeZero: false,
-                valueFormatString: "$##0.00",
-            },
-            data: [{
-                type: "area",
-                xValueFormatString: "DD MMM",
-                yValueFormatString: "$##0.00",
-                dataPoints: [
-                    { x: dates[0], y: values[0] },                
-                ]
-            }]
-        });
-        chart.render();
+        var combined = [];
+        var i;
+        for(i=0;i<dates.length;i++){
+            combined.push(dates[i] + " - " + values[i]);
+        }
+        var fivedayview = document.getElementById("FiveDayView");
+        fivedayview.innerHTML = combined;
+        
 
         
     }
