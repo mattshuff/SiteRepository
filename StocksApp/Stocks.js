@@ -41,7 +41,7 @@ $.ajax({
         }
 
         //write to html
-        var FiveDayHistory = document.getElementById("FiveDayHistory");
+        var FiveDayHistory = document.getElementsByClassName("FiveDayHistory");
         FiveDayHistory.innerHTML = CombinedArray.join(" <br> ");
   
     }
