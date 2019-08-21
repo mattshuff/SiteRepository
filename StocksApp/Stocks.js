@@ -1,6 +1,10 @@
 //wait until the page is ready
 $(document).ready(function () {
 
+
+//NEED TO REFACTOR ALL OF THIS INTO A FUNCTION SO THAT YOU IT WILL WORK FOR ANY CALL
+
+
     //url of API call, eventually this will be constructed using the Tickers.txt
 var APIurl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=SPY&apikey=DET6IF6YAHK5PGVO';
 
@@ -38,14 +42,18 @@ $.ajax({
         var CombinedArray = [];
         for(var x = 0; x <5;x++){
         CombinedArray.push( dates[x] + " - " + values[x]);
+        
         }
+
+        //SHOULD BE WRITING P ELEMENTS WITH THEIR OWN STYLE SO CAN SAY IF STOCK IS UP OR DOWN
+
 
         //write to html
         var FiveDayHistory = document.getElementById("FiveDayHistory");
         FiveDayHistory.innerHTML = "Five Day History:" + "<br>" + CombinedArray.join(" <br> ");
   
         var SixMonthHistory = document.getElementById("SixMonthHistory");
-        SixMonthHistory.innerHTML = "Five Day History:" + "<br>" + CombinedArray.join(" <br> ");
+        SixMonthHistory.innerHTML = "Six Month History:" + "<br>" + CombinedArray.join(" <br> ");
 
     }
 })
