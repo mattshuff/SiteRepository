@@ -19,7 +19,7 @@ $.ajax({
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
 
-            dates.push(date);
+            dates.push(convertDigitIn(date));
             values.push(timeData[date]["4. close"]);
         }
         var combined = [];
@@ -30,8 +30,13 @@ $.ajax({
 
         var fivedayview = document.getElementById("FiveDayView");
         fivedayview.innerHTML = combined;
+
+
         
 
         
     }
 })
+function convertDigitIn(str){
+    return str.split('/').reverse().join('/');
+ }
