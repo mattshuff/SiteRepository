@@ -7,6 +7,7 @@ var APIurl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUS
 //ajax call to fetch the API
 $.ajax({
     url: APIurl,
+    async: false,
     dataType: 'json',
     contentType: "application/json",
     success: function (data) {
@@ -29,8 +30,6 @@ $.ajax({
 
             var ClosingValue = timeData[date]["4. close"]
 
-          
-            
             dates.push(DateString);
             values.push(ClosingValue);
         }
