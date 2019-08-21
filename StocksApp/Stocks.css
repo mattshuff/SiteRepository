@@ -27,7 +27,6 @@ a {
 .MainTitle {
     font-family: arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding: 5px;
-    /* color: inherit; */
     text-decoration: none;
     font-size: 44px;
     word-wrap: normal;
@@ -36,7 +35,9 @@ a {
 }
 #FiveDayHistory{
     color:red;
+    position: relative;
 }
 #SixMonthHistory{
-
+position: relative;
+float: right;
 }
