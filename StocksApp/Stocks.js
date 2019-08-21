@@ -32,12 +32,14 @@ $.ajax({
             dates.push(DateString);
             values.push(ClosingValue);
         }
+
+        var CombinedArray = [];
         for(var x = 0; x <5;x++){
-        var CombinedArray = dates[x] + " - " + values[x];
+        CombinedArray.push( dates[x] + " - " + values[x]);
         }
 
         var fivedayview = document.getElementById("FiveDayView");
-        fivedayview.innerHTML = CombinedArray.join(" <br> ");
+        fivedayview.innerHTML = CombinedArray.Join(" <br> ");
         console.log("inner html set");  
          
     }
