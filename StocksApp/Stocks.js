@@ -25,6 +25,7 @@ $.ajax({
 
             if(y.includes(',')){
                 y = y.replace(',',"");
+                console.log("FIRE");
             }
             
             dates.push(y);
