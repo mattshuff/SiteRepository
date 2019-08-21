@@ -41,8 +41,8 @@ $.ajax({
         }
 
         //write to html
-        var fivedayview = document.getElementById("FiveDayHistory");
-        fivedayview.innerHTML = CombinedArray.join(" <br> ");
+        var FiveDayHistory = document.getElementById("FiveDayHistory");
+        FiveDayHistory.innerHTML = CombinedArray.join(" <br> ");
   
     }
 })
