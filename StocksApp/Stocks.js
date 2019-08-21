@@ -7,7 +7,6 @@ var APIurl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUS
 //ajax call to fetch the API
 $.ajax({
     url: APIurl,
-    async: false,
     dataType: 'json',
     contentType: "application/json",
     success: function (data) {
@@ -40,12 +39,12 @@ $.ajax({
 
         for(i=0;i<5;i++){
 
-            CombinedString=dates[i] + " - " + values[i];
+            CombinedString=dates[i] + " - " + values[i] + "<br>";
 
-            if(CombinedString.includes(",")){
+     
                 CombinedString = CombinedString.replace(","," ");
                 console.log("FIRE");
-            }
+            
             CombinedArray.push(CombinedString);
         }
 
