@@ -26,14 +26,14 @@ $.ajax({
         var combined = [];
         var i;
 
-        for(i=0;i<4;i++){
+        for(i=0;i<5;i++){
             combined.push(dates[i] + " - " + values[i] + "<br>");
         }
 
         var fivedayview = document.getElementById("FiveDayView");
         fivedayview.innerHTML = combined;  
+        function convertDigitIn(str){
+            return str.split('/').reverse().join('/');
+         }
     }
 })
-function convertDigitIn(str){
-    return str.split('/').reverse().join('/');
- }
