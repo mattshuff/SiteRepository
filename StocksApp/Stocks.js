@@ -40,7 +40,7 @@ $.ajax({
 
         for(i=0;i<5;i++){
 
-            CombinedString=dates[i] + " - " + values[i] + "<br>";
+            CombinedString=dates[i] + " - " + values[i];
 
             if(CombinedString.includes(",")){
                 CombinedString = CombinedString.replace(","," ");
