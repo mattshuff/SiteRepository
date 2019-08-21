@@ -50,7 +50,7 @@ $.ajax({
         }
 
         var fivedayview = document.getElementById("FiveDayView");
-        fivedayview.innerHTML = combined;  
+        fivedayview.innerHTML = CombinedArray;  
          
     }
 })
