@@ -39,7 +39,7 @@ $.ajax({
         }
 
         var fivedayview = document.getElementById("FiveDayView");
-        fivedayview.innerHTML = CombinedArray.Join(" <br> ");
+        fivedayview.innerHTML = CombinedArray.join(" <br> ");
         console.log("inner html set");  
          
     }
