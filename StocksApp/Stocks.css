@@ -39,9 +39,10 @@ a {
 }
 #SixMonthHistory{
 position: relative;
-float: right;
+color:blue;
 }
 .Tracker{
+    display: inline-block;
     width: 50%;
     height: 50%;
 }
