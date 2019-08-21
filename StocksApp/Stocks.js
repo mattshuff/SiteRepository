@@ -21,7 +21,7 @@ $.ajax({
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
             var x = new Date(date);
-            var y = x.toISOString().slice(0,10);
+            var y = x.toLocaleDateString("en-GB");
 
 
             console.log("doing work 45");
