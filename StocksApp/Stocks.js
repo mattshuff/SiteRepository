@@ -34,10 +34,12 @@ $.ajax({
         }
         
         var CombinedArray = [];
-        var CombinedString = CombinedArray.join("<br>");
+        var CombinedString = CombinedArray.join(" <br> ");
+        console.log("joined");
 
         var fivedayview = document.getElementById("FiveDayView");
-        fivedayview.innerHTML = CombinedString;  
+        fivedayview.innerHTML = CombinedString;
+        console.log("inner html set");  
          
     }
 })
