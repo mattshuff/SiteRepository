@@ -19,15 +19,15 @@ $.ajax({
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
             var x = new Date(date);
-            x.toDateString();
+            x.toLocaleDateString();
 
 
-
-
+            console.log("doing work");
+            
             dates.push(x);
             values.push(timeData[date]["4. close"]);
         }
-
+        
         var combined = [];
         var i;
 
