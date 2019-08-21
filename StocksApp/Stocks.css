@@ -4,7 +4,6 @@
     padding-right: 20px;
 }
 
-
 body,
 a {
     background-color: #2C2F33;
@@ -19,36 +18,25 @@ a {
     text-decoration: none;
 }
 
-input[type=text] {
-    padding: 1px;
-    border-color: antiquewhite;
-    border-width: 3px;
-    background: #2C2F33;
-    color: antiquewhite;
-}
-
-li,
-ul {
-    display: block;
-    list-style-type: disc;
-    padding: 1px;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-#subtitle {
+.subtitle {
     padding-top: 5px;
     font-size: 32px;
     margin: 0;
 }
 
-#mainTitle {
+.mainTitle {
     font-family: arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding: 5px;
-    color: inherit;
+    /* color: inherit; */
     text-decoration: none;
     font-size: 44px;
     word-wrap: normal;
     text-align: left;
     font-weight: bold;
+}
+.FiveDayHistory{
+    color:red;
+}
+.SixMonthHistory{
+
 }

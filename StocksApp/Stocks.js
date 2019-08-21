@@ -24,24 +24,26 @@ $.ajax({
 
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
+            //convert date to sensible format and push to array
             var DateVar = new Date(date);
             var DateString = DateVar.toLocaleDateString("en-GB");
-
-            var ClosingValue = timeData[date]["4. close"]
-
             dates.push(DateString);
+
+            //get value and push to array
+            var ClosingValue = timeData[date]["4. close"]
             values.push(ClosingValue);
         }
 
+        //combine date and value
         var CombinedArray = [];
         for(var x = 0; x <5;x++){
         CombinedArray.push( dates[x] + " - " + values[x]);
         }
 
-        var fivedayview = document.getElementById("FiveDayView");
+        //write to html
+        var fivedayview = document.getElementById("FiveDayHistory");
         fivedayview.innerHTML = CombinedArray.join(" <br> ");
-        console.log("inner html set");  
-         
+  
     }
 })
 })
