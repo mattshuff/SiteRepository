@@ -19,7 +19,7 @@ $.ajax({
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
             var x = new Date(date);
-            x.toLocaleDateString();
+            x.toLocaleDateString("en-GB");
             x.toString();
             dates.push(x);
             values.push(timeData[date]["4. close"]);
