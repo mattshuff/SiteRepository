@@ -34,22 +34,10 @@ $.ajax({
         }
         
         var CombinedArray = [];
-        var CombinedString;
-        var i;
-
-        for(i=0;i<5;i++){
-
-            CombinedString=dates[i] + " - " + values[i] + "<br>";
-
-     
-                CombinedString = CombinedString.replace(","," ");
-                console.log("FIRE");
-            
-            CombinedArray.push(CombinedString);
-        }
+        var CombinedString = CombinedArray.join("<br>");
 
         var fivedayview = document.getElementById("FiveDayView");
-        fivedayview.innerHTML = CombinedArray;  
+        fivedayview.innerHTML = CombinedString;  
          
     }
 })
