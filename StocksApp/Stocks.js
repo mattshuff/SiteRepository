@@ -29,8 +29,8 @@ $.ajax({
 
             var ClosingValue = timeData[date]["4. close"]
 
-            if(ClosingValue.includes(',')){
-                DateString = DateString.replace(',',"");
+            if(ClosingValue.includes(",")){
+                DateString = DateString.replace(","," ");
                 console.log("FIRE");
             }
             
