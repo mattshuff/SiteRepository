@@ -29,27 +29,29 @@ $.ajax({
 
             var ClosingValue = timeData[date]["4. close"]
 
-            if(ClosingValue.includes(",")){
-                DateString = DateString.replace(","," ");
-                console.log("FIRE");
-            }
+          
             
             dates.push(DateString);
             values.push(ClosingValue);
         }
         
-        var combined = [];
+        var CombinedArray = [];
+        var CombinedString;
         var i;
 
         for(i=0;i<5;i++){
-            combined.push(dates[i] + " - " + values[i] + "<br>");
+
+            CombinedString=dates[i] + " - " + values[i] + "<br>";
+
+            if(CombinedString.includes(",")){
+                CombinedString = CombinedString.replace(","," ");
+                console.log("FIRE");
+            }
+            CombinedArray.push(CombinedString);
         }
 
         var fivedayview = document.getElementById("FiveDayView");
         fivedayview.innerHTML = combined;  
-        function convertDigitIn(str){
-            return str.split('/').reverse().join('/');
-         }
          
     }
 })
