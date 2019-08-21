@@ -23,12 +23,15 @@ $.ajax({
             var x = new Date(date);
             var y = x.toLocaleDateString("en-GB");
 
-
-            console.log("doing work 45");
+            if(y.includes(',')){
+                y = y.replace(',',"");
+            }
             
             dates.push(y);
             values.push(timeData[date]["4. close"]);
         }
+
+
         
         var combined = [];
         var i;
