@@ -1,3 +1,5 @@
+$(document).ready(function () {
+
 var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=SPY&apikey=DET6IF6YAHK5PGVO';
 
 $.ajax({
@@ -19,12 +21,12 @@ $.ajax({
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
             var x = new Date(date);
-            x.toISOString().slice(0,10);
+            var y = x.toISOString().slice(0,10);
 
 
             console.log("doing work 45");
             
-            dates.push(x);
+            dates.push(y);
             values.push(timeData[date]["4. close"]);
         }
         
@@ -42,4 +44,5 @@ $.ajax({
          }
          
     }
+})
 })
