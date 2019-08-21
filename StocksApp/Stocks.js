@@ -44,7 +44,7 @@ $.ajax({
         var FiveDayHistory = document.getElementById("FiveDayHistory");
         FiveDayHistory.innerHTML = "Five Day History:" + "<br>" + CombinedArray.join(" <br> ");
   
-        var SixMonthHistory = document.getElementsByClassName("SixMonthHistory");
+        var SixMonthHistory = document.getElementById("SixMonthHistory");
         SixMonthHistory.innerHTML = " tester";
 
     }
