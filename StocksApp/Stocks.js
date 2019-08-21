@@ -22,7 +22,7 @@ $.ajax({
             x.toISOString().slice(0,10);
 
 
-            console.log("doing work");
+            console.log("doing work 45");
             
             dates.push(x);
             values.push(timeData[date]["4. close"]);
