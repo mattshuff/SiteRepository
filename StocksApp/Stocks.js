@@ -1,4 +1,4 @@
-var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT&apikey=demo';
+var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=SPY&apikey=DET6IF6YAHK5PGVO';
 
 $.ajax({
     url: url,
@@ -25,8 +25,9 @@ $.ajax({
         var combined = [];
         var i;
         for(i=0;i<dates.length;i++){
-            combined.push(dates[i] + " - " + values[i]);
+            combined.push(dates[i] + " - " + values[i] + "&#10;");
         }
+
         var fivedayview = document.getElementById("FiveDayView");
         fivedayview.innerHTML = combined;
         
