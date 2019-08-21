@@ -18,8 +18,10 @@ $.ajax({
 
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
-
-            dates.push(convertDigitIn(date));
+            var x = new Date(date);
+            x.toLocaleDateString();
+            x.toString();
+            dates.push(x);
             values.push(timeData[date]["4. close"]);
         }
 
@@ -35,5 +37,6 @@ $.ajax({
         function convertDigitIn(str){
             return str.split('/').reverse().join('/');
          }
+         
     }
 })
