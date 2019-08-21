@@ -22,19 +22,16 @@ $.ajax({
             dates.push(convertDigitIn(date));
             values.push(timeData[date]["4. close"]);
         }
+
         var combined = [];
         var i;
-        for(i=0;i<dates.length;i++){
+
+        for(i=0;i<4;i++){
             combined.push(dates[i] + " - " + values[i] + "<br>");
         }
 
         var fivedayview = document.getElementById("FiveDayView");
-        fivedayview.innerHTML = combined;
-
-
-        
-
-        
+        fivedayview.innerHTML = combined;  
     }
 })
 function convertDigitIn(str){
