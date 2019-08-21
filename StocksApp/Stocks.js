@@ -19,7 +19,7 @@ $.ajax({
         //iterate through our data, get dates and closing values
         for (const date of Object.keys(timeData)) { 
             var x = new Date(date);
-            x.toLocaleDateString();
+            x.toISOString().slice(0,10);
 
 
             console.log("doing work");
