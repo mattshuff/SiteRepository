@@ -25,7 +25,7 @@ $.ajax({
         var combined = [];
         var i;
         for(i=0;i<dates.length;i++){
-            combined.push(dates[i] + " - " + values[i] + "&#10;");
+            combined.push(dates[i] + " - " + values[i] + "&#13;");
         }
 
         var fivedayview = document.getElementById("FiveDayView");
