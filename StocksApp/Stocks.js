@@ -42,7 +42,7 @@ $.ajax({
 
         //write to html
         var FiveDayHistory = document.getElementById("FiveDayHistory");
-        FiveDayHistory.innerHTML = CombinedArray.join(" <br> ");
+        FiveDayHistory.innerHTML = "Five Day History:" + "<br>" + CombinedArray.join(" <br> ");
   
     }
 })
