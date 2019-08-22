@@ -38,6 +38,13 @@ $.ajax({
             values.push(ClosingValue);
         }
 
+        for(var x = 0; x<6;x++){
+            console.log(dates[x]);
+        }
+
+
+
+
         //combine date and value
         var CombinedArray = [];
         for(var x = 0; x <5;x++){
