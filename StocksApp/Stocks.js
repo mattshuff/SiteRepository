@@ -49,8 +49,8 @@ $.ajax({
         
         }
 
+        
         //SHOULD BE WRITING P ELEMENTS WITH THEIR OWN STYLE SO CAN SAY IF STOCK IS UP OR DOWN
-
 
         //write to html
         var FiveDayHistory = document.getElementById("FiveDayHistory");
