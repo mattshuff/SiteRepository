@@ -38,11 +38,11 @@ $.ajax({
             values.push(ClosingValue);
         }
 
-        for(var x = 6; x>0;x--){
+        for(var x = 6; x >= 0; x-=1){
             console.log(dates[x] + "     " + x);
         }
 
-                //combine date and value
+        //combine date and value
         var CombinedArray = [];
         for(var x = 0; x <5;x++){
         CombinedArray.push( dates[x] + " - " + values[x]);
