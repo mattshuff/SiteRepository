@@ -38,7 +38,7 @@ $.ajax({
             values.push(ClosingValue);
         }
 
-        for(var x = 0; x<6;x++){
+        for(var x = 0; x>6;x++){
             console.log(dates[x] + "     " + x);
         }
 
