@@ -42,10 +42,7 @@ $.ajax({
             console.log(dates[x]);
         }
 
-
-
-
-        //combine date and value
+                //combine date and value
         var CombinedArray = [];
         for(var x = 0; x <5;x++){
         CombinedArray.push( dates[x] + " - " + values[x]);
