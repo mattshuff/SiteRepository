@@ -42,7 +42,7 @@ $.ajax({
 
         for(var x = 4; x >= 0; x-=1){
             var para = document.createElement("p");
-            var node = document.createTextNode(dates[x] + " - " + values[x]);
+            var node = document.createTextNode(dates[x] + " - " + values[x] + "\n");
             para.appendChild(node);
 
             if(values[x] > values[x-1]){
