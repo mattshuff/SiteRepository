@@ -47,7 +47,7 @@ $.ajax({
 
             if(values[x] > values[x-1]){
                 para.setAttribute("style", "color:#03fc49;"); 
-                para.setAttribute("ID","FiveDayHistory");
+                para.setAttribute("id","FiveDayHistory");
             }
             else{
                 para.setAttribute("style", "color:red;"); 
