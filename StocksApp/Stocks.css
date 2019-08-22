@@ -36,13 +36,13 @@ a {
 #FiveDayHistory{
     display: inline-block;
     position: relative;
-    white-space: pre-line"
+    white-space: pre-line;
 }
 #SixMonthHistory{
     display: inline-block;
 position: relative;
 color:#03fc49;
-white-space: pre-line"
+white-space: pre-line;
 }
 .Tracker{
     display: inline-block;
