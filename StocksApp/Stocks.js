@@ -38,7 +38,7 @@ $.ajax({
             values.push(ClosingValue);
         }
 
-        for(var x = 0; x>6;x++){
+        for(var x = 6; x>0;x--){
             console.log(dates[x] + "     " + x);
         }
 
@@ -49,7 +49,7 @@ $.ajax({
         
         }
 
-        
+
         //SHOULD BE WRITING P ELEMENTS WITH THEIR OWN STYLE SO CAN SAY IF STOCK IS UP OR DOWN
 
         //write to html
