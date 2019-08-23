@@ -23,8 +23,6 @@ function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
     var ReturnValue = new Array();
 
-    
-    
     //ajax call to fetch the API
     $.ajax({
         url: APIurl,
@@ -73,9 +71,9 @@ function PopulateData(func,symbol) {
                 //push elements to array
                 Elements.push(para);           
             }
-            ReturnValue = Elements.reverse();  
-                        
-            
+            var test = Elements.reverse(); 
+            ReturnValue  = test;
+                         
         }
     })  
     return ReturnValue;
