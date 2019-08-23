@@ -6,19 +6,28 @@ $(document).ready(function() {
             var Tracker = document.createElement("div");
             Tracker.setAttribute("ID","Tracker");
 
-            var HistoryWrapper = document.createElement("div");
-            HistoryWrapper.setAttribute("ID","HistoryWrapper");
+            var FiveDayHistoryWrapper = document.createElement("div");
+            FiveDayHistoryWrapper.setAttribute("ID","HistoryWrapper");
 
-            var data;
-            data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
+            var SixMonthHistoryWrapper = document.createElement("div");
+            SixMonthHistoryWrapper.setAttribute("ID","HistoryWrapper");
+
+            var FiveDayData;
+            FiveDayData = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
+
+            var SixMonthData;
+            SixMonthData = PopulateData("TIME_SERIES_MONTHLY","SPY");
+
+
 
             for(var x = 0; x < data.length; x+=1){
-                HistoryWrapper.append(data[x]);
-                console.log(data[x]);
+                FiveDayHistoryWrapper.append(FiveDayData[x]);
+                SixMonthHistoryWrapper.append(SixMonthData[x]);
             }
              
               ContentWrapper.append(Tracker);
-              Tracker.append(HistoryWrapper);
+              Tracker.append(FiveDayHistoryWrapper);
+              Tracker.append(SixMonthHistoryWrapper)
               
             })
            
