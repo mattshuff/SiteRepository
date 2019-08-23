@@ -2,23 +2,23 @@
 $(document).ready(function() {
 
             var Content = document.getElementById("Content");
-            
-            var Tracker = document.createElement('div');
-            Tracker.setAttribute("ID","Tracker");
-            Content.append(Tracker);
 
-            var FiveDaysDiv = document.createElement('div');
-            FiveDaysDiv.setAttribute("ID","HistoryWrapper")
-            Tracker.append(FiveDaysDiv);
+            var Tracker = document.createElement("div");
+            Tracker.setAttribute("ID","Tracker");
+
+            var HistoryWrapper = document.createElement("div");
+            HistoryWrapper.setAttribute("ID","HistoryWrapper");
+
             var data = [];
             data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
             console.log(data);
 
             data.forEach(function(element) {
-                FiveDaysDiv.append(element);
+                HistoryWrapper.append(element);
               });
             })
-
+            
+            Tracker.append(HistoryWrapper);
 
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
