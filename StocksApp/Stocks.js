@@ -77,6 +77,7 @@ function PopulateData(func,symbol) {
                          
         }
     })  
+    console.log(ReturnValue);
     return ReturnValue;
 }
 
