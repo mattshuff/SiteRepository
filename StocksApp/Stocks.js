@@ -72,6 +72,7 @@ function PopulateData(func,symbol) {
                 Elements.push(para);           
             }
             var test = Elements.reverse(); 
+            console.log(test);
             ReturnValue  = test;
                          
         }
