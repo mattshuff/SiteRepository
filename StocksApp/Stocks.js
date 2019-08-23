@@ -11,13 +11,13 @@ $(document).ready(function() {
 
             var data = [];
             data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
-            console.log(data);
 
             data.forEach(function(element) {
                 HistoryWrapper.append(element);
               });
               ContentWrapper.append(Tracker);
               Tracker.append(HistoryWrapper);
+              console.log(HistoryWrapper);
             })
            
 
