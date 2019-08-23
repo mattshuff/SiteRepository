@@ -79,7 +79,7 @@ function PopulateData(func,symbol) {
                         
             console.log(test);
             //correct order of array
-            return data; 
+            return 10; 
         }
     })
     
