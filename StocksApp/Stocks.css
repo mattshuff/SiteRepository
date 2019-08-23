@@ -34,7 +34,7 @@ a {
     font-weight: bold;
 }
 #HistoryP{
-    display: list-item;
+    display: inline-block;
     position: relative;
     margin: 0;
     
