@@ -34,12 +34,12 @@ a {
     font-weight: bold;
 }
 #FiveDayHistory{
-    display: inline-block;
+    display: block;
     position: relative;
     white-space: pre-line;
 }
 #SixMonthHistory{
-    display: inline-block;
+    display: block;
 position: relative;
 color:#03fc49;
 white-space: pre-line;
