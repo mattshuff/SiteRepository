@@ -23,9 +23,6 @@ $(document).ready(function() {
             dates = [];
             values = [];
 
-            //log to console for debugging
-            console.log(timeData);
-
             //iterate through our data, get dates and closing values
             for (const date of Object.keys(timeData)) {
                 //convert date to sensible format and push to array
@@ -65,12 +62,25 @@ $(document).ready(function() {
             //correct order of array
             var ReversedElements = Elements.reverse();
 
+            var TrackerDiv = document.createElement('div');
+            TrackerDiv.setAttribute("ID","Tracker");
+
+            var FiveDaysDiv = document.createElement('div');
+            FiveDaysDiv.setAttribute("ID","HistoryWrapper");
+
+
             //append to wrapper 
-            var Wrapper = document.getElementById("HistoryWrapper5D");
+            var Content = document.getElementById("Content");
+
 
             ReversedElements.forEach(function(element) {
-                Wrapper.append(element);
+                FiveDaysDiv.append(element);
               });
+              TrackerDiv.append(FiveDaysDiv);
         }
     })
 })
+
+function PopulateData(func,ticker) {
+
+}

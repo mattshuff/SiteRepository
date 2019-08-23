@@ -39,18 +39,13 @@ a {
     margin: 0;
     
 }
-#HistoryWrapper5D{
+#HistoryWrapper{
     display: inline-block;
     position: relative;
     margin: 5%;
     
 }
-#HistoryWrapper6M{
-    display: inline-block;
-    position: relative;
-    margin: 0;
-   
-}
+
 
 .Tracker{
     display: inline-block;
