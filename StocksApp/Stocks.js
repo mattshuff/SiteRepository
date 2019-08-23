@@ -13,6 +13,7 @@ $(document).ready(function() {
             Tracker.append(FiveDaysDiv);
 
             var data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
+            console.log(data);
 
             data.forEach(function(element) {
                 FiveDaysDiv.append(element);
@@ -22,7 +23,7 @@ $(document).ready(function() {
 
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
-console.log(APIurl);
+    console.log(APIurl);
     //ajax call to fetch the API
     $.ajax({
         url: APIurl,
@@ -75,6 +76,7 @@ console.log(APIurl);
 
             //correct order of array
             var ReversedElements = Elements.reverse();
+            console.log(ReversedElements);
             return ReversedElements;
         }
     })
