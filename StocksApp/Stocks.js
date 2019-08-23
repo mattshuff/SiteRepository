@@ -32,6 +32,7 @@ function PopulateData(func,symbol) {
     //ajax call to fetch the API
     $.ajax({
         url: APIurl,
+        async: false,
         dataType: 'json',
         contentType: "application/json",
         success: function(data) {
