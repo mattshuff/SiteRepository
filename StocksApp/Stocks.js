@@ -1,7 +1,7 @@
 //wait until the page is ready
 $(document).ready(function() {
 
-            var Content = document.getElementById("Content");
+            var ContentWrapper = document.getElementById("Content");
 
             var Tracker = document.createElement("div");
             Tracker.setAttribute("ID","Tracker");
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 HistoryWrapper.append(element);
               });
             })
-            Content.append(Tracker);
+            ContentWrapper.append(Tracker);
             Tracker.append(HistoryWrapper);
 
 function PopulateData(func,symbol) {
