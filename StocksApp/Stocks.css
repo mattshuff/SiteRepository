@@ -34,7 +34,7 @@ a {
     font-weight: bold;
 }
 #HistoryP{
-    display: inline-block;
+    display: list-item;
     position: relative;
     margin: 0;
     
@@ -43,13 +43,13 @@ a {
     display: inline-block;
     position: relative;
     margin: 0;
-    width:49%;
+    
 }
 #HistoryWrapper6M{
     display: inline-block;
     position: relative;
     margin: 0;
-    width:49%;
+   
 }
 
 .Tracker{
