@@ -36,6 +36,7 @@ a {
 #FiveDayHistory{
     display: list-item;
     position: relative;
+    margin: 0;
     
 }
 #SixMonthHistory{
@@ -43,6 +44,7 @@ a {
 position: relative;
 color:#03fc49;
 white-space: pre-line;
+margin: 0;
 }
 .Tracker{
     display: inline-block;
