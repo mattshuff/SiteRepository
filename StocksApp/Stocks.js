@@ -52,7 +52,7 @@ function PopulateData(func,symbol) {
             else{
                 label = "Monthly Time Series";	
             }
-            
+            console.log(label);
             var timeData = data[label];
             console.log(timeData);
             //arrays to be logged to
