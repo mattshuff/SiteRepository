@@ -40,14 +40,16 @@ a {
     
 }
 #HistoryWrapper5d{
-    display: inline;
+    display: inline-block;
     position: relative;
     margin: 0;
+    width:50%;
 }
 #HistoryWrapper6M{
-    display: inline;
+    display: inline-block;
     position: relative;
     margin: 0;
+    width:50%;
 }
 
 .Tracker{
