@@ -12,10 +12,10 @@ $(document).ready(function() {
             var data = [];
             data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
 
-            data.forEach(function(element) {
-                console.log(element);
-                HistoryWrapper.append(element);
-              });
+            for(var x = 0; x > data.length; x++){
+                HistoryWrapper.append(data[x]);
+            }
+             
               ContentWrapper.append(Tracker);
               Tracker.append(HistoryWrapper);
               console.log(HistoryWrapper);
