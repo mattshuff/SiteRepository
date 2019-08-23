@@ -76,12 +76,10 @@ function PopulateData(func,symbol) {
             }
 
             //correct order of array
-            Data = Elements.reverse();
-            console.log(ReversedElements);
-            
+            return Elements.reverse();            
         }
     })
-    return Data;
+    
 }
 
 
