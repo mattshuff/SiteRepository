@@ -75,7 +75,10 @@ function PopulateData(func,symbol) {
                 Elements.push(para);           
             }
             var test = new Array();
-            test = Elements.reverse();      
+            test = Elements.reverse();  
+            
+            
+            console.log(test);
             //correct order of array
             return test; 
         }
