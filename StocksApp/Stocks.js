@@ -23,8 +23,6 @@ $(document).ready(function() {
 
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
-    ;
-    console.log(APIurl);
     //ajax call to fetch the API
     $.ajax({
         url: APIurl,
@@ -77,8 +75,6 @@ function PopulateData(func,symbol) {
             var test = new Array();
             test = Elements.reverse();  
                         
-            
-            //correct order of array
             return test;
         }
     })
