@@ -66,7 +66,6 @@ $(document).ready(function() {
             var ReversedElements = Elements.reverse();
 
             //append to wrapper 
-
             var Wrapper = document.getElementById("FiveDayHistory");
 
             ReversedElements.forEach(function(element) {
