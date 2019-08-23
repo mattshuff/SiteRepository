@@ -17,7 +17,7 @@ $(document).ready(function() {
                 HistoryWrapper.append(element);
               });
             })
-            
+
             Tracker.append(HistoryWrapper);
 
 function PopulateData(func,symbol) {
