@@ -13,6 +13,7 @@ $(document).ready(function() {
             var data = [];
             data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
             console.log(data);
+
             data.forEach(function(element) {
                 FiveDaysDiv.append(element);
               });
@@ -75,7 +76,6 @@ function PopulateData(func,symbol) {
             Object.assign(ReturnValue, test);             
         }
     })  
-    console.log(ReturnValue);
     return ReturnValue;
 }
 
