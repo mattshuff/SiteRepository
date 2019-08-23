@@ -62,21 +62,25 @@ $(document).ready(function() {
             //correct order of array
             var ReversedElements = Elements.reverse();
 
+            var Content = document.getElementById("Content");
+
             var TrackerDiv = document.createElement('div');
             TrackerDiv.setAttribute("ID","Tracker");
 
             var FiveDaysDiv = document.createElement('div');
             FiveDaysDiv.setAttribute("ID","HistoryWrapper");
 
+            TrackerDiv.append(FiveDaysDiv);
+            Content.append(TrackerDiv);
 
             //append to wrapper 
-            var Content = document.getElementById("Content");
-
+            
+            
 
             ReversedElements.forEach(function(element) {
                 FiveDaysDiv.append(element);
               });
-              TrackerDiv.append(FiveDaysDiv);
+              
         }
     })
 })
