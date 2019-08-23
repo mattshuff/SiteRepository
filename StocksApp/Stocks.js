@@ -9,7 +9,7 @@ $(document).ready(function() {
             var HistoryWrapper = document.createElement("div");
             HistoryWrapper.setAttribute("ID","HistoryWrapper");
 
-            var data = [];
+            var data;
             data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
             
             console.log(JSON.stringify(data, null, 2));
