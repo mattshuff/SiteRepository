@@ -27,7 +27,7 @@ $(document).ready(function() {
              
               ContentWrapper.append(Tracker);
               Tracker.append(FiveDayHistoryWrapper);
-              Tracker.append(SixMonthHistoryWrapper)
+              Tracker.append(SixMonthHistoryWrapper);
               
             })
            
