@@ -11,8 +11,8 @@ $(document).ready(function() {
             var FiveDaysDiv = document.createElement('div');
             FiveDaysDiv.setAttribute("ID","HistoryWrapper")
             Tracker.append(FiveDaysDiv);
-
-            var data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
+            var data;
+            data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
             console.log(data);
 
             data.forEach(function(element) {
@@ -77,9 +77,9 @@ function PopulateData(func,symbol) {
             var test = new Array();
             test = Elements.reverse();  
                         
-            console.log(test);
+            
             //correct order of array
-            return 10; 
+            return test;
         }
     })
     
