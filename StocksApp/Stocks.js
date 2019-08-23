@@ -1,7 +1,6 @@
 //wait until the page is ready
 $(document).ready(function() {
 
-
             var Content = document.getElementById("Content");
             
             var Tracker = document.createElement('div');
@@ -22,6 +21,10 @@ $(document).ready(function() {
 
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
+    var ReturnValue = new Array();
+
+    
+    
     //ajax call to fetch the API
     $.ajax({
         url: APIurl,
@@ -70,13 +73,12 @@ function PopulateData(func,symbol) {
                 //push elements to array
                 Elements.push(para);           
             }
-            var test = new Array();
-            test = Elements.reverse();  
+            ReturnValue = Elements.reverse();  
                         
-            return test;
+            
         }
-    })
-    
+    })  
+    return ReturnValue;
 }
 
 
