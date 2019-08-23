@@ -16,9 +16,10 @@ $(document).ready(function() {
             data.forEach(function(element) {
                 HistoryWrapper.append(element);
               });
+              ContentWrapper.append(Tracker);
+              Tracker.append(HistoryWrapper);
             })
-            ContentWrapper.append(Tracker);
-            Tracker.append(HistoryWrapper);
+           
 
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
