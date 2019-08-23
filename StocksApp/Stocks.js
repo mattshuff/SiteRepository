@@ -16,7 +16,7 @@ $(document).ready(function() {
                 HistoryWrapper.append(data[x]);
                 console.log(data[x]);
             }
-             
+             console.log("test");
               ContentWrapper.append(Tracker);
               Tracker.append(HistoryWrapper);
               console.log(HistoryWrapper);
