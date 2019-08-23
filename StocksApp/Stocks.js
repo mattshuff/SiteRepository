@@ -10,7 +10,7 @@ $(document).ready(function() {
             var FiveDaysDiv = document.createElement('div');
             FiveDaysDiv.setAttribute("ID","HistoryWrapper")
             Tracker.append(FiveDaysDiv);
-            var data;
+            var data = [];
             data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
             console.log(data);
             data.forEach(function(element) {
