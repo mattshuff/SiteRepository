@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 
 
-            for(var x = 0; x < data.length; x+=1){
+            for(var x = 0; x < FiveDayData.length; x+=1){
                 FiveDayHistoryWrapper.append(FiveDayData[x]);
                 SixMonthHistoryWrapper.append(SixMonthData[x]);
             }
