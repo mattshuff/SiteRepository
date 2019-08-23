@@ -14,6 +14,7 @@ $(document).ready(function() {
 
             for(var x = 0; x > data.length; x++){
                 HistoryWrapper.append(data[x]);
+                console.log(data[x]);
             }
              
               ContentWrapper.append(Tracker);
