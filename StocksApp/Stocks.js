@@ -38,15 +38,18 @@ $(document).ready(function() {
                 values.push(ClosingValue);
             }
 
-            var Wrapper = document.getElementById("Tracker");
+            //setup for looping through
+            
             var Elements = [];
 
             for (var x = 4; x >= 0; x -= 1) {
+
+                //create P element
                 var para = document.createElement("p");
                 var node = document.createTextNode(dates[x] + " - " + values[x] + " ");
-
                 para.appendChild(node);
 
+                //colour elements
                 if (values[x] > values[x - 1]) {
                     para.setAttribute("style", "color:#03fc49;");
                     para.setAttribute("id", "FiveDayHistoryP");
@@ -54,9 +57,18 @@ $(document).ready(function() {
                     para.setAttribute("style", "color:red;");
                     para.setAttribute("ID", "FiveDayHistoryP");
                 }
+
+                //push elements to array
                 Elements.push(para);           
             }
+
+            //correct order of array
             var ReversedElements = Elements.reverse();
+
+            //append to wrapper 
+
+            var Wrapper = document.getElementById("FiveDayHistory");
+
             ReversedElements.forEach(function(element) {
                 Wrapper.append(element);
               });
