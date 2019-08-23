@@ -13,7 +13,6 @@ $(document).ready(function() {
             Tracker.append(FiveDaysDiv);
             var data;
             data = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
-            console.log(data);
 
             data.forEach(function(element) {
                 FiveDaysDiv.append(element);
@@ -62,12 +61,11 @@ function PopulateData(func,symbol) {
 
                 //colour elements
                 if (values[x] > values[x - 1]) {
-                    para.setAttribute("style", "color:#03fc49;");
-                    para.setAttribute("id", "HistoryP");
+                    para.setAttribute("style", "color:#03fc49;");          
                 } else {
-                    para.setAttribute("style", "color:red;");
-                    para.setAttribute("ID", "HistoryP");
+                    para.setAttribute("style", "color:red;");                   
                 }
+                para.setAttribute("ID", "HistoryP");
 
                 //push elements to array
                 Elements.push(para);           
