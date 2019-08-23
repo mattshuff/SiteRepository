@@ -52,10 +52,10 @@ $(document).ready(function() {
                 //colour elements
                 if (values[x] > values[x - 1]) {
                     para.setAttribute("style", "color:#03fc49;");
-                    para.setAttribute("id", "FiveDayHistoryP");
+                    para.setAttribute("id", "HistoryP");
                 } else {
                     para.setAttribute("style", "color:red;");
-                    para.setAttribute("ID", "FiveDayHistoryP");
+                    para.setAttribute("ID", "HistoryP");
                 }
 
                 //push elements to array

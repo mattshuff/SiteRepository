@@ -33,17 +33,23 @@ a {
     text-align: left;
     font-weight: bold;
 }
-#FiveDayHistoryP{
+#HistoryP{
     display: list-item;
     position: relative;
     margin: 0;
     
 }
-#SixMonthHistory{
-    display: list-item;
+#HistoryWrapper5d{
+    display: inline;
     position: relative;
     margin: 0;
 }
+#HistoryWrapper6M{
+    display: inline;
+    position: relative;
+    margin: 0;
+}
+
 .Tracker{
     display: inline-block;
     width: 50%;
