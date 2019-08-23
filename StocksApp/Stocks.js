@@ -1,6 +1,6 @@
 //wait until the page is ready
 $(document).ready(function() {
-
+    console.log("test");
             var ContentWrapper = document.getElementById("Content");
 
             var Tracker = document.createElement("div");
