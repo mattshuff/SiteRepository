@@ -34,7 +34,6 @@ $(document).ready(function() {
 
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
-    console.log(APIurl);
     var ReturnValue= [];
 
     //ajax call to fetch the API
@@ -55,7 +54,7 @@ function PopulateData(func,symbol) {
             }
             
             var timeData = data[label];
-
+            console.log(timeData);
             //arrays to be logged to
             dates = [];
             values = [];
