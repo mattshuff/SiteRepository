@@ -50,7 +50,7 @@ function PopulateData(func,symbol) {
             if(test="TIME_SERIES_DAILY_ADJUSTED"){
                 label = "Time Series (Daily)";
             }
-            else{
+            if(test="TIME_SERIES_MONTHLY"){
                 label = "Monthly Time Series";	
             }
             console.log(test);
