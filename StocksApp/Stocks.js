@@ -5,6 +5,11 @@ $(document).ready(function() {
             var Tracker = document.createElement("div");
             Tracker.setAttribute("ID","Tracker");
 
+            var para = document.createElement("p");
+            var node = document.createTextNode("S and P 500");
+            para.appendChild(node);
+            para.setAttribute("ID", "HistoryP");
+            
             var FiveDayHistoryWrapper = document.createElement("div");
             FiveDayHistoryWrapper.setAttribute("ID","HistoryWrapper");
 
