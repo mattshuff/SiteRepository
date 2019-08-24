@@ -97,6 +97,7 @@ function PopulateData(func,symbol) {
             var para = document.createElement("p");
             var node = document.createTextNode(func);
             para.appendChild(node);
+            para.setAttribute("ID", "HistoryP");
             Elements.push(para);  
 
             var test = Elements.reverse(); 
