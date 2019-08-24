@@ -53,6 +53,7 @@ function PopulateData(func,symbol) {
                 label = "Monthly Time Series";	
             }
             console.log(label);
+            console.log(symbol);
             var timeData = data[label];
             console.log(timeData);
             //arrays to be logged to
