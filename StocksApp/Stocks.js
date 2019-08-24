@@ -46,7 +46,7 @@ function PopulateData(func,symbol) {
 
             //select the daily data
             var label;
-            if(symbol="TIME_SERIES_DAILY_ADJUSTED"){
+            if(func="TIME_SERIES_DAILY_ADJUSTED"){
                 label = "Time Series (Daily)";
             }
             else{
