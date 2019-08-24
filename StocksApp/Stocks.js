@@ -74,7 +74,14 @@ function PopulateData(func,symbol) {
             //create array of P elements         
             var Elements = [];
 
+            var para = document.createElement("p");
+            var node = document.createTextNode(func);
+            para.appendChild(node);
+            Elements.push(para);  
+
             for (var x = 4; x >= 0; x -= 1) {
+
+                
 
                 //create P element
                 var para = document.createElement("p");
