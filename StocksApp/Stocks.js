@@ -46,17 +46,17 @@ function PopulateData(func,symbol) {
 
             //select the daily data
             var label;
-            var test = func;
-            console.log("test = " + test);
+            console.log(func);
 
-            if(test="TIME_SERIES_DAILY_ADJUSTED"){
+            if(func="TIME_SERIES_DAILY_ADJUSTED"){
                 label = "Time Series (Daily)";
                 console.log("AAAAAAAAAAAAA");
             }
-            if(test="TIME_SERIES_MONTHLY"){
+            if(func="TIME_SERIES_MONTHLY"){
                 label = "Monthly Time Series";	
                 console.log("BBBBBBBBBBB");
             }
+
             console.log("label = " + label);
 
             var timeData = data[label];
