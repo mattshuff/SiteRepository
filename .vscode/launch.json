@@ -4,6 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        {
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "name": "Launch index.html",
+            "file": "${workspaceFolder}/StocksApp/Stocks.js"
+        },
     {
         "type": "chrome",
         "request": "attach",
@@ -17,5 +24,6 @@
             "name": "Launch Program",
             "program": "${workspaceFolder}/StocksApp/Stocks.js"
         }
+
     ]
 }
