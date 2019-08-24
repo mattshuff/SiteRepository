@@ -53,10 +53,7 @@ function PopulateData(func,symbol) {
             if(test="TIME_SERIES_MONTHLY"){
                 label = "Monthly Time Series";	
             }
-            console.log(test);
-            console.log(symbol);
             var timeData = data[label];
-            console.log(timeData);
             //arrays to be logged to
             dates = [];
             values = [];
