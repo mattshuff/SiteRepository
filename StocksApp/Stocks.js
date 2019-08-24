@@ -74,15 +74,9 @@ function PopulateData(func,symbol) {
             //create array of P elements         
             var Elements = [];
 
-            var para = document.createElement("p");
-            var node = document.createTextNode(func);
-            para.appendChild(node);
-            Elements.push(para);  
+            
 
             for (var x = 4; x >= 0; x -= 1) {
-
-                
-
                 //create P element
                 var para = document.createElement("p");
                 var node = document.createTextNode(dates[x] + " - " + values[x] + " ");
@@ -99,6 +93,12 @@ function PopulateData(func,symbol) {
                 //push elements to array
                 Elements.push(para);           
             }
+
+            var para = document.createElement("p");
+            var node = document.createTextNode(func);
+            para.appendChild(node);
+            Elements.push(para);  
+
             var test = Elements.reverse(); 
             Object.assign(ReturnValue, test);             
         }
