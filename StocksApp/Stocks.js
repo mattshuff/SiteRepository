@@ -1,6 +1,5 @@
 //wait until the page is ready
 $(document).ready(function() {
-    console.log("test");
             var ContentWrapper = document.getElementById("Content");
 
             var Tracker = document.createElement("div");
@@ -46,22 +45,18 @@ function PopulateData(func,symbol) {
 
             //select the daily data
             var label;
-            console.log(func);
 
             if(func=="TIME_SERIES_DAILY_ADJUSTED"){
-                label = "Time Series (Daily)";
-                console.log("AAAAAAAAAAAAA");
+                label = "Time Series (Daily)";           
             }
             if(func=="TIME_SERIES_MONTHLY"){
                 label = "Monthly Time Series";	
-                console.log("BBBBBBBBBBB");
             }
 
             console.log("label = " + label);
 
             var timeData = data[label];
 
-            console.log(timeData);
             //arrays to be logged to
             dates = [];
             values = [];
@@ -79,7 +74,7 @@ function PopulateData(func,symbol) {
                 values.push(ClosingValue);
             }
 
-            //setup for looping through           
+            //create array of P elements         
             var Elements = [];
 
             for (var x = 4; x >= 0; x -= 1) {
