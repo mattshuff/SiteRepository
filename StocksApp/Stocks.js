@@ -35,7 +35,7 @@ $(document).ready(function() {
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
     var ReturnValue= [];
-
+    console.log(APIurl);
     //ajax call to fetch the API
     $.ajax({
         url: APIurl,
