@@ -61,7 +61,7 @@ function PopulateData(func,symbol) {
             //iterate through our data, get dates and closing values
             for (const date of Object.keys(timeData)) {
                 //convert date to sensible format and push to array
-                console.log(date);
+
                 var DateVar = new Date(date);
                 var DateString = DateVar.toLocaleDateString("en-GB");
                 dates.push(DateString);
