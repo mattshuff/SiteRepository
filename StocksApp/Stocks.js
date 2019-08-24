@@ -47,13 +47,19 @@ function PopulateData(func,symbol) {
             //select the daily data
             var label;
             var test = func;
+            console.log("label = " + label);
+
             if(test="TIME_SERIES_DAILY_ADJUSTED"){
                 label = "Time Series (Daily)";
             }
             if(test="TIME_SERIES_MONTHLY"){
                 label = "Monthly Time Series";	
             }
+            console.log("label = " + label);
+
             var timeData = data[label];
+
+            console.log(timeData);
             //arrays to be logged to
             dates = [];
             values = [];
