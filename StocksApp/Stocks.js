@@ -46,7 +46,7 @@ function PopulateData(func,symbol) {
 
             //select the daily data
             var label;
-            var test = func
+            var test = func;
             if(test="TIME_SERIES_DAILY_ADJUSTED"){
                 label = "Time Series (Daily)";
             }
