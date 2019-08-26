@@ -1,6 +1,7 @@
 //wait until the page is ready
 $(document).ready(function() {
 AddTracker("SPY");
+AddTracker("TSLA");
 
 })
 
