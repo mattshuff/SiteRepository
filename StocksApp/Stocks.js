@@ -1,41 +1,48 @@
 //wait until the page is ready
 $(document).ready(function() {
-            var ContentWrapper = document.getElementById("Content");
+AddTracker("SPY");
 
-            var Tracker = document.createElement("div");
-            Tracker.setAttribute("ID","Tracker");
+})
 
-            var para = document.createElement("p");
-            var node = document.createTextNode("S and P 500");
-            para.appendChild(node);
-            para.setAttribute("ID", "HistoryP");
-            Tracker.append(para);
-            
-            var FiveDayHistoryWrapper = document.createElement("div");
-            FiveDayHistoryWrapper.setAttribute("ID","HistoryWrapper");
-
-            var SixMonthHistoryWrapper = document.createElement("div");
-            SixMonthHistoryWrapper.setAttribute("ID","HistoryWrapper");
-
-            var FiveDayData;
-            FiveDayData = PopulateData("TIME_SERIES_DAILY_ADJUSTED","SPY");
-
-            var SixMonthData;
-            SixMonthData = PopulateData("TIME_SERIES_MONTHLY","SPY");
-
-
-
-            for(var x = 0; x < FiveDayData.length; x+=1){
-                FiveDayHistoryWrapper.append(FiveDayData[x]);
-                SixMonthHistoryWrapper.append(SixMonthData[x]);
-            }
-             
-              ContentWrapper.append(Tracker);
-              Tracker.append(FiveDayHistoryWrapper);
-              Tracker.append(SixMonthHistoryWrapper);
-              
-            })
            
+function AddTracker(symbol){
+    var ContentWrapper = document.getElementById("Content");
+
+    var Tracker = document.createElement("div");
+    Tracker.setAttribute("ID","Tracker");
+
+    var para = document.createElement("p");
+    var node = document.createTextNode(symbol);
+    para.appendChild(node);
+    para.setAttribute("ID", "HistoryP");
+    Tracker.append(para);
+    
+    var FiveDayHistoryWrapper = document.createElement("div");
+    FiveDayHistoryWrapper.setAttribute("ID","HistoryWrapper");
+
+    var SixMonthHistoryWrapper = document.createElement("div");
+    SixMonthHistoryWrapper.setAttribute("ID","HistoryWrapper");
+
+    var FiveDayData;
+    FiveDayData = PopulateData("TIME_SERIES_DAILY_ADJUSTED",symbol);
+
+    var SixMonthData;
+    SixMonthData = PopulateData("TIME_SERIES_MONTHLY",symbol);
+
+
+
+    for(var x = 0; x < FiveDayData.length; x+=1){
+        FiveDayHistoryWrapper.append(FiveDayData[x]);
+        SixMonthHistoryWrapper.append(SixMonthData[x]);
+    }
+     
+      
+      Tracker.append(FiveDayHistoryWrapper);
+      Tracker.append(SixMonthHistoryWrapper);
+      ContentWrapper.append(Tracker);
+}
+      
+
 
 function PopulateData(func,symbol) {
     var APIurl = "https://www.alphavantage.co/query?function="+func+"&symbol="+symbol+"&apikey=DET6IF6YAHK5PGVO";
@@ -112,6 +119,7 @@ function PopulateData(func,symbol) {
     })  
     return ReturnValue;
 }
+
 
 
 
