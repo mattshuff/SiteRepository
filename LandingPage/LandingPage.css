@@ -1,6 +1,6 @@
   .column {
       float: left;
-      width: 33.33%;
+      width: auto;
       padding-right: 20px;
   }
 
