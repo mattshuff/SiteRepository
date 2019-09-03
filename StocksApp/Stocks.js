@@ -88,8 +88,6 @@ function PopulateData(func,symbol) {
             //create array of P elements         
             var Elements = [];
 
-            
-
             for (var x = 4; x >= 0; x -= 1) {
                 //create P element
                 var para = document.createElement("p");
@@ -97,7 +95,7 @@ function PopulateData(func,symbol) {
                 para.appendChild(node);
 
                 //colour elements
-                if (values[x] > values[x - 1]) {
+                if (values[x] > values[x + 1]) {
                     para.setAttribute("style", "color:#03fc49;");          
                 } else {
                     para.setAttribute("style", "color:red;");                   
