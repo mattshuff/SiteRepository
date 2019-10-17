@@ -10,6 +10,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 //fetch current index 
 $sql = "SELECT `CurrentIndex` FROM `Stocks` WHERE 1";
 $CurrentIndex = mysqli_query($connect, $sql);
+
+//CONVERT SQL OBJECT INTO STRING - THIS DOESNT WORK YET 
 $row = mysql_fetch_array($CurrentIndex);
 echo $row;
 
