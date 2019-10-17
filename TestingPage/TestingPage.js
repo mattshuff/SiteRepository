@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $.ajax({
-        url: "../RefreshStocksData.php",
+        url: "/RefreshStocksData.php",
         type: 'GET',
         data: {
 
