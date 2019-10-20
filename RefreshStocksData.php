@@ -22,7 +22,7 @@ while($row = mysqli_fetch_assoc($Result)) {
     $rows[] = $row;
 }
 foreach($rows as $current){
-    echo $current;
+    echo (string)$current;
 }
 //fetch daily 
 $func = "TIME_SERIES_DAILY_ADJUSTED";
