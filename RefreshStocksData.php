@@ -17,7 +17,7 @@ echo $CurrentIndex[0];
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
 $Records = $Result->fetch_all();
-echo $Records;
+echo $Records[0];
 
 //fetch daily 
 $func = "TIME_SERIES_DAILY_ADJUSTED";
