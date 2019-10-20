@@ -10,8 +10,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 //fetch current index 
 $sql = "SELECT `CurrentIndex` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
-$CurrentIndex = $Result->fetch_row(0);
-echo $CurrentIndex;
+$CurrentIndex = $Result->fetch_row();
+echo $CurrentIndex[0];
 
 
 
