@@ -21,7 +21,7 @@ $Tickers = $Result->fetch_array(MYSQLI_NUM); //can be accessed via index
 
 //fetch daily 
 $func = "TIME_SERIES_DAILY_ADJUSTED";
-$symbol = $Tickers[$CurrentIndex]; 
+$symbol = $Tickers[(int)$CurrentIndex]; 
 echo $symbol;
 $APIurl = "https://www.alphavantage.co/query?function=".$func."&symbol=".$symbol."&apikey=DET6IF6YAHK5PGVO";
 ?>
