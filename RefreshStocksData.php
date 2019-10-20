@@ -1,23 +1,22 @@
 <?php
 
-//setup connection to database 
+//setup connection to database *works*
 $hostname = "localhost";
 $username = "u902155560_admin";
 $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
-//fetch current index 
+//fetch current index  *works*
 $sql = "SELECT `CurrentIndex` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
 $CurrentIndex = $Result->fetch_row();
 echo $CurrentIndex[0];
 
-
-
 //fetch all tracked tickers ****NOT QUITE RIGHT****
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
-$Records = mysqli_query($connect, $sql);
+$Result = mysqli_query($connect, $sql);
+$Records = $Result->fetch_all();
 echo $Records;
 
 //fetch daily 
