@@ -16,9 +16,14 @@ echo $CurrentIndex[0];
 //fetch all tracked tickers ****NOT QUITE RIGHT****
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
-$Records = $Result->fetch_all();
-echo $Records[0];
+$rows = [];
 
+while($row = mysqli_fetch_assoc($Result)) {
+    $rows[] = $row;
+}
+foreach($rows as $current){
+    echo $current;
+}
 //fetch daily 
 $func = "TIME_SERIES_DAILY_ADJUSTED";
 $symbol = $Records[$CurrentIndex]; //DONT THINK THIS WORKS 
