@@ -9,9 +9,11 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
 //fetch current index 
 $sql = "SELECT `CurrentIndex` FROM `Stocks` WHERE 1";
-$CurrentIndex = mysqli_query($connect, $sql);
-$row = mysql_fetch_array($CurrentIndex);
-echo $row;
+$Result = mysqli_query($connect, $sql);
+$CurrentIndex = $Result->fetch_row(0);
+echo $CurrentIndex;
+
+
 
 //fetch all tracked tickers ****NOT QUITE RIGHT****
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
