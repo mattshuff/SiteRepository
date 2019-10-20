@@ -16,16 +16,11 @@ echo $CurrentIndex[0];
 //fetch all tracked tickers ****NOT QUITE RIGHT****
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
-$rows = [];
+$Tickers = $Result->fetch_array(MYSQLI_NUM);
+echo $Tickers[0];
 
-while($row = mysqli_fetch_assoc($Result)) {
-    $rows[] = $row;
-}
-foreach($rows as $current){
-    echo (string)$current;
-}
 //fetch daily 
 $func = "TIME_SERIES_DAILY_ADJUSTED";
 $symbol = $Records[$CurrentIndex]; //DONT THINK THIS WORKS 
-$APIurl = "https://www.alphavantage.co/query?function="+$func+"&symbol="+$symbol+"&apikey=DET6IF6YAHK5PGVO";
+$APIurl = "https://www.alphavantage.co/query?function=".$func+"&symbol=".$symbol."&apikey=DET6IF6YAHK5PGVO";
 ?>
