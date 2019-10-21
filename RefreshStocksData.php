@@ -1,7 +1,7 @@
 <?php
 
 //setup connection to database *works*
-$hostname = "localhost";
+$hostname = "https://auth-db160.hostinger.co.uk";
 $username = "u902155560_admin";
 $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
