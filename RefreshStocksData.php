@@ -11,7 +11,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $sql = "SELECT `CurrentIndex` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
 $CurrentIndex = $Result->fetch_row();
-echo $CurrentIndex[0];
+echo $CurrentIndex;
 
 //fetch all tracked tickers
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
