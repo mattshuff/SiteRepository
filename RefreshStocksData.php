@@ -16,8 +16,8 @@ $CurrentIndex = $Result->fetch_row();
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
 $Tickers = $Result->fetch_array(MYSQLI_NUM); //can be accessed via index
-foreach($Tickers as $Test){
-    echo $Test;
+foreach($Result as $Test){
+    echo (string)$Test[0];
 }
 
 //fetch daily 
