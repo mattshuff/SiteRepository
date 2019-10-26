@@ -3,15 +3,6 @@ $.ajaxSetup({
   cache: false
 });
 
-//general functions
-function div_show() {
-  document.getElementById('popupform').style.display = "block";
-}
-//Function to Hide Popup
-function div_hide() {
-  document.getElementById('popupform').style.display = "none";
-}
-
 //run on document ready
 $(document).ready(function () {
 
@@ -148,3 +139,13 @@ $(document).ready(function () {
     })
   })
 })
+
+//general functions
+function div_show() {
+  document.getElementById('popupform').style.display = "block";
+}
+
+//Function to Hide Popup
+function div_hide() {
+  document.getElementById('popupform').style.display = "none";
+}
