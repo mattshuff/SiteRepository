@@ -16,9 +16,7 @@ $CurrentIndex = $Result->fetch_row();
 $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
 $Tickers = $Result->fetch_array(MYSQLI_NUM); //can be accessed via index
-foreach($Tickers as $Test){
-    echo (string)$Test[1];
-}
+echo $Tickers;
 
 //fetch daily 
 $func = "TIME_SERIES_DAILY_ADJUSTED";
