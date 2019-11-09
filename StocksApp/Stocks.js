@@ -48,7 +48,7 @@ function AddTracker(symbol) {
 function PopulateData(func, symbol) {
     var APIurl = "https://www.alphavantage.co/query?function=" + func + "&symbol=" + symbol + "&apikey=DET6IF6YAHK5PGVO";
     var ReturnValue = [];
-    console.log(APIurl);
+
     //ajax call to fetch the API
     $.ajax({
         url: APIurl,
@@ -79,6 +79,8 @@ function PopulateData(func, symbol) {
                 var DateVar = new Date(date);
                 var DateString = DateVar.toLocaleDateString("en-GB");
                 dates.push(DateString);
+
+                console.log(date);
 
                 //get value and push to array
                 var ClosingValue = timeData[date]["4. close"]

@@ -24,9 +24,13 @@ for ($x = 0; $x <= 1; $x++) {
     $CurrentTicker = $Tickers[$CurrentIndex[0]][0];
     $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $CurrentTicker . "&apikey=DET6IF6YAHK5PGVO";
 
+
     $JSONstring = file_get_contents($APIurl);
     $JSONarray = json_decode($JSONstring, true);
-    echo $JSONarray[0][0];
+
+    //var ClosingValue = timeData[date]["4. close"] THIS IS JAVASCRIPT BUT IS WHAT WERE TRYING TO DO 
+    echo $JSONarray["Time Series (Daily)"]["2019-11-01"]["4. close"];
+    echo "<br>";
 
     //SETUP FOR NEXT LOOP!
     //get number of records 
@@ -34,17 +38,18 @@ for ($x = 0; $x <= 1; $x++) {
     $Result = mysqli_query($connect, $sql);
     $temp = $Result->fetch_row();
     $RecordsCount = $temp[0];
+    $RecordsCount--;
 
     //if we are not at the end of the records do this
     if ($RecordsCount > $CurrentIndex[0]) {
-        echo "if";
+        //echo "if";
         $CurrentIndex[0]++;
         $sql = "UPDATE `Stocks` SET `CurrentIndex`=" . (string) $CurrentIndex[0] . " WHERE 1";
         $Result = mysqli_query($connect, $sql);
     }
     //if we are at the final record, go back to zero 
     else {
-        echo "else";
+        //echo "else";
         $CurrentIndex[0] = 0;
         $sql = "UPDATE `Stocks` SET `CurrentIndex`=" . (string) $CurrentIndex[0] . " WHERE 1";
         $Result = mysqli_query($connect, $sql);
