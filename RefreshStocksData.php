@@ -20,19 +20,30 @@ for ($x = 0; $x <= 1; $x++) {
     $Result = mysqli_query($connect, $sql);
     $CurrentIndex = $Result->fetch_row();
 
-    //construct API call
+    //construct and run API call
     $CurrentTicker = $Tickers[$CurrentIndex[0]][0];
     $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $CurrentTicker . "&apikey=DET6IF6YAHK5PGVO";
-
 
     $JSONstring = file_get_contents($APIurl);
     $JSONarray = json_decode($JSONstring, true);
 
-    //var ClosingValue = timeData[date]["4. close"] THIS IS JAVASCRIPT BUT IS WHAT WERE TRYING TO DO 
-    echo $JSONarray["Time Series (Daily)"]["2019-11-01"]["4. close"];
+
+    $FiveDayData = "";
+    //load past five days into a string
+    for ($y = 0; $y <= 4; $y++) {
+        $CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
+
+        $FiveDayData .= $JSONarray["Time Series (Daily)"][$CurrentDate]["4. close"];
+        $FiveDayData .= "/";
+    }
+
+    $sql = "UPDATE Stocks SET `FiveDayData` ='" . $FiveDayData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
+    $Result = mysqli_query($connect, $sql);
+    echo $sql;
     echo "<br>";
 
-    //SETUP FOR NEXT LOOP!
+
+    //next loop setup 
     //get number of records 
     $sql = "select COUNT(*) from Stocks";
     $Result = mysqli_query($connect, $sql);
