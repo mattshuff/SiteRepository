@@ -1,6 +1,6 @@
 //wait until the page is ready
 $(document).ready(function () {
-
+    AddTracker("SPY");
 
 })
 
@@ -12,7 +12,7 @@ function AddTracker(symbol) {
     var Tracker = document.createElement("div");
     Tracker.setAttribute("ID", "Tracker");
 
-    //create a title 
+    //append title with the symbol 
     var para = document.createElement("p");
     var node = document.createTextNode(symbol);
     para.appendChild(node);
@@ -23,16 +23,37 @@ function AddTracker(symbol) {
     var FiveDayHistoryWrapper = document.createElement("div");
     FiveDayHistoryWrapper.setAttribute("ID", "HistoryWrapper");
 
+    //HERE WE NEED TO POPULATE THE FIVE DAY HISTORY FROM THE DB
+    $.ajax({
+        url: 'FetchStockData.php',
+        data: "",
+        dataType: 'json',
+        success: function (data) //on recieve of reply
+        {
+            console.log("test");
+            console.log(data);
+        }
+    })
+    Tracker.append(FiveDayHistoryWrapper);
+
+
+
+
+
+
+
+
+
+
+
+
+
     //five month history 
     var FiveMonthHistoryWrapper = document.createElement("div");
     FiveMonthHistoryWrapper.setAttribute("ID", "HistoryWrapper");
 
-    //pull data from database 
-    var FiveDayData = "test five ";
+    //HERE WE NEED TO POPULATE THE FIVE MONTH HISTORY
     var FiveMonthData = "test five two";
-
-    //append data to boxes 
-    Tracker.append(FiveDayHistoryWrapper);
     Tracker.append(FiveMonthHistoryWrapper);
 
     //append to main screen 
