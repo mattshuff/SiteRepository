@@ -39,8 +39,6 @@ for ($x = 0; $x <= 1; $x++) {
 
     $sql = "UPDATE Stocks SET `FiveDayData` ='" . $FiveDayData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
     $Result = mysqli_query($connect, $sql);
-    echo $sql;
-    echo "<br>";
 
 
     //next loop setup 
@@ -53,14 +51,12 @@ for ($x = 0; $x <= 1; $x++) {
 
     //if we are not at the end of the records do this
     if ($RecordsCount > $CurrentIndex[0]) {
-        //echo "if";
         $CurrentIndex[0]++;
         $sql = "UPDATE `Stocks` SET `CurrentIndex`=" . (string) $CurrentIndex[0] . " WHERE 1";
         $Result = mysqli_query($connect, $sql);
     }
     //if we are at the final record, go back to zero 
     else {
-        //echo "else";
         $CurrentIndex[0] = 0;
         $sql = "UPDATE `Stocks` SET `CurrentIndex`=" . (string) $CurrentIndex[0] . " WHERE 1";
         $Result = mysqli_query($connect, $sql);

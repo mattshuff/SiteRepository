@@ -5,6 +5,7 @@ $(document).ready(function () {
 })
 
 function AddTracker(symbol) {
+
     //select the section we need 
     var ContentWrapper = document.getElementById("Content");
 
@@ -30,8 +31,8 @@ function AddTracker(symbol) {
         dataType: 'json',
         success: function (data) //on recieve of reply
         {
-            console.log("test");
-            console.log(data);
+
+
         }
     })
     Tracker.append(FiveDayHistoryWrapper);
