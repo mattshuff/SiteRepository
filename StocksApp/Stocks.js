@@ -1,62 +1,41 @@
 //wait until the page is ready
 $(document).ready(function () {
-    AddTracker("SPY");
+    var DataArray;
 
-})
-
-function AddTracker(symbol) {
-
-    //select the section we need 
-    var ContentWrapper = document.getElementById("Content");
-
-    //create a div to contain the data
-    var Tracker = document.createElement("div");
-    Tracker.setAttribute("ID", "Tracker");
-
-    //append title with the symbol 
-    var para = document.createElement("p");
-    var node = document.createTextNode(symbol);
-    para.appendChild(node);
-    para.setAttribute("ID", "HistoryP");
-    Tracker.append(para);
-
-    //five day history 
-    var FiveDayHistoryWrapper = document.createElement("div");
-    FiveDayHistoryWrapper.setAttribute("ID", "HistoryWrapper");
-
-    //HERE WE NEED TO POPULATE THE FIVE DAY HISTORY FROM THE DB
     $.ajax({
+        type: "GET",
         url: 'FetchStockData.php',
         data: "",
-        dataType: 'json',
+        async: false,
+        dataType: 'html',
         success: function (data) //on recieve of reply
         {
-
-
+            DataArray = data;
         }
     })
-    Tracker.append(FiveDayHistoryWrapper);
+    console.log(DataArray);
 
+    $.ajax({
+        type: "GET",
+        url: '/RefreshStocksData.php',
+        data: "",
+        async: false,
+        dataType: 'html',
+        success: function (data) //on recieve of reply
+        {
+            DataArray = data;
+        }
+    })
+    $.ajax({
+        type: "GET",
+        url: '/RefreshStocksData.php',
+        data: "",
+        async: false,
+        dataType: 'html',
+        success: function (data) //on recieve of reply
+        {
+            DataArray = data;
+        }
+    })
 
-
-
-
-
-
-
-
-
-
-
-
-    //five month history 
-    var FiveMonthHistoryWrapper = document.createElement("div");
-    FiveMonthHistoryWrapper.setAttribute("ID", "HistoryWrapper");
-
-    //HERE WE NEED TO POPULATE THE FIVE MONTH HISTORY
-    var FiveMonthData = "test five two";
-    Tracker.append(FiveMonthHistoryWrapper);
-
-    //append to main screen 
-    ContentWrapper.append(Tracker);
-}
+})

@@ -5,14 +5,14 @@ $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
-$sql = "SELECT * FROM `Stocks`";
+$sql = "SELECT `StockNickName`,`FiveDayData`,`FiveMonthData` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
 
 while ($row = $Result->fetch_row()) {
     $rows[] = $row;
 }
 foreach ($rows as $row) {
-    foreach ($row as $tester) {
-        echo $tester . "<br>";
+    foreach ($row as $string) {
+        echo $string . "-";
     }
 }

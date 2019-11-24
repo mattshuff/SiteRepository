@@ -34,8 +34,11 @@ for ($x = 0; $x <= 1; $x++) {
         $CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
 
         $FiveDayData .= $JSONarray["Time Series (Daily)"][$CurrentDate]["4. close"];
+        $FiveDayData = substr($FiveDayData, 0, -2);
         $FiveDayData .= "/";
     }
+
+    $FiveDayData = substr($FiveDayData, 0, 1);
 
     $sql = "UPDATE Stocks SET `FiveDayData` ='" . $FiveDayData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
     $Result = mysqli_query($connect, $sql);
