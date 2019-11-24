@@ -31,14 +31,23 @@ for ($x = 0; $x <= 1; $x++) {
     $FiveDayData = "";
     //load past five days into a string
     for ($y = 0; $y <= 4; $y++) {
+        //loop through dates (doubles as index values in the alphavatage json return)
         $CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
 
-        $FiveDayData .= $JSONarray["Time Series (Daily)"][$CurrentDate]["4. close"];
-        $FiveDayData = substr($FiveDayData, 0, -2);
-        $FiveDayData .= "/";
-    }
+        //append relevant date
+        $FiveDayData .= $CurrentDate . " ";
 
-    $FiveDayData = substr($FiveDayData, 0, 1);
+        //fetch data
+        $FiveDayData .= $JSONarray["Time Series (Daily)"][$CurrentDate]["4. close"];
+
+        //trim to 2 sig. fig.
+        $FiveDayData = substr($FiveDayData, 0, -2);
+
+        //append new date identifier
+        $FiveDayData .= "&";        
+    }
+    //$FiveDayData = substr($FiveDayData, 1);
+    //$FiveDayData = substr($FiveDayData, 0, -1);
 
     $sql = "UPDATE Stocks SET `FiveDayData` ='" . $FiveDayData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
     $Result = mysqli_query($connect, $sql);

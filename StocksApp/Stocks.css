@@ -33,7 +33,7 @@ a {
     text-align: left;
     font-weight: bold;
 }
-#HistoryP{
+#StockData,#StockTitle{
    
     position: relative;
     margin: 0;
