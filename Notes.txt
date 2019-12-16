@@ -1,0 +1,2 @@
+useful line of php that gets the date 
+$CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));

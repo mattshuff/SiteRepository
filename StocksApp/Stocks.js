@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     //split returned database value into records
     var DataArray = DataString.split("--");
-    
+    console.log(DataArray);
     //body section on html
     var ContentWrapper = document.getElementById("Content");
 
@@ -58,13 +58,15 @@ $(document).ready(function () {
         //color code data
         if(DataString.split(" ")[1] >= SplitData[y+1].split(" ")[1]){
 
+            //green if higher than previous day
             TempP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");
         }
         else{
+            //red if less than previous 
             TempP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");
         }
 
-        //append 
+        //append 5 day data to tracker block
         Data.appendChild(TempP);      
         }
         

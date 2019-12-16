@@ -12,7 +12,7 @@ $sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
 $Result = mysqli_query($connect, $sql);
 $Tickers = $Result->fetch_all(MYSQLI_NUM);
 
-$func = "TIME_SERIES_DAILY_ADJUSTED";
+
 
 for ($x = 0; $x <= 1; $x++) {
     //fetch current index 
@@ -20,25 +20,27 @@ for ($x = 0; $x <= 1; $x++) {
     $Result = mysqli_query($connect, $sql);
     $CurrentIndex = $Result->fetch_row();
 
+    #region Five Day
+
     //construct and run API call
+    $func = "TIME_SERIES_DAILY_ADJUSTED";
     $CurrentTicker = $Tickers[$CurrentIndex[0]][0];
     $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $CurrentTicker . "&apikey=DET6IF6YAHK5PGVO";
 
     $JSONstring = file_get_contents($APIurl);
     $JSONarray = json_decode($JSONstring, true);
 
+    $Keys = array_keys($JSONarray["Time Series (Daily)"]);
 
     $FiveDayData = "";
     //load past five days into a string
-    for ($y = 0; $y <= 4; $y++) {
-        //loop through dates (doubles as index values in the alphavatage json return)
-        $CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
+    for ($y = 0; $y <= 4; $y++) {      
 
         //append relevant date
-        $FiveDayData .= $CurrentDate . " ";
+        $FiveDayData .= $Keys[$y] . " ";
 
         //fetch data
-        $FiveDayData .= $JSONarray["Time Series (Daily)"][$CurrentDate]["4. close"];
+        $FiveDayData .= $JSONarray["Time Series (Daily)"][$Keys[$y]]["4. close"];
 
         //trim to 2 sig. fig.
         $FiveDayData = substr($FiveDayData, 0, -2);
@@ -46,14 +48,49 @@ for ($x = 0; $x <= 1; $x++) {
         //append new date identifier
         $FiveDayData .= "&";        
     }
-    //$FiveDayData = substr($FiveDayData, 1);
-    //$FiveDayData = substr($FiveDayData, 0, -1);
 
+    //update records
     $sql = "UPDATE Stocks SET `FiveDayData` ='" . $FiveDayData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
     $Result = mysqli_query($connect, $sql);
 
+    #endregion 
 
-    //next loop setup 
+    #region Five Month
+    //construct and run API call
+    $func = "TIME_SERIES_MONTHLY_ADJUSTED";
+    $CurrentTicker = $Tickers[$CurrentIndex[0]][0];
+    $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $CurrentTicker . "&apikey=DET6IF6YAHK5PGVO";
+
+    $JSONstring = file_get_contents($APIurl);
+    $JSONarray = json_decode($JSONstring, true);
+
+    $Keys = array_keys($JSONarray["Monthly Adjusted Time Series"]);
+
+    $FiveMonthData = "";
+    //load past five days into a string
+    for ($y = 0; $y <= 4; $y++) {      
+
+        //append relevant date
+        $FiveMonthData .= $Keys[$y] . " ";
+
+        //fetch data
+        $FiveMonthData .= $JSONarray["Monthly Adjusted Time Series)"][$Keys[$y]]["4. close"];
+
+        //trim to 2 sig. fig.
+        //$FiveMonthData = substr($FiveMonthData, 0, -2);
+
+        //append new date identifier
+        $FiveMonthData .= "&";        
+    }
+
+    //update records
+    $sql = "UPDATE Stocks SET `FiveMonthData` ='" . $FiveMonthData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
+    $Result = mysqli_query($connect, $sql);
+
+    #endregion
+
+    #region Increase Counter
+
     //get number of records 
     $sql = "select COUNT(*) from Stocks";
     $Result = mysqli_query($connect, $sql);
@@ -73,4 +110,5 @@ for ($x = 0; $x <= 1; $x++) {
         $sql = "UPDATE `Stocks` SET `CurrentIndex`=" . (string) $CurrentIndex[0] . " WHERE 1";
         $Result = mysqli_query($connect, $sql);
     }
+    #endregion 
 }
