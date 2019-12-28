@@ -34,7 +34,7 @@ for ($x = 0; $x <= 1; $x++) {
 
     $FiveDayData = "";
     //load past five days into a string
-    for ($y = 0; $y <= 4; $y++) {      
+    for ($y = 0; $y <= 5; $y++) {      
 
         //append relevant date
         $FiveDayData .= $Keys[$y] . " ";
@@ -60,6 +60,7 @@ for ($x = 0; $x <= 1; $x++) {
     $func = "TIME_SERIES_MONTHLY_ADJUSTED";
     $CurrentTicker = $Tickers[$CurrentIndex[0]][0];
     $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $CurrentTicker . "&apikey=DET6IF6YAHK5PGVO";
+    echo $APIurl;
 
     $JSONstring = file_get_contents($APIurl);
     $JSONarray = json_decode($JSONstring, true);
@@ -68,13 +69,13 @@ for ($x = 0; $x <= 1; $x++) {
 
     $FiveMonthData = "";
     //load past five days into a string
-    for ($y = 0; $y <= 4; $y++) {      
+    for ($y = 0; $y <= 5; $y++) {      
 
         //append relevant date
         $FiveMonthData .= $Keys[$y] . " ";
 
         //fetch data
-        $FiveMonthData .= $JSONarray["Monthly Adjusted Time Series)"][$Keys[$y]]["4. close"];
+        $FiveMonthData .= $JSONarray["Monthly Adjusted Time Series"][$Keys[$y]]["4. close"];
 
         //trim to 2 sig. fig.
         //$FiveMonthData = substr($FiveMonthData, 0, -2);

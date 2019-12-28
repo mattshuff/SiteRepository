@@ -6,6 +6,6 @@ $.ajax({
     dataType: 'html',
     success: function (data) //on recieve of reply
     {
-        
+        console.log(data);
     }
 })

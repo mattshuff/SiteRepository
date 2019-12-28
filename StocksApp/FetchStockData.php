@@ -13,6 +13,6 @@ while ($row = $Result->fetch_row()) {
 }
 foreach ($rows as $row) {
     foreach ($row as $string) {
-        echo $string . "-";
+        echo $string . "^";
     }
 }
