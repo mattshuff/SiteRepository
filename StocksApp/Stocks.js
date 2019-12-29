@@ -18,97 +18,96 @@ $(document).ready(function () {
     //split returned database value into records
     var DataArray = DataString.split("^");
     DataArray = DataArray.slice(0,DataArray.length-1);
-   
+    
     //body section on html
     var ContentWrapper = document.getElementById("Content");
-    
+
+    console.log(DataArray);
     //loop through every record and append to contentwrapper
     for(var x = 0; x<DataArray.length-1;x++){
 
-        //create wrapper for following data 
+        //create div for indiviudal stock to keep data grouped together 
         var StockDataBlock = document.createElement("div");
         StockDataBlock.setAttribute("ID", "HistoryWrapper");
         
-
-        //write the name of the stock to the top of the datablock
-        var StockNameP = document.createElement("p");
-        StockNameP.setAttribute("ID", "");
-
+        //create name element and append to stock data div 
         var Stockname = DataArray[x]; x++;
-        var node = document.createTextNode(Stockname);
-        StockNameP.appendChild(node);
-
+        var StockNameP = document.createElement("p");
+        var node = document.createTextNode(Stockname); StockNameP.appendChild(node);
         StockDataBlock.appendChild(StockNameP);
+
         
-        //create five day data element (with colour coding) and append 
-        var FiveDayDiv = document.createElement("div");
-        FiveDayDiv.setAttribute("ID", "StockData");
-
-        var FiveDayArray = DataArray[x].split("&");
-        FiveDayArray = FiveDayArray.slice(0,5);
+        var TempP = document.createElement("p");
+        var node = document.createTextNode("Five Day:"); TempP.appendChild(node);
+        StockDataBlock.appendChild(TempP);
+       
+        //create five day block and fill with colour coded data
+        var FiveDayData = DataArray[x]; x++;
+        var FiveDayDataArray = FiveDayData.split("&");
         
+        //trim off the empty record (could potentially edit how the data is written to make this redundant but seems like more effort than its worth)
+        FiveDayDataArray = FiveDayDataArray.slice(0,6);
 
-        for(var y = 0; y < 4; y++){   
-            var TempP = document.createElement("p");  
-            var node = document.createTextNode(FiveDayArray[y]);
-            TempP.appendChild(node);
+        var FiveDayDataDiv = document.createElement("div");
 
-        if(FiveDayArray[y].substr(11) >= FiveDayArray[y+1].substr(11)){
+        //loop through every record in the data array and colour it 
+            for(var y=0; y<5 ;y++) {
+                //trim dates
+                var CurrentRecord = FiveDayDataArray[y].substr(11);
+                var NextRecord = FiveDayDataArray[y+1].substr(11);
 
-            //green if higher than previous day
-            TempP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");
-            console.log("green");
+                var TempDataP = document.createElement("p");
+                var node = document.createTextNode(FiveDayDataArray[y]); TempDataP.appendChild(node);
+                
+                if(CurrentRecord>NextRecord) { 
+                    TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");                   
+                }
+                else {
+                    TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");                                       
+                }     
+                FiveDayDataDiv.appendChild(TempDataP);       
+            }
+            StockDataBlock.appendChild(FiveDayDataDiv);
+
+        var FiveMonthData = DataArray[x]; 
+        var FiveMonthDataArray = FiveMonthData.split("&");
+        FiveMonthDataArray = FiveMonthDataArray.slice(0,6);
+
+        var FiveMonthDataDiv = document.createElement("div");
+        for(var y=0; y<5 ;y++) {
+            //trim dates
+            var CurrentRecord = FiveMonthDataArray[y].substr(11);
+            var NextRecord = FiveMonthDataArray[y+1].substr(11);
+
+            var TempDataP = document.createElement("p");
+            var node = document.createTextNode(FiveMonthDataArray[y]); TempDataP.appendChild(node);
+            
+            if(CurrentRecord>NextRecord) { 
+                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");                   
+            }
+            else {
+                TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");                                       
+            }     
+            FiveMonthDataDiv.appendChild(TempDataP);       
         }
-        else{
-            //red if less than previous 
-            TempP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");
-            console.log("red");
-        }
+        var BR = document.createElement("br"); StockDataBlock.appendChild(BR);
 
-        //append 5 day data to tracker block
-        FiveDayDiv.appendChild(TempP);      
-        }
 
-        var TempP = document.createElement("p");  
-        var node = document.createTextNode(" ");
-        TempP.appendChild(node);
 
-        FiveDayDiv.setAttribute("ID", "StockData");
-        StockDataBlock.appendChild(FiveDayDiv);
-        
-        x++;
 
-        //create five MONTH data element (with colour coding) and append 
-        var FiveMonthDiv = document.createElement("div");
-        FiveMonthDiv.setAttribute("ID", "StockData");
+        var TempP = document.createElement("p");
+        var node = document.createTextNode("Five Month:"); TempP.appendChild(node);
+        StockDataBlock.appendChild(TempP);
 
-        var FiveMonthArray = DataArray[x].split("&");
-        FiveMonthArray = FiveMonthArray.slice(0,5);
-        
-        for(var y = 0; y < 4; y++){   
-            var TempP = document.createElement("p");  
-            var node = document.createTextNode(FiveMonthArray[y]);
-            TempP.appendChild(node);
-        if(FiveMonthArray[y] < FiveMonthArray[y+1]){
+        StockDataBlock.appendChild(FiveMonthDataDiv);
 
-            //green if higher than previous day
-            TempP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");
-        }
-        else{
-            //red if less than previous 
-            TempP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");
-        }
 
-        //append 5 day data to tracker block
-        FiveMonthDiv.appendChild(TempP);      
-        }
-        
 
-        //append formated data
-        FiveMonthDiv.setAttribute("ID", "StockData");
-        StockDataBlock.appendChild(FiveMonthDiv);
 
-        //append tracker to page
-        ContentWrapper.append(StockDataBlock);
+
+
+
+        ContentWrapper.appendChild(StockDataBlock);
     }
+    
 })
