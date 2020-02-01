@@ -1,7 +1,14 @@
   .column {
       float: left;
-      width: auto;
-      padding-right: 20px;
+      width: 400px;
+      padding-right: 50px;
+      padding-left: 10px;
+
+      
+      border-top-style: none;
+      border-right-style: solid;
+      border-bottom-style: none;
+      border-left-style: none;
   }
 
 
@@ -34,6 +41,8 @@
       padding: 1px;
       font-size: 22px;
       cursor: pointer;
+
+    
   }
 
   #subtitle {

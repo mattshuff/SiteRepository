@@ -15,42 +15,41 @@ $(document).ready(function () {
         }
     })
 
-    //split returned database value into records
+    //split returned database value into records, slicing off empty final record 
     var DataArray = DataString.split("^");
     DataArray = DataArray.slice(0,DataArray.length-1);
     
-    //body section on html
+    //select body section on html
     var ContentWrapper = document.getElementById("Content");
 
-    console.log(DataArray);
     //loop through every record and append to contentwrapper
     for(var x = 0; x<DataArray.length-1;x++){
 
-        //create div for indiviudal stock to keep data grouped together 
+        //create div for indiviudal stock to keep data grouped and formated 
         var StockDataBlock = document.createElement("div");
         StockDataBlock.setAttribute("ID", "HistoryWrapper");
         
-        //create name element and append to stock data div 
+        //write stock name to block
         var Stockname = DataArray[x]; x++;
         var StockNameP = document.createElement("p");
         var node = document.createTextNode(Stockname); StockNameP.appendChild(node);
         StockDataBlock.appendChild(StockNameP);
 
-        
+        //5 five subtitle 
         var TempP = document.createElement("p");
         var node = document.createTextNode("Five Day:"); TempP.appendChild(node);
+        TempP.setAttribute("style", " margin-bottom:5px; margin-top:20px;");  
         StockDataBlock.appendChild(TempP);
        
         //create five day block and fill with colour coded data
         var FiveDayData = DataArray[x]; x++;
         var FiveDayDataArray = FiveDayData.split("&");
         
-        //trim off the empty record (could potentially edit how the data is written to make this redundant but seems like more effort than its worth)
+        //trim off the empty record
         FiveDayDataArray = FiveDayDataArray.slice(0,6);
 
+        //create text elements and add to div 
         var FiveDayDataDiv = document.createElement("div");
-
-        //loop through every record in the data array and colour it 
             for(var y=0; y<5 ;y++) {
                 //trim dates
                 var CurrentRecord = FiveDayDataArray[y].substr(11);
@@ -67,8 +66,9 @@ $(document).ready(function () {
                 }     
                 FiveDayDataDiv.appendChild(TempDataP);       
             }
-            StockDataBlock.appendChild(FiveDayDataDiv);
+        StockDataBlock.appendChild(FiveDayDataDiv);
 
+        //repeat above for five months data 
         var FiveMonthData = DataArray[x]; 
         var FiveMonthDataArray = FiveMonthData.split("&");
         FiveMonthDataArray = FiveMonthDataArray.slice(0,6);
@@ -90,23 +90,13 @@ $(document).ready(function () {
             }     
             FiveMonthDataDiv.appendChild(TempDataP);       
         }
-        var BR = document.createElement("br"); StockDataBlock.appendChild(BR);
-
-
-
-
+        
         var TempP = document.createElement("p");
         var node = document.createTextNode("Five Month:"); TempP.appendChild(node);
+        TempP.setAttribute("style", " margin-bottom:5px; margin-top:20px;");  
         StockDataBlock.appendChild(TempP);
 
         StockDataBlock.appendChild(FiveMonthDataDiv);
-
-
-
-
-
-
-
         ContentWrapper.appendChild(StockDataBlock);
     }
     
