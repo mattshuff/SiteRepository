@@ -13,7 +13,7 @@ $(document).ready(function () {
               var li = document.createElement("li");
               li.appendChild(document.createTextNode(DataArray[x]));
 
-              li.onclick = function () {
+              li.ondblclick = function () {
                     var HoverValue = this.innerHTML;
 
                     $.ajax({
