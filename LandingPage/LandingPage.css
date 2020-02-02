@@ -4,7 +4,7 @@
       padding-right: 50px;
       padding-left: 10px;
 
-      
+
       border-top-style: none;
       border-right-style: solid;
       border-bottom-style: none;
@@ -24,6 +24,8 @@
       color: antiquewhite;
       word-wrap: normal;
       text-decoration: none;
+
+      touch-action: manipulation;
   }
 
   input[type=text] {
@@ -42,7 +44,7 @@
       font-size: 22px;
       cursor: pointer;
 
-    
+
   }
 
   #subtitle {

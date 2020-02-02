@@ -1,5 +1,5 @@
 <?php
-$hostname = "localhost";
+$hostname = "sql160.main-hosting.eu";
 $username = "u902155560_admin";
 $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
@@ -15,5 +15,4 @@ if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         echo $row["ToDoContent"].'*';
     }
-} 
-?>
+}

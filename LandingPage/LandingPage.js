@@ -1,50 +1,59 @@
 $(document).ready(function () {
     //populate to do 
     $.ajax(
-        "LandingPage/LoadToDo.php",
-        {
-          success: function (data) {
-    
-            var DataArray = data.split("*");
-            var ul = document.getElementById("ToDoList");
+        "LandingPage/LoadToDo.php", {
+            success: function (data) {
 
-            for (var x = 0; x < DataArray.length; x++) {
-              
-              var li = document.createElement("li");
-              li.appendChild(document.createTextNode(DataArray[x]));
+                //split data into array
+                var DataArray = data.split("*");
 
-              li.on("ondblclick","taphold",function(){
-                    var HoverValue = this.innerHTML;
+                //select empty list
+                var ul = document.getElementById("ToDoList");
 
-                    $.ajax({
-                        url: 'LandingPage/DeleteToDo.php',
-                        type: 'GET',
-                        data: {
-                            QueryValue: String(HoverValue)
-                        },
-                    })
-                    $(this).remove();
-                })
+                //loop through data 
+                for (var x = 0; x < DataArray.length; x++) {
 
-              ul.appendChild(li);
+                    //create a list element and append to larger structure 
+                    var li = document.createElement("li");
+                    li.appendChild(document.createTextNode(DataArray[x]));
+
+                    //give double click function to remove it 
+                    li.ondblclick = function () {
+                        var HoverValue = this.innerHTML;
+
+                        $.ajax({
+                            url: 'LandingPage/DeleteToDo.php',
+                            type: 'GET',
+                            data: {
+                                QueryValue: String(HoverValue)
+                            },
+                        })
+                        $(this).remove();
+                    }
+
+                    ul.appendChild(li);
+                }
             }
-        }
-    })
+        })
+
 
     //add submit event listener to text input box
     var Input = document.getElementById("textinput");
     Input.addEventListener("keydown", function (event) {
         if (event.key === 'Enter') {
-            
+
+            //select list 
             var ul = document.getElementById("ToDoList");
+
+            //create new list element 
             var li = document.createElement("li");
             li.appendChild(document.createTextNode(Input.value));
 
-            li.onclick = function () {
+            li.ondblclick = function () {
                 var HoverValue = this.innerHTML;
-                
+
                 $.ajax({
-                    url: "LandingPage/AddToDo.php",
+                    url: 'LandingPage/DeleteToDo.php',
                     type: 'GET',
                     data: {
                         QueryValue: String(HoverValue)
@@ -63,8 +72,8 @@ $(document).ready(function () {
                 },
 
                 success: function (Data) {
-                    Input.value="";
-                },               
+                    Input.value = "";
+                }
             })
         }
     })
