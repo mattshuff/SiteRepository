@@ -13,7 +13,7 @@ $(document).ready(function () {
               var li = document.createElement("li");
               li.appendChild(document.createTextNode(DataArray[x]));
 
-              li.ondblclick = function () {
+              li.on("ondblclick","taphold",function(){
                     var HoverValue = this.innerHTML;
 
                     $.ajax({
@@ -24,7 +24,7 @@ $(document).ready(function () {
                         },
                     })
                     $(this).remove();
-                }
+                })
 
               ul.appendChild(li);
             }
