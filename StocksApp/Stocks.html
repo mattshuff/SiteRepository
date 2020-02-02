@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link href="Stocks.css"
-        rel="stylesheet"
-        type="text/css">
+  <link href="Stocks.css" rel="stylesheet" type="text/css">
   <meta charset="UTF-8">
   <script src="Stocks.js"></script>
   <title>STOCKS-APP</title>
 </head>
+
 <body>
   <a href="https://matt-shuff.co.uk/" class="MainTitle">MATT-SHUFF.co.uk</a><br>
   <h1 class="subtitle">Stocks Tracker</h1><br>
 
-  <div id="Content"></div>
-  
+  <div id="Content" style="width: 800px;"></div>
+  <p id="AddNew">Add New Stock...</p>
+
+
+  <div id="popupform" style="text-align: center;">
+
+    <p id="EscapeInput">ESCAPE</p>
+
+    <p style="margin: 5px; font-size: 50px; font-weight: bolder;">STOCK NAME</p>
+    <input id="StockName" style="margin-bottom: 0px;">
+
+    <p style="margin: 5px; font-size: 50px; font-weight: bolder;">STOCK TICKER</p>
+    <input id="StockTicker">
+
+    <p id="StockSubmit">SUBMIT</p>
+
+  </div>
 
 </body>
+
 </html>

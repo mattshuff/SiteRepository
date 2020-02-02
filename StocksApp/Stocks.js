@@ -1,5 +1,6 @@
 //wait until the page is ready
 $(document).ready(function () {
+    div_hide();
     var DataString;
 
     //fetch all records 
@@ -17,87 +18,123 @@ $(document).ready(function () {
 
     //split returned database value into records, slicing off empty final record 
     var DataArray = DataString.split("^");
-    DataArray = DataArray.slice(0,DataArray.length-1);
-    
+    DataArray = DataArray.slice(0, DataArray.length - 1);
+
     //select body section on html
     var ContentWrapper = document.getElementById("Content");
 
     //loop through every record and append to contentwrapper
-    for(var x = 0; x<DataArray.length-1;x++){
+    for (var x = 0; x < DataArray.length - 1; x++) {
 
         //create div for indiviudal stock to keep data grouped and formated 
         var StockDataBlock = document.createElement("div");
         StockDataBlock.setAttribute("ID", "HistoryWrapper");
-        
+
         //write stock name to block
         var Stockname = DataArray[x]; x++;
         var StockNameP = document.createElement("p");
         var node = document.createTextNode(Stockname); StockNameP.appendChild(node);
+        StockNameP.style = " margin-bottom:5px; margin-top:10px;";
         StockDataBlock.appendChild(StockNameP);
 
         //5 five subtitle 
         var TempP = document.createElement("p");
         var node = document.createTextNode("Five Day:"); TempP.appendChild(node);
-        TempP.setAttribute("style", " margin-bottom:5px; margin-top:20px;");  
+        TempP.setAttribute("style", " margin-bottom:5px; margin-top:10px;");
         StockDataBlock.appendChild(TempP);
-       
+
         //create five day block and fill with colour coded data
         var FiveDayData = DataArray[x]; x++;
         var FiveDayDataArray = FiveDayData.split("&");
-        
+
         //trim off the empty record
-        FiveDayDataArray = FiveDayDataArray.slice(0,6);
+        FiveDayDataArray = FiveDayDataArray.slice(0, 6);
 
         //create text elements and add to div 
         var FiveDayDataDiv = document.createElement("div");
-            for(var y=0; y<5 ;y++) {
-                //trim dates
-                var CurrentRecord = FiveDayDataArray[y].substr(11);
-                var NextRecord = FiveDayDataArray[y+1].substr(11);
+        for (var y = 0; y < 5; y++) {
+            //trim dates
+            var CurrentRecord = FiveDayDataArray[y].substr(11);
+            var NextRecord = FiveDayDataArray[y + 1].substr(11);
 
-                var TempDataP = document.createElement("p");
-                var node = document.createTextNode(FiveDayDataArray[y]); TempDataP.appendChild(node);
-                
-                if(CurrentRecord>NextRecord) { 
-                    TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");                   
-                }
-                else {
-                    TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");                                       
-                }     
-                FiveDayDataDiv.appendChild(TempDataP);       
+            var TempDataP = document.createElement("p");
+            var node = document.createTextNode(FiveDayDataArray[y]); TempDataP.appendChild(node);
+
+            if (CurrentRecord > NextRecord) {
+                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");
             }
+            else {
+                TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");
+            }
+            FiveDayDataDiv.appendChild(TempDataP);
+        }
         StockDataBlock.appendChild(FiveDayDataDiv);
 
         //repeat above for five months data 
-        var FiveMonthData = DataArray[x]; 
+        var FiveMonthData = DataArray[x];
         var FiveMonthDataArray = FiveMonthData.split("&");
-        FiveMonthDataArray = FiveMonthDataArray.slice(0,6);
+        FiveMonthDataArray = FiveMonthDataArray.slice(0, 6);
 
         var FiveMonthDataDiv = document.createElement("div");
-        for(var y=0; y<5 ;y++) {
+        for (var y = 0; y < 5; y++) {
             //trim dates
             var CurrentRecord = FiveMonthDataArray[y].substr(11);
-            var NextRecord = FiveMonthDataArray[y+1].substr(11);
+            var NextRecord = FiveMonthDataArray[y + 1].substr(11);
 
             var TempDataP = document.createElement("p");
             var node = document.createTextNode(FiveMonthDataArray[y]); TempDataP.appendChild(node);
-            
-            if(CurrentRecord>NextRecord) { 
-                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");                   
+
+            if (CurrentRecord > NextRecord) {
+                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");
             }
             else {
-                TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");                                       
-            }     
-            FiveMonthDataDiv.appendChild(TempDataP);       
+                TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");
+            }
+            FiveMonthDataDiv.appendChild(TempDataP);
         }
-        
+
         var TempP = document.createElement("p");
         var node = document.createTextNode("Five Month:"); TempP.appendChild(node);
-        TempP.setAttribute("style", " margin-bottom:5px; margin-top:20px;");  
+        TempP.setAttribute("style", " margin-bottom:5px; margin-top:10px;");
         StockDataBlock.appendChild(TempP);
 
         StockDataBlock.appendChild(FiveMonthDataDiv);
         ContentWrapper.appendChild(StockDataBlock);
     }
-    
+
+    //setup input button 
+    var NewStockButton = document.getElementById("AddNew");
+    NewStockButton.addEventListener("click", function () {
+        div_show();
+    })
+
+    //setup escape button
+    var EscapeButton = document.getElementById("EscapeInput");
+    EscapeButton.addEventListener("click", function () {
+        div_hide();
+    })
+
+    //setup enter button 
+    var SubmitButton = document.getElementById("StockSubmit");
+    SubmitButton.addEventListener("click", function () {
+
+        var StockNameValue = document.getElementById("StockName").value;
+        var StockTickerValue = document.getElementById("StockTicker").value;
+
+
+        //push new records to database here
+
+        //need to find a way to populate new records too 
+
+    })
+
 })
+
+function div_show() {
+    document.getElementById('popupform').style.display = "block";
+}
+
+//Function to Hide Popup
+function div_hide() {
+    document.getElementById('popupform').style.display = "none";
+}
