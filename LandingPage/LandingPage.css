@@ -9,6 +9,8 @@
       border-right-style: solid;
       border-bottom-style: none;
       border-left-style: none;
+
+      touch-action: manipulation;
   }
 
 
