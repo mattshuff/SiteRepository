@@ -19,6 +19,7 @@ $(document).ready(function () {
     //split returned database value into records, slicing off empty final record 
     var DataArray = DataString.split("^");
     DataArray = DataArray.slice(0, DataArray.length - 1);
+    console.log(DataArray);
 
     //select body section on html
     var ContentWrapper = document.getElementById("Content");
@@ -34,13 +35,13 @@ $(document).ready(function () {
         var Stockname = DataArray[x]; x++;
         var StockNameP = document.createElement("p");
         var node = document.createTextNode(Stockname); StockNameP.appendChild(node);
-        StockNameP.style = " margin-bottom:5px; margin-top:10px;";
+        StockNameP.style = " margin-bottom:0px; margin-top:0px;";
         StockDataBlock.appendChild(StockNameP);
 
         //5 five subtitle 
         var TempP = document.createElement("p");
         var node = document.createTextNode("Five Day:"); TempP.appendChild(node);
-        TempP.setAttribute("style", " margin-bottom:5px; margin-top:10px;");
+        TempP.setAttribute("style", " margin-bottom:0px; margin-top:0px;");
         StockDataBlock.appendChild(TempP);
 
         //create five day block and fill with colour coded data
@@ -56,15 +57,16 @@ $(document).ready(function () {
             //trim dates
             var CurrentRecord = FiveDayDataArray[y].substr(11);
             var NextRecord = FiveDayDataArray[y + 1].substr(11);
+            
 
             var TempDataP = document.createElement("p");
             var node = document.createTextNode(FiveDayDataArray[y]); TempDataP.appendChild(node);
 
             if (CurrentRecord > NextRecord) {
-                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");
+                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:0px; margin-top:0px;");
             }
             else {
-                TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");
+                TempDataP.setAttribute("style", "color:red; margin-bottom:0px; margin-top:0px;");
             }
             FiveDayDataDiv.appendChild(TempDataP);
         }
@@ -85,10 +87,10 @@ $(document).ready(function () {
             var node = document.createTextNode(FiveMonthDataArray[y]); TempDataP.appendChild(node);
 
             if (CurrentRecord > NextRecord) {
-                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:5px; margin-top:0px;");
+                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:0px; margin-top:0px;");
             }
             else {
-                TempDataP.setAttribute("style", "color:red; margin-bottom:5px; margin-top:0px;");
+                TempDataP.setAttribute("style", "color:red; margin-bottom:0px; margin-top:0px;");
             }
             FiveMonthDataDiv.appendChild(TempDataP);
         }
@@ -121,11 +123,22 @@ $(document).ready(function () {
         var StockNameValue = document.getElementById("StockName").value;
         var StockTickerValue = document.getElementById("StockTicker").value;
 
-
-        //push new records to database here
-
-        //need to find a way to populate new records too 
-
+        $.ajax({
+            url: "NewStock.php",
+            type: 'GET',
+            data: {
+                StockNamePost: String(StockNameValue),
+                StockTickerPost: String(StockTickerValue),            
+            },
+            success: function (data) {
+              div_hide();
+      
+              document.getElementById("StockName").value="";
+              document.getElementById("StockTicker").value="";
+                            
+              //location.reload();
+            }
+          })
     })
 
 })
@@ -134,7 +147,7 @@ function div_show() {
     document.getElementById('popupform').style.display = "block";
 }
 
-//Function to Hide Popup
+
 function div_hide() {
     document.getElementById('popupform').style.display = "none";
 }

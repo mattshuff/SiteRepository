@@ -1,2 +1,29 @@
 useful line of php that gets the date 
 $CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
+
+things to build on in stocks app:
+	symbol lookup form company name
+	symbol validate
+	poplate new stock as soon as it is submitted
+			- (5 API requests per minute; 500 API requests per day)
+			- new php to populate a specific symbol
+	use empty space to the right for something?
+
+spotify app:
+	global control
+
+settings page:
+	style settings
+	db settings
+
+recipe app changes:
+	needs to be more responsive / animated
+	formatting needs to be enforced
+
+potential features:
+	password access
+	guest access
+	file store 
+	sockets so things update live?
+
+	 

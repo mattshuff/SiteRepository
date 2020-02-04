@@ -1,0 +1,49 @@
+*{
+    background-color: #2C2F33;
+    color: antiquewhite;
+    font-size: 22px;
+    padding-bottom: 5px;
+    font-family: 'Helvetica';
+    touch-action: manipulation;
+}
+
+.column {
+    float: left;
+    width: 400px;
+    padding-right: 50px;
+    padding-left: 10px;
+
+    border-top-style: none;
+    border-right-style: solid;
+    border-bottom-style: none;
+    border-left-style: none;
+
+}
+
+#MainTitle {
+    font-family: arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 5px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 44px;
+    word-wrap: normal;
+    text-align: left;
+    font-weight: bold;
+}
+
+#Subtitle {
+    padding-top: 5px;
+    font-size: 32px;
+    margin: 0;
+}
+
+li,
+ul {
+    display: block;
+    list-style-type: disc;
+    padding: 1px;
+    font-size: 22px;
+    cursor: pointer;
+
+
+}

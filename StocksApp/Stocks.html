@@ -4,31 +4,54 @@
 <head>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link href="Stocks.css" rel="stylesheet" type="text/css">
+  <link href="/BaseStyle.css" rel="stylesheet" type="text/css">
   <meta charset="UTF-8">
   <script src="Stocks.js"></script>
   <title>STOCKS-APP</title>
 </head>
 
 <body>
-  <a href="https://matt-shuff.co.uk/" class="MainTitle">MATT-SHUFF.co.uk</a><br>
-  <h1 class="subtitle">Stocks Tracker</h1><br>
 
+  <a href="https://matt-shuff.co.uk/" id="MainTitle">MATT-SHUFF.co.uk</a><br>
+  <h1 id="Subtitle">Stocks Tracker</h1>
+  <br>
+
+<style>
+#HistoryWrapper{
+    display: inline-block;
+    position: relative;
+    margin: 1px;
+    margin-right: 20px;
+    
+} 
+</style>
   <div id="Content" style="width: 800px;"></div>
-  <p id="AddNew">Add New Stock...</p>
+  <p id="AddNew" style="cursor: pointer;">Add New Stock...</p>
 
-
+<style>
+#popupform {
+    width: 100%;
+    height: 100%;
+    opacity: .95;
+    top: 0;
+    left: 0;
+    display: none;
+    position: fixed;
+    background-color: #313131;
+    overflow: auto
+  }
+</style>
   <div id="popupform" style="text-align: center;">
 
-    <p id="EscapeInput">ESCAPE</p>
+    <p id="EscapeInput" style="cursor: pointer;">ESCAPE</p>
 
     <p style="margin: 5px; font-size: 50px; font-weight: bolder;">STOCK NAME</p>
     <input id="StockName" style="margin-bottom: 0px;">
 
     <p style="margin: 5px; font-size: 50px; font-weight: bolder;">STOCK TICKER</p>
-    <input id="StockTicker">
+    <input id="StockTicker" style="margin-bottom: 0px;">
 
-    <p id="StockSubmit">SUBMIT</p>
+    <p id="StockSubmit" style="cursor: pointer;">SUBMIT</p>
 
   </div>
 
