@@ -136,7 +136,7 @@ $(document).ready(function () {
               document.getElementById("StockName").value="";
               document.getElementById("StockTicker").value="";
                             
-              //location.reload();
+              location.reload();
             }
           })
     })

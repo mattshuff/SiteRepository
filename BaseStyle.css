@@ -5,6 +5,7 @@
     padding-bottom: 5px;
     font-family: 'Helvetica';
     touch-action: manipulation;
+    text-decoration: none;
 }
 
 .column {
@@ -44,6 +45,7 @@ ul {
     padding: 1px;
     font-size: 22px;
     cursor: pointer;
-
-
 }
+
+
+  

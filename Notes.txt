@@ -1,16 +1,12 @@
-useful line of php that gets the date 
-$CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
-
 things to build on in stocks app:
 	symbol lookup form company name
 	symbol validate
-	poplate new stock as soon as it is submitted
-			- (5 API requests per minute; 500 API requests per day)
-			- new php to populate a specific symbol
 	use empty space to the right for something?
+	double click stock name to delete record 
 
 spotify app:
 	global control
+	does shuffle really shuffle test
 
 settings page:
 	style settings
@@ -21,9 +17,14 @@ recipe app changes:
 	formatting needs to be enforced
 
 potential features:
-	password access
-	guest access
+	password access (google?)
+	guest access / portfolio
 	file store 
 	sockets so things update live?
+	hide passwords in a settings file
+
+
+useful line of php that gets the date 
+$CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
 
 	 
