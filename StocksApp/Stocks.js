@@ -14,12 +14,11 @@ $(document).ready(function () {
         {
             DataString = data;
         }
-    })
+    });
 
     //split returned database value into records, slicing off empty final record 
     var DataArray = DataString.split("^");
     DataArray = DataArray.slice(0, DataArray.length - 1);
-    console.log(DataArray);
 
     //select body section on html
     var ContentWrapper = document.getElementById("Content");
@@ -36,11 +35,12 @@ $(document).ready(function () {
         var StockNameP = document.createElement("p");
         var node = document.createTextNode(Stockname); StockNameP.appendChild(node);
         StockNameP.style = " margin-bottom:0px; margin-top:0px;";
+        StockNameP.classList.add("StockName");
         StockDataBlock.appendChild(StockNameP);
 
-        //5 five subtitle 
+        //five subtitle 
         var TempP = document.createElement("p");
-        var node = document.createTextNode("Five Day:"); TempP.appendChild(node);
+        node = document.createTextNode("Five Day:"); TempP.appendChild(node);
         TempP.setAttribute("style", " margin-bottom:0px; margin-top:0px;");
         StockDataBlock.appendChild(TempP);
 
@@ -54,13 +54,16 @@ $(document).ready(function () {
         //create text elements and add to div 
         var FiveDayDataDiv = document.createElement("div");
         for (var y = 0; y < 5; y++) {
-            //trim dates
-            var CurrentRecord = FiveDayDataArray[y].substr(11);
-            var NextRecord = FiveDayDataArray[y + 1].substr(11);
+
+            //used try catch loops here to block a non critical error from stopping execution
+                var CurrentRecord;
+                try{ CurrentRecord = FiveDayDataArray[y].substr(11);} catch { }
+                var NextRecord;
+                try{ NextRecord = FiveDayDataArray[y + 1].substr(11);} catch { }
             
 
             var TempDataP = document.createElement("p");
-            var node = document.createTextNode(FiveDayDataArray[y]); TempDataP.appendChild(node);
+            node = document.createTextNode(FiveDayDataArray[y]); TempDataP.appendChild(node);
 
             if (CurrentRecord > NextRecord) {
                 TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:0px; margin-top:0px;");
@@ -108,13 +111,13 @@ $(document).ready(function () {
     var NewStockButton = document.getElementById("AddNew");
     NewStockButton.addEventListener("click", function () {
         div_show();
-    })
+    });
 
     //setup escape button
     var EscapeButton = document.getElementById("EscapeInput");
     EscapeButton.addEventListener("click", function () {
         div_hide();
-    })
+    });
 
     //setup enter button 
     var SubmitButton = document.getElementById("StockSubmit");
@@ -138,16 +141,46 @@ $(document).ready(function () {
                             
               location.reload();
             }
-          })
-    })
+          });
+    });
 
-})
+
+ContentWrapper.addEventListener("dblclick",ClassClick);
+
+   
+  
+});
 
 function div_show() {
     document.getElementById('popupform').style.display = "block";
 }
 
-
 function div_hide() {
     document.getElementById('popupform').style.display = "none";
 }
+
+function ClassClick(e) {
+    
+    var Target = e.originalTarget;
+    if(Target.className === "StockName"){
+    
+        var StockName = Target.innerText;
+
+        //have a confirmation dialogue here cause its a pain repopulating data
+        $.ajax({
+            url: "DeleteStock.php",
+            type: 'GET',
+            data: {
+                StockNamePost: String(StockName),
+                          
+            },
+            success: function (data) {           
+            location.reload();
+
+            }
+          });
+    
+    }
+    e.stopPropagation();
+}
+
