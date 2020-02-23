@@ -4,8 +4,7 @@ general notes:
 things to build on in stocks app:
 	symbol lookup form company name
 	symbol validate
-	use empty space to the right for something?
-	double click stock name to delete record 
+	use empty space to the right for something?	
 	optimise code
 		builds 5 day and 5 month seperately which is dumb
 	check for duplicates
@@ -23,9 +22,9 @@ recipe app changes:
 	formatting needs to be enforced
 
 potential features:
-	password access (google?)
-	guest access / portfolio
-	file store 
+	password access (google account probably?)
+	guest access / portfolio use
+	file store ()
 	sockets so things update live?
 	hide passwords in a settings file
 

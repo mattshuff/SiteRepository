@@ -34,7 +34,7 @@ $(document).ready(function () {
         var Stockname = DataArray[x]; x++;
         var StockNameP = document.createElement("p");
         var node = document.createTextNode(Stockname); StockNameP.appendChild(node);
-        StockNameP.style = " margin-bottom:0px; margin-top:0px;";
+        StockNameP.style = " margin-bottom:0px; margin-top:0px; cursor:help;";
         StockNameP.classList.add("StockName");
         StockDataBlock.appendChild(StockNameP);
 
