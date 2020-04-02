@@ -5,8 +5,6 @@ things to build on in stocks app:
 	symbol lookup form company name
 	symbol validate
 	use empty space to the right for something?	
-	optimise code
-		builds 5 day and 5 month seperately which is dumb
 	check for duplicates
 
 spotify app:
