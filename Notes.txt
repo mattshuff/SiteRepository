@@ -18,18 +18,19 @@ settings page:
 	db settings
 
 recipe app changes:
-	needs to be more responsive / animated
-	formatting needs to be enforced
+	restart
 
 potential features:
+	make links in localhost link back to localhost instead of main site 
 	password access (google account probably?)
 	guest access / portfolio use
-	file store ()
 	sockets so things update live?
 	hide passwords in a settings file
 
 
 useful line of php that gets the date 
 $CurrentDate = date('Y-m-d', strtotime("-" . (string) $y - 1 . " days"));
+
+
 
 	 
