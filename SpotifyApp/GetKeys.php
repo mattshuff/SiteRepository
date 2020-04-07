@@ -1,32 +1,21 @@
 <?php
+    session_start();
 
-session_start();
+    //check key gen time 
+    $TimeSinceKeyGen = time() - $_SESSION["KeyGenTime"];
+    if($TimeSinceKeyGen > 3000) { 
+        $_SESSION["AuthCode"] = $_POST["AuthCodePOST"];
 
-//bools to check if exisiting keys can be used 
-$IsAccessKeySet = isset($_SESSION["AccessKey"]);
-$IsRefreshToken = isset($_SESSION["RefreshToken"]);
-$IsTokenValid = ""; if(time() - $_SESSION["KeyGenTime"] < 7000){$IsTokenValid=true;};
-if($IsAccessKeySet and $IsRefreshToken and $IsTokenValid)    
-   {
-    echo $_SESSION["AccessKey"];
-    echo("\n");
-    echo $_SESSION["RefreshToken"];
-}
-
-//if existing keys not valid,generate new ones here
-else{
-    $_SESSION["AuthCode"] = $_POST["AuthCodePOST"];
-
-    $KeysArray = getKeys();
-
-    $_SESSION["AccessKey"] = $KeysArray["accessKey"];
-    $_SESSION["RefreshToken"] = $KeysArray["refreshToken"];
-    $_SESSION["KeyGenTime"] = time();
-
-    echo ($KeysArray["accessKey"]);
-    echo("\n");
-    echo $KeysArray["refreshToken"];
-}
+        $KeysArray = getKeys();
+    
+        $_SESSION["AccessKey"] = $KeysArray["accessKey"];
+        $_SESSION["RefreshToken"] = $KeysArray["refreshToken"];
+        $_SESSION["KeyGenTime"] = time();
+    
+        echo ($KeysArray["accessKey"]);
+        echo("\n");
+        echo $KeysArray["refreshToken"];
+    }
 
 function getKeys() {
     $parameters = [
@@ -51,6 +40,9 @@ function getKeys() {
     
     //execute post
     $result = curl_exec($ch);
+    if (curl_errno($ch)) {
+        echo 'Error:' . curl_error($ch);
+    }
 
     //return access key
     $JSONarray = json_decode($result, true);

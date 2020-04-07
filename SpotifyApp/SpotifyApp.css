@@ -1,0 +1,29 @@
+#AlbumArtDiv {
+    width: 1500px;
+    height: 600px;    
+    border-right: 3px solid white;
+    float: left;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+#ConcertDiv {
+    width: 380px;
+    height: 600px; 
+    float: left;
+    background-color: rgba(0, 128, 0, 0.5);
+    
+}
+#ControlsDiv{
+    background-color: rgba(0, 0, 255, 0.5);
+    display:inline-block;
+    width: 700px;
+    height: 300px; 
+    border-top: 1px solid white;
+}
+#Content{
+
+}
+#SubTitle{
+    all: inherit;
+    padding-left: 2px;
+    font-weight: bold;
+}
