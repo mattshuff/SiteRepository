@@ -1,29 +1,32 @@
 #AlbumArtDiv {
-    width: 1500px;
+    width: 1450px;
     height: 600px;    
     border-right: 3px solid white;
-    float: left;
-    background-color: rgba(255, 0, 0, 0.5);
+    float: left;  
+    overflow: hidden;  
 }
 #ConcertDiv {
     width: 380px;
     height: 600px; 
-    float: left;
-    background-color: rgba(0, 128, 0, 0.5);
-    
+    float: left; 
 }
-#ControlsDiv{
-    background-color: rgba(0, 0, 255, 0.5);
+#ControlsDiv{   
     display:inline-block;
     width: 700px;
     height: 300px; 
     border-top: 1px solid white;
 }
-#Content{
 
-}
 #SubTitle{
     all: inherit;
     padding-left: 2px;
     font-weight: bold;
 }
+body{
+    overflow: hidden; 
+}
+/*
+background-color: rgba(0, 0, 255, 0.5);
+background-color: rgba(255, 0, 0, 0.5);
+background-color: rgba(0, 128, 0, 0.5);
+*/

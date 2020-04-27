@@ -8,8 +8,9 @@ things to build on in stocks app:
 	check for duplicates
 
 spotify app:
-	global control
-	does shuffle really shuffle test
+	make clicking on scrolling item pause scroll and explode picture
+	play samples too
+	rework get images function to be able to do everything mentioned above 
 
 settings page:
 	style settings

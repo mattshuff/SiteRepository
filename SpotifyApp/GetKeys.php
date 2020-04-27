@@ -3,7 +3,8 @@
 
     //check key gen time 
     $TimeSinceKeyGen = time() - $_SESSION["KeyGenTime"];
-    if($TimeSinceKeyGen > 3000) { 
+    echo $TimeSinceKeyGen;
+    //if($TimeSinceKeyGen > 3000) { 
         $_SESSION["AuthCode"] = $_POST["AuthCodePOST"];
 
         $KeysArray = getKeys();
@@ -15,7 +16,7 @@
         echo ($KeysArray["accessKey"]);
         echo("\n");
         echo $KeysArray["refreshToken"];
-    }
+    //}
 
 function getKeys() {
     $parameters = [
