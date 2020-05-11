@@ -21,12 +21,21 @@
     all: inherit;
     padding-left: 2px;
     font-weight: bold;
+    height: auto;
 }
 body{
     overflow: hidden; 
 }
+.ControlImage {
+    vertical-align: top;
+    display: inline;
+}
+
+
+
 /*
 background-color: rgba(0, 0, 255, 0.5);
 background-color: rgba(255, 0, 0, 0.5);
 background-color: rgba(0, 128, 0, 0.5);
+
 */

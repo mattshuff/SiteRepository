@@ -1,10 +1,10 @@
+//on page load
 $(document).ready(function () {
 
 var CurrentURl = window.location.href;
 var AuthCode = CurrentURl.split("?code=");
 
 //check if existing session keys are valid and grab new if not 
-//this should run every time in order to check session is still valid
 $.ajax({
     url: "/SpotifyApp/GetKeys.php",
     type: 'POST',
@@ -31,6 +31,7 @@ ScrollingFeature();
 
 });
 
+//logic to control the scroll box panning up and down 
 function ScrollingFeature(){
   var top = true;
 $(AlbumArtDiv).scrollTop(0);
@@ -52,7 +53,7 @@ if(AlbumArtDiv.scrollTop === 0) {top = true;}
 }
 }
 
-//returns an array of URLs for last 50 images
+//returns an array of image URLs for the last 50 songs listened to 
 function GetRecentImages() {
   //get track history and save to variable 
   var TrackHistoryJSON;
@@ -102,6 +103,9 @@ for(i = 0; i < TrackImageDataJson.tracks.length; i++){
 }
 return TrackImageURLArray;
 }
+
+
+//CONTROL PANEL FUNCTIONS
 
 //skips the currently playing song
 function Skip() {

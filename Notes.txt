@@ -4,7 +4,6 @@ general notes:
 things to build on in stocks app:
 	symbol lookup form company name
 	symbol validate
-	use empty space to the right for something?	
 	check for duplicates
 
 spotify app:
@@ -17,7 +16,7 @@ settings page:
 	db settings
 
 recipe app changes:
-	restart
+	restart from scratch this is trash
 
 potential features:
 	make links in localhost link back to localhost instead of main site 
