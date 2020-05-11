@@ -10,6 +10,7 @@ spotify app:
 	make clicking on scrolling item pause scroll and explode picture
 	play samples too
 	rework get images function to be able to do everything mentioned above 
+	set list for previous events 
 
 settings page:
 	style settings

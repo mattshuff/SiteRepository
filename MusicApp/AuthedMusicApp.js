@@ -6,12 +6,14 @@ var AuthCode = CurrentURl.split("?code=");
 
 //check if existing session keys are valid and grab new if not 
 $.ajax({
-    url: "/SpotifyApp/GetKeys.php",
+    url: "/MusicApp/SpoitfyPHP/GetSpotifyKeys.php",
     type: 'POST',
     data: {
         AuthCodePOST: AuthCode[1]                 
     },
   });
+
+
 
 //create album art images in scrolling div
 var ImageURLS = GetRecentImages();
@@ -28,6 +30,9 @@ for(var i = 0; i < ImageURLS.length; i++){
 
 //start scroll
 ScrollingFeature();
+
+//fill in upcoming events
+PopulateConcertDiv();
 
 });
 
@@ -58,7 +63,7 @@ function GetRecentImages() {
   //get track history and save to variable 
   var TrackHistoryJSON;
   $.ajax({
-    url: "/SpotifyApp/PHPcontrols/GetTrackHistory.php",
+    url: "/MusicApp/SpoitfyPHP/GetTrackHistory.php",
     type: 'POST',
     async: false,
     success: function (data) {           
@@ -67,7 +72,7 @@ function GetRecentImages() {
     }
   });
 
-  //convert json object to JS version? (need this to search it)
+  //parse json into object
   TrackHistoryJSON = JSON.parse(TrackHistoryJSON);
 
   //TRACK HISTORY PROVIDED ONLY GIVES BASIC DETAILS OF EACH TRACK
@@ -82,7 +87,7 @@ function GetRecentImages() {
   //fetch extended info of track ids not provided above
   var TrackImageDataJson;
   $.ajax({
-    url: "/SpotifyApp/PHPcontrols/GetTrackData.php",
+    url: "/MusicApp/SpoitfyPHP/GetTrackData.php",
     type: 'POST',
     async: false,
     data: {TrackIDArray: TrackIDArray},
@@ -92,9 +97,9 @@ function GetRecentImages() {
     }
   });
 
-    //convert json object to JS version? (need this to search it)
+  //parse json into object
   TrackImageDataJson = JSON.parse(TrackImageDataJson);
-  console.log(TrackImageDataJson);
+  
   //create an array with all track image urls 
 var TrackImageURLArray = [];
 for(i = 0; i < TrackImageDataJson.tracks.length; i++){
@@ -103,6 +108,41 @@ for(i = 0; i < TrackImageDataJson.tracks.length; i++){
 }
 return TrackImageURLArray;
 }
+
+function PopulateConcertDiv(){
+
+  var GoingToString = "";
+  $.ajax({
+    url: "/SpotifyApp/SongKickFetchUpcoming.php",
+    type: 'POST',
+    async: false,
+    success: function (data) {           
+      GoingToString = data;
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 //CONTROL PANEL FUNCTIONS
