@@ -113,7 +113,7 @@ function PopulateConcertDiv(){
 
   var GoingToString = "";
   $.ajax({
-    url: "/SpotifyApp/SongKickFetchUpcoming.php",
+    url: "/MusicApp/SongKickPHP/SongKickFetchUpcoming.php",
     type: 'POST',
     async: false,
     success: function (data) {           
@@ -122,35 +122,13 @@ function PopulateConcertDiv(){
   });
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
 
-
-
-
-
-
-
-
-
-
-
-//CONTROL PANEL FUNCTIONS
 
 //skips the currently playing song
 function Skip() {
   $.ajax({
-      url: "/SpotifyApp/PHPcontrols/SkipCurrent.php",
+      url: "/MusicApp/SpoitfyPHP/SkipCurrent.php",
       type: 'POST',
       data: {
                     

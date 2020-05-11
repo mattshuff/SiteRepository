@@ -8,8 +8,3 @@ var OauthTokenURL = "https://accounts.spotify.com/authorize?response_type=code&c
 
 window.location.href = OauthTokenURL;
 
-//not much code here as the callback is to SpotifyApp\SpotifyAppAuth.js to prevent looping.
-//need to find out if this is best practice at some point not sure 
-
-
-
