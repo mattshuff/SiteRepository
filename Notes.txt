@@ -16,8 +16,11 @@ settings page:
 	style settings
 	db settings
 
-recipe app changes:
-	restart from scratch this is trash
+daily digest:
+	news
+	twitter trending
+	weather 
+	reddit posts 
 
 potential features:
 	make links in localhost link back to localhost instead of main site 
