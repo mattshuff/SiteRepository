@@ -25,6 +25,7 @@ potential features:
 	guest access / portfolio use
 	sockets so things update live?
 	hide passwords in a settings file
+	news / updates page / morning digest
 
 
 useful line of php that gets the date 
