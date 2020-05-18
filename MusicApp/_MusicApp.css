@@ -3,8 +3,10 @@
     height: 600px;    
     border-right: 3px solid white;
     float: left;  
-    overflow: hidden;  
+    overflow: scroll;  
+    overflow-x: hidden;
 }
+
 #ConcertDiv {
     width: 380px;
     height: 600px; 
@@ -30,12 +32,25 @@ body{
     vertical-align: top;
     display: inline;
 }
+.EventFloatStart{
+    float: inline-start;
+    vertical-align: top;
+}
+.EventTitle{
+    padding: 2px;
+    margin: auto;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+.EventDate{
+    padding: 2px;
+    margin: auto;
+    font-style: italic;
+    font-size: 32px;
+    word-wrap: break-word;
+    text-align: center;
 
-
-
-/*
-background-color: rgba(0, 0, 255, 0.5);
-background-color: rgba(255, 0, 0, 0.5);
-background-color: rgba(0, 128, 0, 0.5);
-
-*/
+}
+.EventWrapper{
+    display: inline-block;
+}

@@ -3,7 +3,8 @@ session_start();
 
 $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, 'https://api.spotify.com/v1/me/player/recently-played?type=track&limit=50');
+//change limit in url here for more or less iamges
+curl_setopt($ch, CURLOPT_URL, 'https://api.spotify.com/v1/me/player/recently-played?type=track&limit=49');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 

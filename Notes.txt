@@ -13,8 +13,10 @@ spotify app:
 	set list for previous events 
 
 settings page:
-	style settings
-	db settings
+	style settings (accent colours etc)
+	db access settings
+	tracked songkick user 
+	news settings?
 
 daily digest:
 	news

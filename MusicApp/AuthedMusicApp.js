@@ -13,8 +13,6 @@ $.ajax({
     },
   });
 
-
-
 //create album art images in scrolling div
 var ImageURLS = GetRecentImages();
 
@@ -28,11 +26,15 @@ for(var i = 0; i < ImageURLS.length; i++){
     AlbumArtDiv.appendChild(img);
 }
 
+//add user profile to screen - changes depending on user 
+DrawProfileImage();
+
 //start scroll
 ScrollingFeature();
 
 //fill in upcoming events
 PopulateConcertDiv();
+
 
 });
 
@@ -49,16 +51,16 @@ function pageScroll() {
   
   //check if scrolled all the way to the bottom
   var ScrolledToBottom = AlbumArtDiv.scrollTop === (AlbumArtDiv.scrollHeight - AlbumArtDiv.offsetHeight);
-  if(ScrolledToBottom){
-    top = false;
-  }
-if(AlbumArtDiv.scrollTop === 0) {top = true;}
+  
+  if(ScrolledToBottom){ top = false; }
+  if(AlbumArtDiv.scrollTop === 0) {top = true;}
 
   scrolldelay = setTimeout(pageScroll,30);
-}
+  }
 }
 
-//returns an array of image URLs for the last 50 songs listened to 
+//returns an array of image URLs for the last 49 songs listened to 
+//49 because 50 has one orphan image
 function GetRecentImages() {
   //get track history and save to variable 
   var TrackHistoryJSON;
@@ -109,21 +111,84 @@ for(i = 0; i < TrackImageDataJson.tracks.length; i++){
 return TrackImageURLArray;
 }
 
+//runs once on startup, fetch the users upcoming events and draws them to the concert div 
 function PopulateConcertDiv(){
 
-  var GoingToString = "";
+  var JsonString;
   $.ajax({
     url: "/MusicApp/SongKickPHP/SongKickFetchUpcoming.php",
     type: 'POST',
     async: false,
     success: function (data) {           
-      GoingToString = data;
+      JsonString = data;
     }
   });
+var JSONobject = JSON.parse(JsonString);
+JSONobject = JSONobject.resultsPage.results.calendarEntry;
 
+for(var x = 0; x<JSONobject.length;x++){
+console.log(JSONobject[x]);
+
+//create single event wrapper 
+var EventWrapper = document.createElement("span");
+EventWrapper.classList.add("EventWrapper");
+
+//get artist image 
+var EventImage = document.createElement("img");
+EventImage.classList.add("EventFloatStart");
+//GET IMAGE PATH FOR ARTIST HERE (MAY NEED SPOTIFY CALL)
+EventWrapper.appendChild(EventImage);
+
+//create text span
+var EventTextWrapper = document.createElement("span");
+EventTextWrapper.classList.add("EventFloatStart");
+EventTextWrapper.style.width = "200px";
+EventWrapper.appendChild(EventTextWrapper);
+
+//create event title P
+var EventTitleP = document.createElement("p");
+EventTitleP.classList.add("EventTitle");
+var EventTitle = JSONobject[x].event.displayName;
+
+//remove date from title 
+for(var y = EventTitle.length;y>0;y--){
+  if(EventTitle[y] == '('){
+    EventTitle = EventTitle.slice(0,y);
+    break;
+  }
+}
+
+EventTitleP.innerText = EventTitle;
+EventTextWrapper.appendChild(EventTitleP);
+
+//create event date P
+var EventDate = document.createElement("a");
+EventDate.classList.add("EventDate");
+EventDate.innerText = JSONobject[x].event.start.date;
+EventDate.href= JSONobject[x].event.uri;
+EventTextWrapper.appendChild(EventDate);
+
+
+//apend to concert div
+var ConcertDiv = document.getElementById("ConcertDiv");
+ConcertDiv.appendChild(EventWrapper);
+}
 
 }
 
+//get user profile image and write to screen
+function DrawProfileImage(){
+  var ImageURL;
+  $.ajax({
+    url: "/MusicApp/SpoitfyPHP/GetProfileImage.php",
+    type: 'POST',
+    success: function (data) {           
+      ImageURL = data;
+    }
+  });
+
+  
+}
 
 //skips the currently playing song
 function Skip() {
