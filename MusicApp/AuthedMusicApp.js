@@ -30,7 +30,8 @@ for(var i = 0; i < ImageURLS.length; i++){
 DrawProfileImage();
 
 //start scroll
-ScrollingFeature();
+$(AlbumArtDiv).scrollTop(0);
+ScrollingFeature(true);
 
 //fill in upcoming events
 PopulateConcertDiv();
@@ -39,11 +40,18 @@ PopulateConcertDiv();
 });
 
 //logic to control the scroll box panning up and down 
-function ScrollingFeature(){
-  var top = true;
-$(AlbumArtDiv).scrollTop(0);
+function ScrollingFeature(ScrollOn){
 
-pageScroll();
+  if(ScrollOn==true){
+
+  var top;
+  
+
+  pageScroll();
+}
+else{
+  clearTimeout(scrolldelay);
+}
 function pageScroll() {
   //decide if scrolling up or down
   if(top === true) { AlbumArtDiv.scrollBy(0,1); }
