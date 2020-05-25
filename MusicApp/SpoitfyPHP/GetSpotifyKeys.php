@@ -63,7 +63,7 @@ function getKeys() {
         'client_secret' => '5d279a849bd642d7b2ee6f2f61380aed',
         'code' => $_SESSION["AuthCode"],
         'grant_type' => 'authorization_code',
-        'redirect_uri' => 'http://localhost:85/MusicApp/AuthedMusicApp.html',
+        'redirect_uri' => 'http://matt-shuff.co.uk/MusicApp/AuthedMusicApp.html',
     ];
     
     $fields_string = http_build_query($parameters);
