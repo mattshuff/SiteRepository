@@ -8,26 +8,20 @@ var AuthCode = CurrentURl.split("?code=");
 $.ajax({
     url: "/MusicApp/SpoitfyPHP/GetSpotifyKeys.php",
     type: 'POST',
+    async: false,
     data: {
         AuthCodePOST: AuthCode[1]                 
     },
+    success: function (data) {           
+      console.log(data);
+  }
   });
 
 //create album art images in scrolling div
-var ImageURLS = GetRecentImages();
-
-var AlbumArtDiv = document.getElementById("AlbumArtDiv");
-for(var i = 0; i < ImageURLS.length; i++){
-    var img = document.createElement('img'); 
-    img.src = ImageURLS[i].url;
-    img.style.width = "190px";
-    img.style.height = "190px";
-    img.style.display = "inline-block";
-    AlbumArtDiv.appendChild(img);
-}
+FillAlbumArt();
 
 //add user profile to screen - changes depending on user 
-DrawProfileImage();
+DrawUserInfo();
 
 //start scroll
 $(AlbumArtDiv).scrollTop(0);
@@ -37,7 +31,67 @@ ScrollingFeature(true);
 PopulateConcertDiv();
 
 
+
 });
+
+//get recently played songs and draw them to the scroll box
+function FillAlbumArt(){
+  var AlbumArtDiv = document.getElementById("AlbumArtDiv");
+  AlbumArtDiv.innerHTML = '';
+  var RecentItems = GetRecentTracks();
+
+  
+  
+  //create image for each recent track 
+  for(var i = 0; i < RecentItems.length; i++){
+      var img = document.createElement('img'); 
+      img.src = RecentItems[i].album.images[1].url;
+      img.style = "width: 190px; height: 190px; display: inline-block;";
+      img.SongData = RecentItems[i];
+      img.onclick = ImageOnclick;
+      AlbumArtDiv.appendChild(img);
+  }
+}
+
+//function to handle album art clicks 
+function ImageOnclick(){
+  //clear scroll box 
+  var AlbumArtDiv = document.getElementById("AlbumArtDiv");
+  AlbumArtDiv.innerHTML = '';
+
+  //create flex container for song info 
+  AlbumArtFlex = document.createElement('div');
+  AlbumArtFlex.style="display: flex; flex-direction: row;";
+  AlbumArtDiv.appendChild(AlbumArtFlex);
+
+  console.log(this.SongData);
+  var SongData=this.SongData;
+
+  //add album art image
+  var AlbumArtImage = document.createElement('img');
+  AlbumArtImage.src=SongData.album.images[0].url;
+  AlbumArtImage.style="width: auto;height: 600px;";
+  AlbumArtFlex.appendChild(AlbumArtImage);
+
+  //add text info wrapper
+  var SongTextInfoWrapper = document.createElement('div');
+  SongTextInfoWrapper.style.width="800px";
+
+  //title wrapper
+  var SongTitle = document.createElement('p');
+  SongTitle.innerText=SongData.name;
+  SongTextInfoWrapper.appendChild(SongTitle);
+
+  AlbumArtFlex.appendChild(SongTextInfoWrapper);
+
+   //add close button to return to scroll 
+   var CloseButton = document.createElement('p');
+   CloseButton.innerText="X";
+   CloseButton.style="float: right; padding-right: 10px; color: red; font-style: oblique; font-weight: bolder;cursor: pointer;";
+   CloseButton.onclick=FillAlbumArt;
+   
+   AlbumArtFlex.appendChild(CloseButton);
+}
 
 //logic to control the scroll box panning up and down 
 function ScrollingFeature(ScrollOn){
@@ -69,7 +123,7 @@ function pageScroll() {
 
 //returns an array of image URLs for the last 49 songs listened to 
 //49 because 50 has one orphan image
-function GetRecentImages() {
+function GetRecentTracks() {
   //get track history and save to variable 
   var TrackHistoryJSON;
   $.ajax({
@@ -78,7 +132,6 @@ function GetRecentImages() {
     async: false,
     success: function (data) {           
         TrackHistoryJSON = data;
-
     }
   });
 
@@ -109,14 +162,8 @@ function GetRecentImages() {
 
   //parse json into object
   TrackImageDataJson = JSON.parse(TrackImageDataJson);
-  
-  //create an array with all track image urls 
-var TrackImageURLArray = [];
-for(i = 0; i < TrackImageDataJson.tracks.length; i++){
-    //.images is indexed 0-2 with 0 being the largest image
-    TrackImageURLArray.push(TrackImageDataJson.tracks[i].album.images[1]);
-}
-return TrackImageURLArray;
+
+return TrackImageDataJson.tracks;
 }
 
 //runs once on startup, fetch the users upcoming events and draws them to the concert div 
@@ -185,16 +232,33 @@ ConcertDiv.appendChild(EventWrapper);
 }
 
 //get user profile image and write to screen
-function DrawProfileImage(){
-  var ImageURL;
+function DrawUserInfo(){
+  var DisplayName;
   $.ajax({
-    url: "/MusicApp/SpoitfyPHP/GetProfileImage.php",
+    url: "/MusicApp/SpoitfyPHP/GetUserProfile.php",
     type: 'POST',
-    success: function (data) {           
-      ImageURL = data;
+    async: false,
+    success: function (data) {    
+      var JSONobject = JSON.parse(data);
+        
+      DisplayName = JSONobject.display_name;
     }
   });
+var userInfoDiv = document.getElementById("userInfoDiv");
+userInfoDiv.style="float:right;";
 
+var SpotifyLogoImage = document.createElement('img');
+SpotifyLogoImage.src="/MusicApp/Assets/Spotify_Logo.png";
+SpotifyLogoImage.style="width: auto; height: 30px; margin-top: 0x;float: inline-start;padding-bottom: 0px;";
+
+userInfoDiv.appendChild(SpotifyLogoImage);
+
+
+var ProfileName = document.createElement('p');
+ProfileName.innerHTML=DisplayName;
+ProfileName.style="display: inline; margin: 0px;  padding-left: 10px;font-style: italic;font-size: 18px;";
+
+userInfoDiv.appendChild(ProfileName);
   
 }
 

@@ -1,5 +1,5 @@
 <?php
-$hostname = "localhost";
+$hostname = "sql160.main-hosting.eu";
 $username = "u902155560_admin";
 $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
