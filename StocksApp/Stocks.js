@@ -16,7 +16,7 @@ $(document).ready(function () {
         }
     });
 
-    
+
     //split returned database value into records, slicing off empty final record 
     var DataArray = DataString.split("^");
     DataArray = DataArray.slice(0, DataArray.length - 1);
@@ -68,11 +68,13 @@ $(document).ready(function () {
 
 
 //only runs once but much more readable this way
+//decoding from database much more complex than needed as I made this feature before I knew what JSON was - whoops
 function DataToHTML(Data) {
     var DataArray = Data;
     var StyleString = " margin-bottom:0px; margin-top:0px;";
 
     var ContentWrapper = document.getElementById("Content");
+
 
     for (var x = 0; x < DataArray.length - 1; x++) {
 
@@ -83,15 +85,16 @@ function DataToHTML(Data) {
         //write stock name to block
 
         var StockNameP = document.createElement("p");
-        StockNameP.innerText= DataArray[x]; x++;
+        StockNameP.innerText = DataArray[x]; x++;
+
         StockNameP.style = StyleString;
         StockDataBlock.appendChild(StockNameP);
 
         //#region Five Day
-        
+
         //five day data title 
         var TempP = document.createElement("p");
-        TempP.innerText="Five Day Data";
+        TempP.innerText = "Five Day Data";
         TempP.style = StyleString;
         StockDataBlock.appendChild(TempP);
 
@@ -102,18 +105,20 @@ function DataToHTML(Data) {
         //trim off the empty record
         FiveDayDataArray = FiveDayDataArray.slice(0, 6);
 
-        var Dates=[]; //formatted date value
-        var Values=[]; //formatted values 
+
+        var Dates = []; //formatted date value
+        var Values = []; //formatted values 
 
         //push specific values to array
         for (var y = 0; y < 5; y++) {
-            Dates.push(FiveDayDataArray[y].substr(0,11));
+            Dates.push(FiveDayDataArray[y].substr(0, 11));
             Values.push(FiveDayDataArray[y].substr(11));
         }
 
         //create history wrapper and append to page 
         var FiveDayDataDiv = document.createElement("div");
-        FiveDayDataDiv.appendChild(CreateElements(Dates,Values));
+        var Createelementsdiv = CreateElements(Dates, Values)
+        FiveDayDataDiv.appendChild(Createelementsdiv);
         StockDataBlock.appendChild(FiveDayDataDiv);
 
         //#endregion
@@ -122,49 +127,68 @@ function DataToHTML(Data) {
 
         //five month subtitle 
         TempP = document.createElement("p");
-        TempP.innerText=("Five Month"); 
+        TempP.innerText = ("Five Month");
         TempP.style = StyleString;
         StockDataBlock.appendChild(TempP);
 
-        var FiveMonthDataArray = DataArray[x]; x++;
-         FiveMonthDataArray = FiveMonthDataArray.split("&");
+
+        var FiveMonthDataArray = DataArray[x];
+        FiveMonthDataArray = FiveMonthDataArray.split("&");
         FiveMonthDataArray = FiveMonthDataArray.slice(0, 6);
 
-        for ( y = 0; y < 5; y++) {
-            Dates.push(FiveMonthDataArray[y].substr(0,11));
-            Values.push(FiveMonthDataArray[y].substr(11));
+        var FiveMonthDates = [];
+        var FiveMonthvalues = [];
+        for (y = 0; y < 5; y++) {
+            FiveMonthDates.push(FiveMonthDataArray[y].substr(0, 11));
+            FiveMonthvalues.push(FiveMonthDataArray[y].substr(11));
         }
-        StockDataBlock.appendChild(CreateElements(Dates,Values));
+
+        StockDataBlock.appendChild(CreateElements(FiveMonthDates, FiveMonthvalues));
         //#endregion
-        
+
         ContentWrapper.appendChild(StockDataBlock);
     }
 }
 //takes an array of P elements and shades them according to if the value is higher or low than the previous 
-function CreateElements(Dates,Values){
-    
-            var WrapperDiv = document.createElement('div');
+function CreateElements(Dates, Values) {
 
-            var CurrentRecordValue;
-            var NextRecordValue;
+    var WrapperDiv = document.createElement('div');
+    WrapperDiv.setAttribute('id', "WrapperDiv");
+    //loop through every record 
 
-            //trim date from start
-            try { CurrentRecordValue = Elements[y].substr(11); } catch { console.log("test"); }
-            try { NextRecordValue = Elements[y + 1].substr(11); } catch { console.log("test"); }
+    for (var y = 0; y < Dates.length; y++) {
+        var OutputText = "";
 
-            //append to data div
-            var TempDataP = document.createElement("p");
-            TempDataP.innerText=Elements[y]; 
-            
+        //format dates into website style 
+        var CurrentDate = Dates[y].slice(0, Dates[y].length - 1);
 
-            //if gained set green
-            if (CurrentRecordValue > NextRecordValue) {
-                TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:0px; margin-top:0px;");
-            }
-            //if fell set red
-            else {
-                TempDataP.setAttribute("style", "color:red; margin-bottom:0px; margin-top:0px;");
-            }
+        CurrentDate = new Date(Date.parse(CurrentDate));
+
+
+        CurrentDate = CurrentDate.toLocaleDateString();
+
+
+        OutputText = OutputText + CurrentDate;
+
+        //format stock value 
+        var CurrentValue = Values[y];
+        OutputText = OutputText + " " + CurrentValue;
+
+
+        var FullData = document.createElement('p');
+        FullData.innerText = OutputText;
+
+        if (Values[y + 1] > + CurrentValue) {
+            FullData.style = "color:#03fc49; margin-bottom:0px; margin-top:0px;";
+        }
+        else {
+            FullData.style = "color:red; margin-bottom:0px; margin-top:0px;"
+        }
+
+        WrapperDiv.appendChild(FullData);
+
+    }
+    return WrapperDiv;
 }
 
 function div_show() {
