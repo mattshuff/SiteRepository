@@ -16,7 +16,7 @@ $(document).ready(function () {
         }
     });
 
-
+    
     //split returned database value into records, slicing off empty final record 
     var DataArray = DataString.split("^");
     DataArray = DataArray.slice(0, DataArray.length - 1);
@@ -70,6 +70,7 @@ $(document).ready(function () {
 //only runs once but much more readable this way
 function DataToHTML(Data, TimeScale) {
     var DataArray = Data;
+    console.log(DataArray);
     var ContentWrapper = document.getElementById("Content");
     for (var x = 0; x < DataArray.length - 1; x++) {
 
@@ -80,17 +81,15 @@ function DataToHTML(Data, TimeScale) {
         //write stock name to block
         var Stockname = DataArray[x]; x++;
         var StockNameP = document.createElement("p");
-        var node = document.createTextNode(Stockname); StockNameP.appendChild(node);
+        StockNameP.innerText=Stockname;
         StockNameP.style = " margin-bottom:0px; margin-top:0px; cursor:help;";
-        StockNameP.classList.add("StockName");
         StockDataBlock.appendChild(StockNameP);
 
         // subtitle 
         var TempP = document.createElement("p");
-        node = document.createTextNode(TimeScale); TempP.appendChild(node);
+        TempP.innerText="Five Day Data";
         TempP.setAttribute("style", " margin-bottom:0px; margin-top:0px;");
         StockDataBlock.appendChild(TempP);
-
 
         var FiveDayData = DataArray[x];
         var FiveDayDataArray = FiveDayData.split("&");
@@ -103,18 +102,23 @@ function DataToHTML(Data, TimeScale) {
         for (var y = 0; y < 5; y++) {
 
             //used try catch loops here to block a non critical error from stopping execution
-            var CurrentRecord;
-            try { CurrentRecord = FiveDayDataArray[y].substr(11); } catch { }
-            var NextRecord;
-            try { NextRecord = FiveDayDataArray[y + 1].substr(11); } catch { }
+            var CurrentRecordValue;
+            var NextRecordValue;
 
+            //trim date from start
+            try { CurrentRecordValue = FiveDayDataArray[y].substr(11); } catch { console.log("test"); }
+            try { NextRecordValue = FiveDayDataArray[y + 1].substr(11); } catch { console.log("test"); }
 
+            //append to data div
             var TempDataP = document.createElement("p");
-            node = document.createTextNode(FiveDayDataArray[y]); TempDataP.appendChild(node);
+            TempDataP.innerText=FiveDayDataArray[y]; 
+            
 
-            if (CurrentRecord > NextRecord) {
+            //if gained set green
+            if (CurrentRecordValue > NextRecordValue) {
                 TempDataP.setAttribute("style", "color:#03fc49; margin-bottom:0px; margin-top:0px;");
             }
+            //if fell set red
             else {
                 TempDataP.setAttribute("style", "color:red; margin-bottom:0px; margin-top:0px;");
             }
@@ -126,7 +130,7 @@ function DataToHTML(Data, TimeScale) {
 
 
         // five month subtitle 
-        var TempP = document.createElement("p");
+        TempP = document.createElement("p");
         node = document.createTextNode("Five Month"); TempP.appendChild(node);
         TempP.setAttribute("style", " margin-bottom:0px; margin-top:0px;");
         StockDataBlock.appendChild(TempP);
