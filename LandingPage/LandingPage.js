@@ -86,31 +86,34 @@ function SwapColourMode(e) {
         //change to light mode
         localStorage.ColourMode = "light";
 
-        //change button to moon so user can swap back to dark (dark is the default)
-        var Image = document.getElementById(SenderImageID);       
-        Image.src = "/LandingPage/Assets/moon.png";
-        Image.id = "MoonIMG";
         LoadPreferences();
     }
     else if (SenderImageID == "MoonIMG") {
         //change to dark mode 
         localStorage.ColourMode = "dark";
-        var Image = document.getElementById(SenderImageID);
-        Image.src = "/LandingPage/Assets/sun.png";
-        Image.id = "SunIMG";
+
         LoadPreferences();
-        
+
     }
 }
 function LoadPreferences() {
     var ColourMode = localStorage.ColourMode;
     if (ColourMode == "light") {
 
+        var Image = document.getElementById(SenderImageID);
+        Image.src = "/LandingPage/Assets/moon.png";
+        Image.id = "MoonIMG";
+
         var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "seashell";
         body.style.color = "black";
     }
     else {
+
+        var Image = document.getElementById(SenderImageID);
+        Image.src = "/LandingPage/Assets/sun.png";
+        Image.id = "SunIMG";
+
         var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "#2C2F33";
         body.style.color = "antiquewhite";
