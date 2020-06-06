@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    LoadPreferences();
+
     //populate to do 
     $.ajax(
         "LandingPage/LoadToDo.php", {
@@ -78,6 +78,8 @@ $(document).ready(function () {
             });
         }
     });
+
+    LoadPreferences();
 });
 function SwapColourMode(e) {
     var SenderImageID = e.originalTarget.id;
@@ -86,21 +88,21 @@ function SwapColourMode(e) {
         //change to light mode
         localStorage.ColourMode = "light";
 
-        LoadPreferences();
+        ApplyTheme();
     }
     else if (SenderImageID == "MoonIMG") {
         //change to dark mode 
         localStorage.ColourMode = "dark";
 
-        LoadPreferences();
+        ApplyTheme();
 
     }
 }
-function LoadPreferences() {
+function ApplyTheme() {
     var ColourMode = localStorage.ColourMode;
     if (ColourMode == "light") {
 
-        var Image = document.getElementById(SenderImageID);
+        var Image = document.getElementById("SunIMG");
         Image.src = "/LandingPage/Assets/moon.png";
         Image.id = "MoonIMG";
 
@@ -108,10 +110,35 @@ function LoadPreferences() {
         body.style.backgroundColor = "seashell";
         body.style.color = "black";
     }
-    else {
+    else if (ColourMode == "dark") {
 
-        var Image = document.getElementById(SenderImageID);
+        var Image = document.getElementById("MoonIMG");
         Image.src = "/LandingPage/Assets/sun.png";
+        Image.id = "SunIMG";
+
+        var body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "#2C2F33";
+        body.style.color = "antiquewhite";
+
+
+    }
+}
+function LoadPreferences() {
+    var ColourMode = localStorage.ColourMode;
+    if (ColourMode == "light") {
+
+        var Image = document.getElementById("SunIMG");
+        Image.src = "/LandingPage/Assets/moon.png";
+        Image.id = "MoonIMG";
+
+        var body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "seashell";
+        body.style.color = "black";
+    }
+    else if (ColourMode == "dark") {
+
+        var Image = document.getElementById("SunIMG");
+        Image.src = "/LandingPage/Assets/Sun.png";
         Image.id = "SunIMG";
 
         var body = document.getElementsByTagName('body')[0];

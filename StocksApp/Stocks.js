@@ -160,7 +160,7 @@ function CreateElements(Dates, Values) {
     for (var y = 0; y < Dates.length; y++) {
         var OutputText = "";
 
-        //format dates into website style 
+        //format dates into proper format
         var CurrentDate = Dates[y].slice(0, Dates[y].length - 1);
 
         CurrentDate = new Date(Date.parse(CurrentDate));
@@ -180,10 +180,11 @@ function CreateElements(Dates, Values) {
         FullData.innerText = OutputText;
 
         if (Values[y + 1] > + CurrentValue) {
-            FullData.style = "color:#03fc49; margin-bottom:0px; margin-top:0px;";
+            FullData.style = "color:red; margin-bottom:0px; margin-top:0px;"
+
         }
         else {
-            FullData.style = "color:red; margin-bottom:0px; margin-top:0px;"
+            FullData.style = "color:#03fc49; margin-bottom:0px; margin-top:0px;";
         }
 
         WrapperDiv.appendChild(FullData);
