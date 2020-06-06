@@ -2,6 +2,7 @@
 $(document).ready(function () {
     div_hide();
     var DataString;
+    LoadPreferences();
 
     //fetch all records 
     $.ajax({
@@ -223,4 +224,19 @@ function ClassClick(e) {
     }
     e.stopPropagation();
 }
+function LoadPreferences() {
+    var ColourMode = localStorage.ColourMode;
+    if (ColourMode == "light") {
 
+        var body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "seashell";
+        body.style.color = "black";
+    }
+    else {
+        var body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "#2C2F33";
+        body.style.color = "antiquewhite";
+
+
+    }
+}

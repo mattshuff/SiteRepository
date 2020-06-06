@@ -28,14 +28,14 @@ $(document).ready(function () {
                         data: {
                             QueryValue: String(HoverValue)
                         },
-                    })
+                    });
                     $(this).remove();
-                }
+                };
 
                 ul.appendChild(li);
             }
         }
-    })
+    });
 
 
     //add submit event listener to text input box
@@ -59,9 +59,9 @@ $(document).ready(function () {
                     data: {
                         QueryValue: String(HoverValue)
                     },
-                })
+                });
                 $(this).remove();
-            }
+            };
 
             ul.appendChild(li);
 
@@ -75,38 +75,46 @@ $(document).ready(function () {
                 success: function (Data) {
                     Input.value = "";
                 }
-            })
+            });
         }
-    })
-})
+    });
+});
 function SwapColourMode(e) {
     var SenderImageID = e.originalTarget.id;
-    console.log(SenderImageID);
 
-    if (SenderImageID = "SunIMG") {
+    if (SenderImageID == "SunIMG") {
         //change to light mode
-        localStorage.ColourMode = "light"
+        localStorage.ColourMode = "light";
 
         //change button to moon so user can swap back to dark (dark is the default)
-        var Image = document.getElementById(SenderImageID);
-        console.log(Image);
+        var Image = document.getElementById(SenderImageID);       
         Image.src = "/LandingPage/Assets/moon.png";
         Image.id = "MoonIMG";
+        LoadPreferences();
     }
-    else if (SenderImageID = "MoonIMG") {
+    else if (SenderImageID == "MoonIMG") {
         //change to dark mode 
-        localStorage.ColourMode = "dark"
+        localStorage.ColourMode = "dark";
         var Image = document.getElementById(SenderImageID);
         Image.src = "/LandingPage/Assets/sun.png";
         Image.id = "SunIMG";
+        LoadPreferences();
+        
     }
 }
 function LoadPreferences() {
     var ColourMode = localStorage.ColourMode;
-    if (ColourMode = "light") {
-        console.log("colour mode is stored light ")
+    if (ColourMode == "light") {
+
+        var body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "seashell";
+        body.style.color = "black";
     }
     else {
+        var body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "#2C2F33";
+        body.style.color = "antiquewhite";
+
 
     }
 }
