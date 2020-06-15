@@ -5,10 +5,10 @@ $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
-$Search = $_GET['QueryValue'];
-$sql = "INSERT INTO ToDo (ToDoContent) VALUES ('";
-$sql .= $Search;
-$sql .= "')";
+//INSERT INTO `ToDo` (`ToDoID`, `ToDoContent`) VALUES (NULL, 'test') 
+
+$Value = $_GET['QueryValue'];
+$sql = "INSERT INTO ToDo (`ToDoContent`) VALUES ('" .$Value ."')"; ;
 
 if (mysqli_query($connect, $sql)) {
     echo "New record created successfully";

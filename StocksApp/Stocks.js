@@ -118,7 +118,7 @@ function DataToHTML(Data) {
 
         //create history wrapper and append to page 
         var FiveDayDataDiv = document.createElement("div");
-        var Createelementsdiv = CreateElements(Dates, Values)
+        var Createelementsdiv = CreateElements(Dates, Values);
         FiveDayDataDiv.appendChild(Createelementsdiv);
         StockDataBlock.appendChild(FiveDayDataDiv);
 
@@ -162,13 +162,8 @@ function CreateElements(Dates, Values) {
 
         //format dates into proper format
         var CurrentDate = Dates[y].slice(0, Dates[y].length - 1);
-
         CurrentDate = new Date(Date.parse(CurrentDate));
-
-
         CurrentDate = CurrentDate.toLocaleDateString();
-
-
         OutputText = OutputText + CurrentDate;
 
         //format stock value 
@@ -180,27 +175,74 @@ function CreateElements(Dates, Values) {
         FullData.innerText = OutputText;
 
         if (Values[y + 1] > + CurrentValue) {
-            FullData.style = "color:red; margin-bottom:0px; margin-top:0px;"
-
+            FullData.style = "color:red; margin-bottom:0px; margin-top:0px;";
         }
         else {
             FullData.style = "color:#03fc49; margin-bottom:0px; margin-top:0px;";
         }
 
         WrapperDiv.appendChild(FullData);
-
     }
+    chart = CreateChart(Dates,Values);
+    WrapperDiv.appendChild(chart);
     return WrapperDiv;
 }
+function CreateChart(Dates,Values){
+    var ctx = document.createElement("canvas");
+    ctx.width="400px";
+    ctx.height="400px";
+    console.log(Dates);
+    console.log(Values);
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: Dates,
+            datasets: [{
+                label: 'Value',
+                data: Values,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
 
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    display:false
+  
+                }]
+            },
+            responsive:false,
+            maintainAspectRatio:false
+            
+        }
+        
+    });
+    ctx.width = "200px";
+    ctx.height = "400px";
+
+    return ctx;
+}
 function div_show() {
     document.getElementById('popupform').style.display = "block";
 }
-
 function div_hide() {
     document.getElementById('popupform').style.display = "none";
 }
-
 function ClassClick(e) {
 
     var Target = e.originalTarget;

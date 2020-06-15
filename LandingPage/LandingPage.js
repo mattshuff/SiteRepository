@@ -1,86 +1,72 @@
 $(document).ready(function () {
+    "use strict";
+    parseRSS();
+    //#region Startup Tasks
 
-    //populate to do 
-    $.ajax(
-        "LandingPage/LoadToDo.php", {
-        success: function (data) {
+//load all locally stored settings (colour etc.)
+LoadPreferences();
 
-            //split data into array
-            var DataArray = data.split("*");
+//populate To Do List
+PopulateToDo();
 
-            //select empty list
-            var ul = document.getElementById("ToDoList");
-
-            //loop through data 
-            for (var x = 0; x < DataArray.length; x++) {
-
-                //create a list element and append to larger structure 
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(DataArray[x]));
-
-                //give double click function to remove it 
-                li.ondblclick = function () {
-                    var HoverValue = this.innerHTML;
-
-                    $.ajax({
-                        url: 'LandingPage/DeleteToDo.php',
-                        type: 'GET',
-                        data: {
-                            QueryValue: String(HoverValue)
-                        },
-                    });
-                    $(this).remove();
-                };
-
-                ul.appendChild(li);
-            }
-        }
-    });
-
-
-    //add submit event listener to text input box
-    var Input = document.getElementById("textinput");
-    Input.addEventListener("keydown", function (event) {
-        if (event.key === 'Enter') {
-
-            //select list 
-            var ul = document.getElementById("ToDoList");
-
-            //create new list element 
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(Input.value));
-
-            li.ondblclick = function () {
-                var HoverValue = this.innerHTML;
-
-                $.ajax({
-                    url: 'LandingPage/DeleteToDo.php',
-                    type: 'GET',
-                    data: {
-                        QueryValue: String(HoverValue)
-                    },
-                });
-                $(this).remove();
-            };
-
-            ul.appendChild(li);
-
-            $.ajax({
-                url: "LandingPage/AddToDo.php",
-                type: 'GET',
-                data: {
-                    QueryValue: String(Input.value)
-                },
-
-                success: function (Data) {
-                    Input.value = "";
-                }
-            });
-        }
-    });
-
-    LoadPreferences();
+    //#endregion
 });
+
+function InputBoxhandler(event){
+    if (event.key === 'Enter') {
+
+        var Input = document.getElementById("textinput");
+
+        $.ajax({
+            url: "/LandingPage/PHP-Controls/AddToDo.php",
+            type: 'GET',
+            data: {
+                QueryValue: String(Input.value)
+            },
+
+            success: function (Data) {
+                Input.value = "";
+                PopulateToDo();
+            }
+        });
+        
+    }
+}
+function DeleteListItem(e){
+    
+    var TextValue = e.originalTarget.innerText;
+   
+    $.ajax(
+        "/LandingPage/PHP-Controls/DeleteToDo.php", {
+            data: {QueryValue: TextValue},
+            success: function (Data) {
+                PopulateToDo();
+            }
+    });
+}
+function PopulateToDo(){
+    //select and clear to do list
+    var ToDo = document.getElementById("ToDoList");
+    ToDo.innerHTML = "";
+
+    //fetch to do elements and append to list
+    $.ajax(
+        "/LandingPage/PHP-Controls/LoadToDo.php", {
+        success: function (data) {
+            var ToDoItemsJson = JSON.parse(data);
+
+            for(var x = 0; x <ToDoItemsJson.length;x++){
+                console.log(ToDoItemsJson[x]);
+                var ListElement = document.createElement("li");
+                ListElement.textContent = ToDoItemsJson[x].ToDoContent;
+                ToDo.appendChild(ListElement);
+            }
+
+        }
+    });
+  
+    
+}
 function SwapColourMode(e) {
     var SenderImageID = e.originalTarget.id;
 
@@ -100,51 +86,62 @@ function SwapColourMode(e) {
 }
 function ApplyTheme() {
     var ColourMode = localStorage.ColourMode;
+    var Image;
+    var body = document.getElementsByTagName('body')[0];
     if (ColourMode == "light") {
 
-        var Image = document.getElementById("SunIMG");
+        Image = document.getElementById("SunIMG");
         Image.src = "/LandingPage/Assets/moon.png";
         Image.id = "MoonIMG";
 
-        var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "seashell";
         body.style.color = "black";
     }
     else if (ColourMode == "dark") {
 
-        var Image = document.getElementById("MoonIMG");
+        Image = document.getElementById("MoonIMG");
         Image.src = "/LandingPage/Assets/sun.png";
         Image.id = "SunIMG";
 
-        var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "#2C2F33";
         body.style.color = "antiquewhite";
-
-
     }
 }
 function LoadPreferences() {
     var ColourMode = localStorage.ColourMode;
+    var Image;
+    var body = document.getElementsByTagName('body')[0];
     if (ColourMode == "light") {
 
-        var Image = document.getElementById("SunIMG");
+        Image = document.getElementById("SunIMG");
         Image.src = "/LandingPage/Assets/moon.png";
         Image.id = "MoonIMG";
 
-        var body = document.getElementsByTagName('body')[0];
+        body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "seashell";
         body.style.color = "black";
     }
     else if (ColourMode == "dark") {
 
-        var Image = document.getElementById("SunIMG");
+        Image = document.getElementById("SunIMG");
         Image.src = "/LandingPage/Assets/Sun.png";
         Image.id = "SunIMG";
 
-        var body = document.getElementsByTagName('body')[0];
+        body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "#2C2F33";
         body.style.color = "antiquewhite";
 
 
     }
 }
+function parseRSS() {
+    $.ajax({
+      url: 'https://news.google.com/news/rss/headlines/section/topic/BUSINESS',
+      headers: {  'Access-Control-Allow-Origin': '*' },
+
+
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  }
