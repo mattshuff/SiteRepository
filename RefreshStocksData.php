@@ -1,115 +1,96 @@
 <?php
+#region Connection properties
 
-//create connection to database 
 $hostname = "sql160.main-hosting.eu";
 $username = "u902155560_admin";
 $password = "uew6UoDPmnb1";
 $databaseName = "u902155560_main";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+#endregion
 
 //fetch all tickers from DB 
-$sql = "SELECT `StockTicker` FROM `Stocks` WHERE 1";
+$sql = "SELECT `StockTicker` FROM `Stocks`";
 $Result = mysqli_query($connect, $sql);
 $Tickers = $Result->fetch_all(MYSQLI_NUM);
 
+//Fetch next index to refresh
+$sql = "SELECT `CurrentIndex` FROM `Stocks`";
+$Result = mysqli_query($connect, $sql);
+$Result = $Result->fetch_all(MYSQLI_NUM);
+$CurrentIndex = $Result[0][0];
 
+//fetch new data 
+$TickerToRefresh = $Tickers[$CurrentIndex][0];
+RefreshDayValues($TickerToRefresh,$connect);
+RefreshMonthValues($TickerToRefresh,$connect);
 
-for ($x = 0; $x <= 1; $x++) {
-    //fetch current index 
-    $sql = "SELECT `CurrentIndex` FROM `Stocks` WHERE 1";
-    $Result = mysqli_query($connect, $sql);
-    $CurrentIndex = $Result->fetch_row();
+//logic to increase the current index
+$TickerCount = count($Tickers);
+if($CurrentIndex >= $TickerCount-1){ $CurrentIndex = 0; }    
+else{ $CurrentIndex = $CurrentIndex + 1; }
 
-    #region Five Day
+//sql statement to increase current index
+$sql = "UPDATE `Stocks` SET `CurrentIndex`= " . $CurrentIndex;
+$Result = mysqli_query($connect, $sql);
 
-    //construct and run API call
-    $func = "TIME_SERIES_DAILY_ADJUSTED";
-    $CurrentTicker = $Tickers[$CurrentIndex[0]][0];
-    $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $CurrentTicker . "&apikey=DET6IF6YAHK5PGVO";
-
+//fetch and store new 5 day data 
+function RefreshDayValues($Ticker,$connect){
+    //fetch data from Alpha Vantage
+    $func = "TIME_SERIES_DAILY";
+    $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $Ticker . "&apikey=DET6IF6YAHK5PGVO";
     $JSONstring = file_get_contents($APIurl);
+
+    //decode data into Json
     $JSONarray = json_decode($JSONstring, true);
+    $JSONarray = $JSONarray['Time Series (Daily)'];
 
-    $Keys = array_keys($JSONarray["Time Series (Daily)"]);
+    //get date keys, index 0 most recent
+    $DateKeys = array_keys($JSONarray);
 
-    $FiveDayData = "";
-    //load past five days into a string
-    for ($y = 0; $y <= 5; $y++) {      
-
-        //append relevant date
-        $FiveDayData .= $Keys[$y] . " ";
-
-        //fetch data
-        $FiveDayData .= $JSONarray["Time Series (Daily)"][$Keys[$y]]["4. close"];
-
-        //trim to 2 sig. fig.
-        $FiveDayData = substr($FiveDayData, 0, -2);
-
-        //append new date identifier
-        $FiveDayData .= "&";        
+    $DataString = "";
+    //loop over 5 records and append to data string 
+    for($x = 0; $x<5;$x++){
+        $DataString.= $DateKeys[$x];
+        $DataString.= " ";
+        $DataString.= $JSONarray[$DateKeys[$x]]["4. close"];
+        $DataString.= "!";
     }
 
-    //update records
-    $sql = "UPDATE Stocks SET `FiveDayData` ='" . $FiveDayData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
-    $Result = mysqli_query($connect, $sql);
+    $sql = "UPDATE `Stocks` SET `FiveDayData` = '";
+    $sql .= $DataString;
+    $sql .= "' WHERE `StockTicker` ='";
+    $sql .= $Ticker;
+    $sql .= "'";
+    $Result = mysqli_query($connect, $sql);   
+}
 
-    #endregion 
-
-    #region Five Month
-    //construct and run API call
-    $func = "TIME_SERIES_MONTHLY_ADJUSTED";
-    $CurrentTicker = $Tickers[$CurrentIndex[0]][0];
-    $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $CurrentTicker . "&apikey=DET6IF6YAHK5PGVO";
-    echo $APIurl;
-
+//fetch and store new 5 month data 
+function RefreshMonthValues($Ticker, $connect){
+    //fetch data from Alpha Vantage
+    $func = "TIME_SERIES_MONTHLY";
+    $APIurl = "https://www.alphavantage.co/query?function=" . $func . "&symbol=" . $Ticker . "&apikey=DET6IF6YAHK5PGVO";
     $JSONstring = file_get_contents($APIurl);
+
+    //decode data into Json
     $JSONarray = json_decode($JSONstring, true);
+    $JSONarray = $JSONarray['Monthly Time Series'];
 
-    $Keys = array_keys($JSONarray["Monthly Adjusted Time Series"]);
+    //get date keys, index 0 most recent
+    $DateKeys = array_keys($JSONarray);
 
-    $FiveMonthData = "";
-    //load past five days into a string
-    for ($y = 0; $y <= 5; $y++) {      
-
-        //append relevant date
-        $FiveMonthData .= $Keys[$y] . " ";
-
-        //fetch data
-        $FiveMonthData .= $JSONarray["Monthly Adjusted Time Series"][$Keys[$y]]["4. close"];
-
-        //trim to 2 sig. fig.
-        //$FiveMonthData = substr($FiveMonthData, 0, -2);
-
-        //append new date identifier
-        $FiveMonthData .= "&";        
+    $DataString = "";
+    //loop over 5 records and append to data string 
+    for($x = 0; $x<5;$x++){
+        $DataString.= $DateKeys[$x];
+        $DataString.= " ";
+        $DataString.= $JSONarray[$DateKeys[$x]]["4. close"];
+        $DataString.= "!";
     }
 
-    //update records
-    $sql = "UPDATE Stocks SET `FiveMonthData` ='" . $FiveMonthData . "' WHERE `StockTicker` = '" . $CurrentTicker . "'";
-    $Result = mysqli_query($connect, $sql);
-
-    #endregion
-
-    #region Increase Counter
-
-    //get number of records 
-    $sql = "select COUNT(*) from Stocks";
-    $Result = mysqli_query($connect, $sql);
-    $temp = $Result->fetch_row();
-    $RecordsCount = $temp[0];
-    $RecordsCount--;
-
-    //if we are not at the end of the records do this
-    if ($RecordsCount > $CurrentIndex[0]) {
-        $CurrentIndex[0]++;
-        $sql = "UPDATE `Stocks` SET `CurrentIndex`=" . (string) $CurrentIndex[0] . " WHERE 1";
-        $Result = mysqli_query($connect, $sql);
-    }
-    //if we are at the final record, go back to zero 
-    else {
-        $CurrentIndex[0] = 0;
-        $sql = "UPDATE `Stocks` SET `CurrentIndex`=" . (string) $CurrentIndex[0] . " WHERE 1";
-        $Result = mysqli_query($connect, $sql);
-    }
-    #endregion 
+    $sql = "UPDATE `Stocks` SET `FiveMonthData` = '";
+    $sql .= $DataString;
+    $sql .= "' WHERE `StockTicker` ='";
+    $sql .= $Ticker;
+    $sql .= "'";
+    $Result = mysqli_query($connect, $sql);   
 }

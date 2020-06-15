@@ -14,6 +14,7 @@ $(document).ready(function () {
         success: function (data) //on recieve of reply
         {
             DataString = data;
+            
         }
     });
 
@@ -101,12 +102,12 @@ function DataToHTML(Data) {
 
         //convert data string to array
         var FiveDayData = DataArray[x]; x++;
-        var FiveDayDataArray = FiveDayData.split("&");
+
+        var FiveDayDataArray = FiveDayData.split("!");
 
         //trim off the empty record
         FiveDayDataArray = FiveDayDataArray.slice(0, 6);
-
-
+        
         var Dates = []; //formatted date value
         var Values = []; //formatted values 
 
@@ -134,7 +135,7 @@ function DataToHTML(Data) {
 
 
         var FiveMonthDataArray = DataArray[x];
-        FiveMonthDataArray = FiveMonthDataArray.split("&");
+        FiveMonthDataArray = FiveMonthDataArray.split("!");
         FiveMonthDataArray = FiveMonthDataArray.slice(0, 6);
 
         var FiveMonthDates = [];

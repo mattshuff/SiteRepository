@@ -7,10 +7,25 @@ function TestFunc() {
         dataType: 'html',
         success: function (data) //on recieve of reply
         {
-            
+            console.log(data);
         }
     });
 }
+function RefreshFunc(){
+    $.ajax({
+        type: "GET",
+        url: '/RefreshStocksDataRewrite.php',
+        data: "",
+        async: false,
+        dataType: 'html',
+        success: function (data) //on recieve of reply
+        {
+            console.log(data);
+        }
+    });
+}
+
+
 $(document).ready(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
