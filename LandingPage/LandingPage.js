@@ -136,12 +136,34 @@ function LoadPreferences() {
 }
 function parseRSS() {
     $.ajax({
-      url: 'https://news.google.com/news/rss/headlines/section/topic/BUSINESS',
-      headers: {  'Access-Control-Allow-Origin': '*' },
-
+      url: '/LandingPage/PHP-Controls/FetchRss.php',
 
       success: function(data) {
-        console.log(data);
+        var XMLcontent = data.children[0].children[0].children;
+
+        for(var x = 8; x<20;x++){
+            XMLarticle = XMLcontent[x];
+            console.log(XMLarticle);
+
+            var ArticleBody = document.createElement("div");
+            var Text = XMLarticle.textContent;
+            try {
+                Text = Text.split("<li>")[1];
+                Text = Text.split("<li>")[0];
+            } catch (error) {
+                console.log("Article Incorrect Format");
+                Text="";
+            }
+            
+            console.log(Text);
+            ArticleBody.innerHTML = Text;
+
+           
+
+            var googlefeed = document.getElementById("GoogleFeed");
+            googlefeed.appendChild(ArticleBody);
+        }
       }
+
     });
   }

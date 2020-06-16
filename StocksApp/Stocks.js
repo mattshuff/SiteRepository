@@ -68,7 +68,6 @@ $(document).ready(function () {
     ContentWrapper.addEventListener("dblclick", ClassClick);
 });
 
-
 //only runs once but much more readable this way
 //decoding from database much more complex than needed as I made this feature before I knew what JSON was - whoops
 function DataToHTML(Data) {
@@ -158,6 +157,8 @@ function CreateElements(Dates, Values) {
     WrapperDiv.setAttribute('id', "WrapperDiv");
     //loop through every record 
 
+    var TextWrapper = document.createElement("div");
+    TextWrapper.setAttribute("id","TextWrapper");
     for (var y = 0; y < Dates.length; y++) {
         var OutputText = "";
 
@@ -182,60 +183,37 @@ function CreateElements(Dates, Values) {
             FullData.style = "color:#03fc49; margin-bottom:0px; margin-top:0px;";
         }
 
-        WrapperDiv.appendChild(FullData);
+        TextWrapper.appendChild(FullData);
     }
+    WrapperDiv.appendChild(TextWrapper);
+
+    var ChartWrapper = document.createElement("div");
+    ChartWrapper.setAttribute('id', "ChartWrapper");
+    
     chart = CreateChart(Dates,Values);
-    WrapperDiv.appendChild(chart);
+    ChartWrapper.appendChild(chart);
+    
+    WrapperDiv.appendChild(ChartWrapper);
     return WrapperDiv;
 }
 function CreateChart(Dates,Values){
     var ctx = document.createElement("canvas");
-    ctx.width="400px";
-    ctx.height="400px";
-    console.log(Dates);
-    console.log(Values);
+
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: Dates,
             datasets: [{
-                label: 'Value',
-                data: Values,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-
-                ],
-                borderWidth: 1
+            
+            data: Values,
             }]
         },
         options: {
-            scales: {
-                yAxes: [{
-                    display:false
-  
-                }]
-            },
-            responsive:false,
-            maintainAspectRatio:false
-            
+            responsive: false,
         }
-        
     });
-    ctx.width = "200px";
-    ctx.height = "400px";
-
+    ctx.width="400px";
+    ctx.height="200px";
     return ctx;
 }
 function div_show() {

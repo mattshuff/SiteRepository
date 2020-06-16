@@ -51,7 +51,13 @@ ul {
     font-size: 22px;
     cursor: pointer;
 }
+a{
 
+      color: inherit      
+}
+a:visited{
+    color:inherit
+}
 
 
   
