@@ -15,28 +15,32 @@
     </div>
     <br>
 
-    <div class="column" style="height: auto;">
+    <div id="ToDoColumn" class="column" style="height: auto;">
         <h2 id="subtitle">TO DO:</h2>
         <input type="text" id="textinput" placeholder="input..." onkeydown="InputBoxhandler(event)">
         <li id="ToDoList" ondblclick="DeleteListItem(event)"></li>
 
     </div>
 
-    <div class="column" style="width: auto;">
+    <div id="FurtherApps" class="column" style="width: auto;">
         <h2 id="subtitle">MORE APPS:</h2>
         <a href="MusicApp\MusicApp.html">Spotify Control Panel</a><br>
         <a href="StocksApp\Stocks.html">Stocks</a><br>
         <a href="TestingPage\TestingPage.html">Testing Page</a>
     </div>
 
-    <div class="column" style="width: 600px; padding-top: 70px;">
-        <h2 id="subtitle">NEWS:</h2>
-
-        
-
-        <div id = "GoogleFeed"></div>
-        <div></div>
-
-
+    <div id="largeNews" class="column" style="width: 450px; padding-top: 45px;">
+        <h2 id="subtitle">BUSINESS NEWS:</h2>
+        <div id = "GoogleFeed" ></div>
     </div>
+    <div id="SmallNews" class="column" style="width: 450px; padding-top: 45px;">
+        <h2 id="subtitle">TECH NEWS:</h2>
+        <div id = "TechFeed" style="height: auto;"></div>
+
+        <h2 id="subtitle">THE TIMES:</h2>
+        <div id = "PoliticsFeed" style="height: auto;"></div>
+    </div>
+
+
+
 </body>

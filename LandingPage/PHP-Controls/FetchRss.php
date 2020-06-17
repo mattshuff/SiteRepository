@@ -1,16 +1,22 @@
 <?php
+//header( 'Content-Type: application/rss+xml' );
 
 $feed_url = 'https://news.google.com/news/rss/headlines/section/topic/BUSINESS';
-
-// Fetch the content.
-// See http://php.net/manual/en/function.file-get-contents.php for more
-// information about the file_get_contents() function.
 $content = file_get_contents( $feed_url );
 
-// Set the Content-Type header.
-header( 'Content-Type: application/rss+xml' );
-
-// Display the content and exit.
 echo $content;
+
+$feed_url = 'https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY';
+$content = file_get_contents( $feed_url );
+echo "\n";
+echo $content;
+
+//https://news.google.com/rss/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNRFZ4ZERBU0JXVnVMVWRDS0FBUAE?hl=en-GB&gl=GB&ceid=GB:en
+$feed_url = 'https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en';
+$content = file_get_contents( $feed_url );
+echo "\n";
+echo $content;
+
+
 exit;
 ?>

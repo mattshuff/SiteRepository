@@ -9,6 +9,7 @@ things to build on in stocks app:
 spotify app:
 
 	play samples too
+	show similar suggestions
 	rework get images function to be able to do everything mentioned above 
 
 
@@ -19,7 +20,6 @@ settings page:
 	news settings?
 
 daily digest:
-	news
 	twitter trending
 	weather 
 	reddit posts 
