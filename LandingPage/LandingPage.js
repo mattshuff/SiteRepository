@@ -1,6 +1,6 @@
 $(document).ready(function () {
     "use strict";
-    parseRSS();
+    
     //#region Startup Tasks
 
 //load all locally stored settings (colour etc.)
@@ -8,6 +8,9 @@ LoadPreferences();
 
 //populate To Do List
 PopulateToDo();
+
+//fill news section
+parseRSS();
 
     //#endregion
 });
@@ -150,7 +153,7 @@ function parseRSS() {
         var x;
 
         //try to construct and append 8 buisiness articles
-        for(x = 8; x<16;x++){
+        for(x = 8; x<18;x++){
             XMLarticle = TopicArticles[x];
             
 
