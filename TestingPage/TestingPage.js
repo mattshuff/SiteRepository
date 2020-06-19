@@ -1,7 +1,7 @@
 function TestFunc() {
     $.ajax({
         type: "GET",
-        url: '/RefreshStocksData.php',
+        url: '/FetchOneRss.php',
         data: "",
         async: false,
         dataType: 'html',

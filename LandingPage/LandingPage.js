@@ -140,7 +140,7 @@ function LoadPreferences() {
 function parseRSS() {
     $.ajax({
       url: '/LandingPage/PHP-Controls/FetchRss.php',
-
+        async:true,
       success: function(data) {
         var XMLStrings = data.split("\n");
 
@@ -226,3 +226,4 @@ function parseRSS() {
 
     });
   }
+
