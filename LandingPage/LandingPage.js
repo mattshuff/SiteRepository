@@ -10,7 +10,10 @@ LoadPreferences();
 PopulateToDo();
 
 //fill news section
+FetchOneRSS();
 parseRSS();
+
+
 
     //#endregion
 });
@@ -226,4 +229,14 @@ function parseRSS() {
 
     });
   }
+  function FetchOneRSS(){
+    $.ajax({
+    url: '/FetchOneRss.php',
+    async:true,
+  success: function(data) {
+    console.log(data);
+  }
+});
+  }
 
+  
