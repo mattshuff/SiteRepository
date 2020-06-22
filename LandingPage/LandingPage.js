@@ -232,13 +232,16 @@ function parseRSS() {
 function PopulateNews(){
     var BusinessString = FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/BUSINESS');
     var Businessxml = $.parseXML(BusinessString).children[0].children[0].children;
+    console.log(Businessxml);
 
     var TechnologyString = FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY');
     var TechnologyXML = $.parseXML(TechnologyString).children[0].children[0].children;
+    console.log(TechnologyXML);
 
     var TimesString = FetchOneRSS('https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en');
     var TimesXML  = $.parseXML(TimesString).children[0].children[0].children;  
-    
+    console.log(TimesXML);
+
     var x;
     var CurrentArticle;
     var ArticleText;
