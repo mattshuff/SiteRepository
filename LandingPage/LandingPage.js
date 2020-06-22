@@ -10,8 +10,11 @@ LoadPreferences();
 PopulateToDo();
 
 //fill news section
-FetchOneRSS();
-parseRSS();
+FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/BUSINESS');
+FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY');
+FetchOneRSS('https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en');
+
+//parseRSS();
 
 
 
@@ -229,14 +232,18 @@ function parseRSS() {
 
     });
   }
-  function FetchOneRSS(){
-    $.ajax({
+function FetchOneRSS(URL){
+
+        $.ajax({
+    type: "POST",
     url: '/FetchOneRss.php',
     async:true,
-  success: function(data) {
+    data: {url:URL},
+
+    success: function(data) {
     console.log(data);
   }
-});
+        });
   }
 
   
