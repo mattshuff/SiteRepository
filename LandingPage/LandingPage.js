@@ -10,10 +10,7 @@ LoadPreferences();
 PopulateToDo();
 
 //fill news section
-FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/BUSINESS');
-FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY');
-FetchOneRSS('https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en');
-
+PopulateNews();
 //parseRSS();
 
 
@@ -65,7 +62,6 @@ function PopulateToDo(){
             var ToDoItemsJson = JSON.parse(data);
 
             for(var x = 0; x <ToDoItemsJson.length;x++){
-                console.log(ToDoItemsJson[x]);
                 var ListElement = document.createElement("li");
                 ListElement.textContent = ToDoItemsJson[x].ToDoContent;
                 ToDo.appendChild(ListElement);
@@ -232,18 +228,99 @@ function parseRSS() {
 
     });
   }
-function FetchOneRSS(URL){
 
+function PopulateNews(){
+    var BusinessString = FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/BUSINESS');
+    var Businessxml = $.parseXML(BusinessString).children[0].children[0].children;
+
+    var TechnologyString = FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY');
+    var TechnologyXML = $.parseXML(TechnologyString).children[0].children[0].children;
+
+    var TimesString = FetchOneRSS('https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en');
+    var TimesXML  = $.parseXML(TimesString).children[0].children[0].children;  
+    
+    var x;
+    var CurrentArticle;
+    var ArticleText;
+
+    //construct B articles
+    for(x = 8; x < 18;x++){
+        var BuisinessBody = document.createElement("div");
+
+        CurrentArticle = Businessxml[x];
+        ArticleText = CurrentArticle.textContent;
+
+        try {
+            ArticleText = ArticleText.split("<li>")[1];
+            ArticleText = ArticleText.split("<li>")[0];
+        } catch (error) {
+            console.log("Article Incorrect Format");
+            ArticleText="";
+        }
+        BuisinessBody.innerHTML = ArticleText;
+        BuisinessBody.style.paddingBottom = "5px";
+        BuisinessBody.style.fontSize = "17px";
+       
+
+        var googlefeed = document.getElementById("GoogleFeed");
+        googlefeed.appendChild(BuisinessBody);
+    }
+
+    //construct tech articles
+    for(x = 8; x<12;x++){
+       
+        CurrentArticle = TechnologyXML[x];
+
+        TechBody = document.createElement("div");
+            
+        ArticleText = CurrentArticle.textContent;
+        try {
+            ArticleText = ArticleText.split("<li>")[1];
+            ArticleText = ArticleText.split("<li>")[0];
+        } catch (error) {
+            console.log("Article Incorrect Format");
+            ArticleText="";
+        }
+        
+        TechBody.innerHTML = ArticleText;
+        TechBody.style.paddingBottom = "5px";
+        TechBody.style.fontSize = "17px";
+       
+
+        var TechFeed = document.getElementById("TechFeed");
+        TechFeed.appendChild(TechBody);
+    }
+
+    //construct times articles 
+    for(x = 8; x<13;x++){
+        CurrentArticle = TimesXML[x].children[4];
+
+        var PoliticsBody = document.createElement("div");
+        ArticleText = CurrentArticle.textContent;
+        
+        PoliticsBody.innerHTML = ArticleText;
+        PoliticsBody.style.paddingBottom = "5px";
+        PoliticsBody.style.fontSize = "17px";
+        
+       
+        var PoliticsFeed = document.getElementById("PoliticsFeed");
+        PoliticsFeed.appendChild(PoliticsBody);
+    }
+    
+
+    function FetchOneRSS(URL){
+        var ReturnValue;
         $.ajax({
     type: "POST",
     url: '/FetchOneRss.php',
-    async:true,
+    async:false,
     data: {url:URL},
-
+    
     success: function(data) {
-    console.log(data);
-  }
+        ReturnValue = data;
+    }
         });
-  }
-
+     return ReturnValue;   
+    }
+}
   
