@@ -230,24 +230,45 @@ function parseRSS() {
   }
 
 function PopulateNews(){
-    var BusinessString = FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/BUSINESS');
-    var Businessxml = $.parseXML(BusinessString).children[0].children[0].children;
-    console.log(Businessxml);
 
-    var TechnologyString = FetchOneRSS('https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY');
-    var TechnologyXML = $.parseXML(TechnologyString).children[0].children[0].children;
-    console.log(TechnologyXML);
-
-    var TimesString = FetchOneRSS('https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en');
-    var TimesXML  = $.parseXML(TimesString).children[0].children[0].children;  
-    console.log(TimesXML);
+    var URL1 = 'https://news.google.com/news/rss/headlines/section/topic/BUSINESS';
+    $.ajax({
+        type: "POST",
+        url: '/FetchOneRss.php',
+        data: {QueryURL:URL1},
+        
+            }).done(function(data){
+                BuisnessArticles(data);
+            });
+    var URL2 = 'https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY';
+    $.ajax({
+        type: "POST",
+        url: '/FetchOneRss.php',
+        data: {QueryURL:URL2},
+        
+            }).done(function(data){
+                TechArticles(data);
+            });
+    var URL3 = 'https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en';
+    $.ajax({
+        type: "POST",
+        url: '/FetchOneRss.php',
+        data: {QueryURL:URL3},
+        
+            }).done(function(data){
+                TimesArticles(data);
+            });
 
     var x;
     var CurrentArticle;
     var ArticleText;
 
+        function BuisnessArticles(Businessxml){
+            Businessxml =Businessxml.children[0].children[0].children;
+            console.log(Businessxml);
     //construct B articles
     for(x = 8; x < 18;x++){
+
         var BuisinessBody = document.createElement("div");
 
         CurrentArticle = Businessxml[x];
@@ -268,15 +289,18 @@ function PopulateNews(){
         var googlefeed = document.getElementById("GoogleFeed");
         googlefeed.appendChild(BuisinessBody);
     }
-
+}
+        function TechArticles(TechXML){
+            TechXML = TechXML.children[0].children[0].children;
     //construct tech articles
     for(x = 8; x<12;x++){
        
-        CurrentArticle = TechnologyXML[x];
+        CurrentArticle = TechXML[x];
 
-        TechBody = document.createElement("div");
+        var TechBody = document.createElement("div");
             
         ArticleText = CurrentArticle.textContent;
+      
         try {
             ArticleText = ArticleText.split("<li>")[1];
             ArticleText = ArticleText.split("<li>")[0];
@@ -293,13 +317,18 @@ function PopulateNews(){
         var TechFeed = document.getElementById("TechFeed");
         TechFeed.appendChild(TechBody);
     }
-
+}
+        function TimesArticles(TimesXML){
+            TimesXML = TimesXML.children[0].children[0].children;
+            console.log(TimesXML);
     //construct times articles 
     for(x = 8; x<13;x++){
-        CurrentArticle = TimesXML[x].children[4];
+        CurrentArticle = TimesXML[x];
 
         var PoliticsBody = document.createElement("div");
-        ArticleText = CurrentArticle.textContent;
+        ArticleText = CurrentArticle.innerHTML;
+        
+
         
         PoliticsBody.innerHTML = ArticleText;
         PoliticsBody.style.paddingBottom = "5px";
@@ -309,21 +338,8 @@ function PopulateNews(){
         var PoliticsFeed = document.getElementById("PoliticsFeed");
         PoliticsFeed.appendChild(PoliticsBody);
     }
-    
-
-    function FetchOneRSS(URL){
-        var ReturnValue;
-        $.ajax({
-    type: "POST",
-    url: '/FetchOneRss.php',
-    async:false,
-    data: {url:URL},
-    
-    success: function(data) {
-        ReturnValue = data;
-    }
-        });
-     return ReturnValue;   
-    }
 }
-  
+            //functions to build each section so we can wait for ajax request to resolve
+
+
+}
