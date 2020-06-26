@@ -271,7 +271,6 @@ function PopulateNews(){
 
         function BuisnessArticles(Businessxml){
             Businessxml =Businessxml.children[0].children[0].children;
-            console.log(Businessxml);
     //construct B articles
     for(x = 8; x < 18;x++){
 
@@ -326,15 +325,13 @@ function PopulateNews(){
 }
         function TimesArticles(TimesXML){
             TimesXML = TimesXML.children[0].children[0].children;
-            console.log(TimesXML);
     //construct times articles 
     for(x = 8; x<13;x++){
-        CurrentArticle = TimesXML[x];
+        CurrentArticle = TimesXML[x].children[4].textContent;
+        console.log(CurrentArticle);
 
         var PoliticsBody = document.createElement("div");
-        ArticleText = CurrentArticle.innerHTML;
-        
-
+        ArticleText = CurrentArticle;
         
         PoliticsBody.innerHTML = ArticleText;
         PoliticsBody.style.paddingBottom = "5px";
