@@ -1,32 +1,8 @@
-function TestFunc() {
-    $.ajax({
-        type: "GET",
-        url: '/FetchOneRss.php',
-        data: "",
-        async: false,
-        dataType: 'html',
-        success: function (data) //on recieve of reply
-        {
-            console.log(data);
-        }
-    });
-}
-function RefreshFunc(){
-    $.ajax({
-        type: "GET",
-        url: '/RefreshStocksDataRewrite.php',
-        data: "",
-        async: false,
-        dataType: 'html',
-        success: function (data) //on recieve of reply
-        {
-            console.log(data);
-        }
-    });
-}
-
-
 $(document).ready(function () {
+
+});
+
+function ChartTest(){
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -70,4 +46,17 @@ $(document).ready(function () {
     ctx.width = "200px";
     ctx.height = "400px";
 
-});
+}
+
+function TestPHP(){
+    $.ajax({
+        type: "POST",
+        url: '/UpdateNewsStorage.php',
+        data: "",
+        async: false,
+        success: function (data) //on recieve of reply
+        {
+            console.log(data);
+        }
+    });
+}
