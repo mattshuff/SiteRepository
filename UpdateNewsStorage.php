@@ -10,26 +10,26 @@ $sql = "SELECT * FROM `News`";
 $result = mysqli_query($connect, $sql);
 $row = $result->fetch_assoc();
 
-while($row = $result->fetch_assoc()) { //each row
-try {
-    $ArticlesXML = FetchGoogle($row["CategoryLink"]);
-    PushDB($ArticlesXML,$connect);
-} catch (\Throwable $th) {
-    //if call times out
+while ($row = $result->fetch_assoc()) { //each row
+    try {
+        $ArticlesXML = FetchGoogle($row["CategoryLink"]);
+        PushDB($ArticlesXML, $connect);
+    } catch (\Throwable $th) {
+        //if call times out
+    }
 }
-}
-function FetchGoogle($link){
-    $content = file_get_contents( $link );
+function FetchGoogle($link)
+{
+    $content = file_get_contents($link);
     return $content;
 }
-function PushDB($XMLString,$connect){
-
+function PushDB($XMLString, $connect)
+{
     $xml = simplexml_load_string($XMLString);
-    $json = json_encode($xml);
-    echo$json;
-    
-    $array = json_decode($json,TRUE);
-    $sql = "UPDATE `News` SET `CategoryJSON`='".$json."'";
-    $result = mysqli_query($connect, $sql);
 
+    $json = json_encode($xml);
+
+    $array = json_decode($json, TRUE);
+    $sql = "UPDATE `News` SET `CategoryJSON`='" . addslashes($json) . "'";
+    $result = mysqli_query($connect, $sql);
 }

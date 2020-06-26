@@ -1,24 +1,24 @@
 $(document).ready(function () {
     "use strict";
-    
+
     //#region Startup Tasks
 
-//load all locally stored settings (colour etc.)
-LoadPreferences();
+    //load all locally stored settings (colour etc.)
+    LoadPreferences();
 
-//populate To Do List
-PopulateToDo();
+    //populate To Do List
+    PopulateToDo();
 
-//fill news section
-PopulateNews();
-//parseRSS();
+    //fill news section
+    PopulateNews();
+    //parseRSS();
 
 
 
     //#endregion
 });
 
-function InputBoxhandler(event){
+function InputBoxhandler(event) {
     if (event.key === 'Enter') {
 
         var Input = document.getElementById("textinput");
@@ -35,22 +35,22 @@ function InputBoxhandler(event){
                 PopulateToDo();
             }
         });
-        
+
     }
 }
-function DeleteListItem(e){
-    
+function DeleteListItem(e) {
+
     var TextValue = e.originalTarget.innerText;
-   
+
     $.ajax(
         "/LandingPage/PHP-Controls/DeleteToDo.php", {
-            data: {QueryValue: TextValue},
-            success: function (Data) {
-                PopulateToDo();
-            }
+        data: { QueryValue: TextValue },
+        success: function (Data) {
+            PopulateToDo();
+        }
     });
 }
-function PopulateToDo(){
+function PopulateToDo() {
     //select and clear to do list
     var ToDo = document.getElementById("ToDoList");
     ToDo.innerHTML = "";
@@ -61,7 +61,7 @@ function PopulateToDo(){
         success: function (data) {
             var ToDoItemsJson = JSON.parse(data);
 
-            for(var x = 0; x <ToDoItemsJson.length;x++){
+            for (var x = 0; x < ToDoItemsJson.length; x++) {
                 var ListElement = document.createElement("li");
                 ListElement.textContent = ToDoItemsJson[x].ToDoContent;
                 ToDo.appendChild(ListElement);
@@ -69,8 +69,8 @@ function PopulateToDo(){
 
         }
     });
-  
-    
+
+
 }
 function SwapColourMode(e) {
     var SenderImageID = e.originalTarget.id;
@@ -141,208 +141,179 @@ function LoadPreferences() {
 }
 function parseRSS() {
     $.ajax({
-      url: '/LandingPage/PHP-Controls/FetchRss.php',
-        async:true,
-      success: function(data) {
-        var XMLStrings = data.split("\n");
+        url: '/LandingPage/PHP-Controls/FetchRss.php',
+        async: true,
+        success: function (data) {
+            var XMLStrings = data.split("\n");
 
-        parser = new DOMParser();
-        var BusinessXML;
-        BusinessXML = parser.parseFromString(XMLStrings[0],"text/xml");
-        var TopicArticles = BusinessXML.children[0].children[0].children;
-        var XMLarticle;
-        var Text;
-        var x;
+            parser = new DOMParser();
+            var BusinessXML;
+            BusinessXML = parser.parseFromString(XMLStrings[0], "text/xml");
+            var TopicArticles = BusinessXML.children[0].children[0].children;
+            var XMLarticle;
+            var Text;
+            var x;
 
-        //try to construct and append 8 buisiness articles
-        for(x = 8; x<18;x++){
-            XMLarticle = TopicArticles[x];
-            
+            //try to construct and append 8 buisiness articles
+            for (x = 8; x < 18; x++) {
+                XMLarticle = TopicArticles[x];
 
-            var BuisinessBody = document.createElement("div");
-            Text = XMLarticle.textContent;
-            try {
-                Text = Text.split("<li>")[1];
-                Text = Text.split("<li>")[0];
-            } catch (error) {
-                console.log("Article Incorrect Format");
-                Text="";
+
+                var BuisinessBody = document.createElement("div");
+                Text = XMLarticle.textContent;
+                try {
+                    Text = Text.split("<li>")[1];
+                    Text = Text.split("<li>")[0];
+                } catch (error) {
+                    console.log("Article Incorrect Format");
+                    Text = "";
+                }
+
+                BuisinessBody.innerHTML = Text;
+                BuisinessBody.style.paddingBottom = "5px";
+                BuisinessBody.style.fontSize = "17px";
+
+
+                var googlefeed = document.getElementById("GoogleFeed");
+                googlefeed.appendChild(BuisinessBody);
             }
-            
-            BuisinessBody.innerHTML = Text;
-            BuisinessBody.style.paddingBottom = "5px";
-            BuisinessBody.style.fontSize = "17px";
-           
 
-            var googlefeed = document.getElementById("GoogleFeed");
-            googlefeed.appendChild(BuisinessBody);
-        }
 
-       
 
-        var TechXML;
-        TechXML = parser.parseFromString(XMLStrings[1],"text/xml");
-        TopicArticles = TechXML.children[0].children[0].children;
-        for(x = 8; x<12;x++){
-            XMLarticle = TopicArticles[x];
-            
+            var TechXML;
+            TechXML = parser.parseFromString(XMLStrings[1], "text/xml");
+            TopicArticles = TechXML.children[0].children[0].children;
+            for (x = 8; x < 12; x++) {
+                XMLarticle = TopicArticles[x];
 
-            TechBody = document.createElement("div");
-            Text = XMLarticle.textContent;
-            try {
-                Text = Text.split("<li>")[1];
-                Text = Text.split("<li>")[0];
-            } catch (error) {
-                console.log("Article Incorrect Format");
-                Text="";
+
+                TechBody = document.createElement("div");
+                Text = XMLarticle.textContent;
+                try {
+                    Text = Text.split("<li>")[1];
+                    Text = Text.split("<li>")[0];
+                } catch (error) {
+                    console.log("Article Incorrect Format");
+                    Text = "";
+                }
+
+                TechBody.innerHTML = Text;
+                TechBody.style.paddingBottom = "5px";
+                TechBody.style.fontSize = "17px";
+
+
+                var TechFeed = document.getElementById("TechFeed");
+                TechFeed.appendChild(TechBody);
             }
-            
-            TechBody.innerHTML = Text;
-            TechBody.style.paddingBottom = "5px";
-            TechBody.style.fontSize = "17px";
-           
 
-            var TechFeed = document.getElementById("TechFeed");
-            TechFeed.appendChild(TechBody);
+            var PoliticsXML;
+            PoliticsXML = parser.parseFromString(XMLStrings[2], "text/xml");
+            TopicArticles = PoliticsXML.children[0].children[0].children;
+
+            for (x = 8; x < 13; x++) {
+                XMLarticle = TopicArticles[x].children[4];
+
+                var PoliticsBody = document.createElement("div");
+                Text = XMLarticle.textContent;
+
+                PoliticsBody.innerHTML = Text;
+                PoliticsBody.style.paddingBottom = "5px";
+                PoliticsBody.style.fontSize = "17px";
+
+
+                var PoliticsFeed = document.getElementById("PoliticsFeed");
+                PoliticsFeed.appendChild(PoliticsBody);
+            }
         }
-
-        var PoliticsXML;
-        PoliticsXML = parser.parseFromString(XMLStrings[2],"text/xml");
-        TopicArticles = PoliticsXML.children[0].children[0].children;
-
-        for(x = 8; x<13;x++){
-            XMLarticle = TopicArticles[x].children[4];
-
-            var PoliticsBody = document.createElement("div");
-            Text = XMLarticle.textContent;
-            
-            PoliticsBody.innerHTML = Text;
-            PoliticsBody.style.paddingBottom = "5px";
-            PoliticsBody.style.fontSize = "17px";
-            
-           
-            var PoliticsFeed = document.getElementById("PoliticsFeed");
-            PoliticsFeed.appendChild(PoliticsBody);
-        }
-      }
 
     });
-  }
-function PopulateNews(){
+}
+function PopulateNews() {
 
-    var URL1 = 'https://news.google.com/news/rss/headlines/section/topic/BUSINESS';
+    var JsonStrings;
     $.ajax({
-        type: "POST",
-        url: '/FetchOneRss.php',
-        data: {QueryURL:URL1},
-        
-            }).done(function(data){
-                BuisnessArticles(data);
-            });
-            setTimeout(function(){
-                //do what you need here
-            }, 200);
+        type: "GET",
+        url: '/FetchAllFromNews.php',
+        async: false,
 
-    var URL2 = 'https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY';
-    $.ajax({
-        type: "POST",
-        url: '/FetchOneRss.php',
-        data: {QueryURL:URL2},
-        
-            }).done(function(data){
-                TechArticles(data);
-            });
-            setTimeout(function(){
-                //do what you need here
-            }, 200);
-    var URL3 = 'https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en';
-    $.ajax({
-        type: "POST",
-        url: '/FetchOneRss.php',
-        data: {QueryURL:URL3},
-        
-            }).done(function(data){
-                TimesArticles(data);
-            });
+
+    }).done(function (data) {
+        var DataLines = data.split("\n");
+
+        var BuisnessJSON = JSON.parse(DataLines[2]);
+        BuisnessArticles(BuisnessJSON);
+
+        var TechJSON = JSON.parse(DataLines[1]);
+        TechArticles(TechJSON);
+
+        var TimesJSON = JSON.parse(DataLines[0]);
+        TimesArticles(TimesJSON);
+    });
 
     var x;
     var CurrentArticle;
     var ArticleText;
 
-        function BuisnessArticles(Businessxml){
-            Businessxml =Businessxml.children[0].children[0].children;
-    //construct B articles
-    for(x = 8; x < 18;x++){
+    function BuisnessArticles(BuisnessJSON) {
 
-        var BuisinessBody = document.createElement("div");
+        BuisnessJSON = BuisnessJSON.channel.item;
+        //construct B articles
+        for (x = 0; x < 8; x++) {
 
-        CurrentArticle = Businessxml[x];
-        ArticleText = CurrentArticle.textContent;
+            var BuisinessBody = document.createElement("div");
 
-        try {
-            ArticleText = ArticleText.split("<li>")[1];
-            ArticleText = ArticleText.split("<li>")[0];
-        } catch (error) {
-            console.log("Article Incorrect Format");
-            ArticleText="";
+            CurrentArticle = BuisnessJSON[x];
+            ArticleText = CurrentArticle.description;
+
+            BuisinessBody.innerHTML = ArticleText;
+            BuisinessBody.style.paddingBottom = "5px";
+            BuisinessBody.style.fontSize = "17px";
+
+
+            var googlefeed = document.getElementById("GoogleFeed");
+            googlefeed.appendChild(BuisinessBody);
         }
-        BuisinessBody.innerHTML = ArticleText;
-        BuisinessBody.style.paddingBottom = "5px";
-        BuisinessBody.style.fontSize = "17px";
-       
-
-        var googlefeed = document.getElementById("GoogleFeed");
-        googlefeed.appendChild(BuisinessBody);
     }
-}
-        function TechArticles(TechXML){
-            TechXML = TechXML.children[0].children[0].children;
-    //construct tech articles
-    for(x = 8; x<12;x++){
-       
-        CurrentArticle = TechXML[x];
+    function TechArticles(TechJSON) {
+        TechJSON = TechJSON.channel.item;
+        //construct tech articles
+        for (x = 0; x < 4; x++) {
 
-        var TechBody = document.createElement("div");
-            
-        ArticleText = CurrentArticle.textContent;
-      
-        try {
-            ArticleText = ArticleText.split("<li>")[1];
-            ArticleText = ArticleText.split("<li>")[0];
-        } catch (error) {
-            console.log("Article Incorrect Format");
-            ArticleText="";
+            CurrentArticle = TechJSON[x];
+
+            var TechBody = document.createElement("div");
+
+            ArticleText = CurrentArticle.description;
+            TechBody.innerHTML = ArticleText;
+            TechBody.style.paddingBottom = "5px";
+            TechBody.style.fontSize = "17px";
+
+
+            var TechFeed = document.getElementById("TechFeed");
+            TechFeed.appendChild(TechBody);
         }
-        
-        TechBody.innerHTML = ArticleText;
-        TechBody.style.paddingBottom = "5px";
-        TechBody.style.fontSize = "17px";
-       
-
-        var TechFeed = document.getElementById("TechFeed");
-        TechFeed.appendChild(TechBody);
     }
-}
-        function TimesArticles(TimesXML){
-            TimesXML = TimesXML.children[0].children[0].children;
-    //construct times articles 
-    for(x = 8; x<13;x++){
-        CurrentArticle = TimesXML[x].children[4].textContent;
-        console.log(CurrentArticle);
+    function TimesArticles(TimesJSON) {
+        console.log(TimesJSON);
+        TimesJSON = TimesJSON.channel.item;
+        //construct times articles 
+        for (x = 0; x < 5; x++) {
+            CurrentArticle = TimesJSON[x].description;
 
-        var PoliticsBody = document.createElement("div");
-        ArticleText = CurrentArticle;
-        
-        PoliticsBody.innerHTML = ArticleText;
-        PoliticsBody.style.paddingBottom = "5px";
-        PoliticsBody.style.fontSize = "17px";
-        
-       
-        var PoliticsFeed = document.getElementById("PoliticsFeed");
-        PoliticsFeed.appendChild(PoliticsBody);
+
+            var PoliticsBody = document.createElement("div");
+            ArticleText = CurrentArticle;
+
+            PoliticsBody.innerHTML = ArticleText;
+            PoliticsBody.style.paddingBottom = "5px";
+            PoliticsBody.style.fontSize = "17px";
+
+
+            var PoliticsFeed = document.getElementById("PoliticsFeed");
+            PoliticsFeed.appendChild(PoliticsBody);
+        }
     }
-}
-            //functions to build each section so we can wait for ajax request to resolve
+    //functions to build each section so we can wait for ajax request to resolve
 
 
 }

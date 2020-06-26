@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 });
 
-function ChartTest(){
+function ChartTest() {
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -33,25 +33,36 @@ function ChartTest(){
         options: {
             scales: {
                 yAxes: [{
-                    display:false
-  
+                    display: false
+
                 }]
             },
-            responsive:false,
-            maintainAspectRatio:false
-            
+            responsive: false,
+            maintainAspectRatio: false
+
         }
-        
+
     });
     ctx.width = "200px";
     ctx.height = "400px";
 
 }
 
-function TestPHP(){
+function TestPHP() {
     $.ajax({
         type: "POST",
         url: '/UpdateNewsStorage.php',
+        data: "",
+        async: false,
+        success: function (data) //on recieve of reply
+        {
+            console.log(data);
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: '/FetchAllFromNews.php',
         data: "",
         async: false,
         success: function (data) //on recieve of reply
