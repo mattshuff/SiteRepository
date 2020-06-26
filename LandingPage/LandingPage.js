@@ -228,7 +228,6 @@ function parseRSS() {
 
     });
   }
-
 function PopulateNews(){
 
     var URL1 = 'https://news.google.com/news/rss/headlines/section/topic/BUSINESS';
@@ -240,6 +239,10 @@ function PopulateNews(){
             }).done(function(data){
                 BuisnessArticles(data);
             });
+            setTimeout(function(){
+                //do what you need here
+            }, 200);
+
     var URL2 = 'https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY';
     $.ajax({
         type: "POST",
@@ -249,6 +252,9 @@ function PopulateNews(){
             }).done(function(data){
                 TechArticles(data);
             });
+            setTimeout(function(){
+                //do what you need here
+            }, 200);
     var URL3 = 'https://news.google.com/rss/topics/CAAqKQgKIiNDQklTRkFnTWFoQUtEblJvWlhScGJXVnpMbU52TG5WcktBQVAB?hl=en-GB&gl=GB&ceid=GB:en';
     $.ajax({
         type: "POST",
