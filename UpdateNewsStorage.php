@@ -13,15 +13,21 @@ $row = $result->fetch_assoc();
 while ($row = $result->fetch_assoc()) { //each row
     try {
         $ArticlesXML = FetchGoogle($row["CategoryLink"]);
-        PushDB($ArticlesXML, $connect);
+        if ($ArticlesXML != "False") {
+            PushDB($ArticlesXML, $connect);
+        }
     } catch (\Throwable $th) {
         //if call times out
     }
 }
 function FetchGoogle($link)
 {
-    $content = file_get_contents($link);
-    return $content;
+    try {
+        $content = file_get_contents($link);
+        return $content;
+    } catch (\Throwable $th) {
+        return "False";
+    }
 }
 function PushDB($XMLString, $connect)
 {
