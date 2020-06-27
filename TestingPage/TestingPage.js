@@ -60,14 +60,4 @@ function TestPHP() {
         }
     });
 
-    $.ajax({
-        type: "POST",
-        url: '/FetchAllFromNews.php',
-        data: "",
-        async: false,
-        success: function (data) //on recieve of reply
-        {
-            console.log(data);
-        }
-    });
 }

@@ -240,13 +240,13 @@ function PopulateNews() {
     }).done(function (data) {
         var DataLines = data.split("\n");
 
-        var BuisnessJSON = JSON.parse(DataLines[2]);
+        var BuisnessJSON = JSON.parse(DataLines[0]);
         BuisnessArticles(BuisnessJSON);
 
         var TechJSON = JSON.parse(DataLines[1]);
         TechArticles(TechJSON);
 
-        var TimesJSON = JSON.parse(DataLines[0]);
+        var TimesJSON = JSON.parse(DataLines[2]);
         TimesArticles(TimesJSON);
     });
 
@@ -257,6 +257,7 @@ function PopulateNews() {
     function BuisnessArticles(BuisnessJSON) {
 
         BuisnessJSON = BuisnessJSON.channel.item;
+        console.log(BuisnessJSON);
         //construct B articles
         for (x = 0; x < 8; x++) {
 
@@ -264,7 +265,11 @@ function PopulateNews() {
 
             CurrentArticle = BuisnessJSON[x];
             ArticleText = CurrentArticle.description;
-
+            try {
+                ArticleText = ArticleText.split("<li>")[1];
+            } catch (error) {
+                
+            }
             BuisinessBody.innerHTML = ArticleText;
             BuisinessBody.style.paddingBottom = "5px";
             BuisinessBody.style.fontSize = "17px";
@@ -276,6 +281,7 @@ function PopulateNews() {
     }
     function TechArticles(TechJSON) {
         TechJSON = TechJSON.channel.item;
+        console.log(TechJSON);
         //construct tech articles
         for (x = 0; x < 4; x++) {
 
@@ -284,6 +290,12 @@ function PopulateNews() {
             var TechBody = document.createElement("div");
 
             ArticleText = CurrentArticle.description;
+            try {
+                ArticleText = ArticleText.split("<li>")[1];
+            } catch (error) {
+                
+            }
+
             TechBody.innerHTML = ArticleText;
             TechBody.style.paddingBottom = "5px";
             TechBody.style.fontSize = "17px";
@@ -294,8 +306,9 @@ function PopulateNews() {
         }
     }
     function TimesArticles(TimesJSON) {
-        console.log(TimesJSON);
+        
         TimesJSON = TimesJSON.channel.item;
+        console.log(TimesJSON);
         //construct times articles 
         for (x = 0; x < 5; x++) {
             CurrentArticle = TimesJSON[x].description;
@@ -303,7 +316,12 @@ function PopulateNews() {
 
             var PoliticsBody = document.createElement("div");
             ArticleText = CurrentArticle;
-
+            try {
+                ArticleText = ArticleText.split("<li>")[0];
+            } catch (error) {
+                ArticleText="";
+            }
+            if(ArticleText=="undefined"){ArticleText="";}
             PoliticsBody.innerHTML = ArticleText;
             PoliticsBody.style.paddingBottom = "5px";
             PoliticsBody.style.fontSize = "17px";
