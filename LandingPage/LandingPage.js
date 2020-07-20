@@ -265,11 +265,16 @@ function PopulateNews() {
 
             CurrentArticle = BuisnessJSON[x];
             ArticleText = CurrentArticle.description;
+
             try {
                 ArticleText = ArticleText.split("<li>")[1];
-            } catch (error) {
                 
+                if(ArticleText==undefined){ArticleText="";};
+
+            } catch (error) {
+                console.log("ERROR CAUGHT");
             }
+
             BuisinessBody.innerHTML = ArticleText;
             BuisinessBody.style.paddingBottom = "5px";
             BuisinessBody.style.fontSize = "17px";
@@ -292,8 +297,11 @@ function PopulateNews() {
             ArticleText = CurrentArticle.description;
             try {
                 ArticleText = ArticleText.split("<li>")[1];
-            } catch (error) {
                 
+                if(ArticleText==undefined){ArticleText="";};
+
+            } catch (error) {
+                console.log("ERROR CAUGHT");
             }
 
             TechBody.innerHTML = ArticleText;
