@@ -1,10 +1,10 @@
 //wait until the page is ready
 $(document).ready(function () {
     div_hide();
-    var DataString;
     LoadPreferences();
 
     //fetch all records 
+    var DataString;
     $.ajax({
         type: "GET",
         url: 'FetchStockData.php',
@@ -13,8 +13,7 @@ $(document).ready(function () {
         dataType: 'html',
         success: function (data) //on recieve of reply
         {
-            DataString = data;
-            
+            DataString = data;            
         }
     });
 
@@ -33,39 +32,7 @@ $(document).ready(function () {
         div_show();
     });
 
-    //setup escape button
-    var EscapeButton = document.getElementById("EscapeInput");
-    EscapeButton.addEventListener("click", function () {
-        div_hide();
-    });
 
-    //setup enter button 
-    var SubmitButton = document.getElementById("StockSubmit");
-    SubmitButton.addEventListener("click", function () {
-
-        var StockNameValue = document.getElementById("StockName").value;
-        var StockTickerValue = document.getElementById("StockTicker").value;
-
-        $.ajax({
-            url: "NewStock.php",
-            type: 'GET',
-            data: {
-                StockNamePost: String(StockNameValue),
-                StockTickerPost: String(StockTickerValue),
-            },
-            success: function (data) {
-                div_hide();
-
-                document.getElementById("StockName").value = "";
-                document.getElementById("StockTicker").value = "";
-
-                location.reload();
-            }
-        });
-    });
-
-
-    ContentWrapper.addEventListener("dblclick", ClassClick);
 });
 
 //only runs once but much more readable this way
@@ -74,43 +41,37 @@ function DataToHTML(Data) {
     var DataArray = Data;
     var StyleString = " margin-bottom:0px; margin-top:0px;";
 
+    //main content div for the page
     var ContentWrapper = document.getElementById("Content");
 
-
+    //weird for loop - uses "x++" to move pointer during execution
     for (var x = 0; x < DataArray.length - 1; x++) {
 
         //parent DIV has "history wrapper" children per stock 
         var StockDataBlock = document.createElement("div");
         StockDataBlock.setAttribute("ID", "HistoryWrapper");
 
-        //write stock name to block
-
+        //write name to wrapper
         var StockNameP = document.createElement("p");
         StockNameP.innerText = DataArray[x]; x++;
-
         StockNameP.style = StyleString;
         StockDataBlock.appendChild(StockNameP);
 
         //#region Five Day
-
         //five day data title 
         var TempP = document.createElement("p");
-        TempP.innerText = "Five Day Data";
+        TempP.innerText = "Previous 5 days";
         TempP.style = StyleString;
         StockDataBlock.appendChild(TempP);
 
-        //convert data string to array
+        //convert data string to array, move pointer and trim empty record
         var FiveDayData = DataArray[x]; x++;
+        var FiveDayDataArray = FiveDayData.split("!").slice(0, 6);
 
-        var FiveDayDataArray = FiveDayData.split("!");
-
-        //trim off the empty record
-        FiveDayDataArray = FiveDayDataArray.slice(0, 6);
-        
         var Dates = []; //formatted date value
         var Values = []; //formatted values 
 
-        //push specific values to array
+        //push values to above arrays
         for (var y = 0; y < 5; y++) {
             Dates.push(FiveDayDataArray[y].substr(0, 11));
             Values.push(FiveDayDataArray[y].substr(11));
@@ -121,17 +82,14 @@ function DataToHTML(Data) {
         var Createelementsdiv = CreateElements(Dates, Values);
         FiveDayDataDiv.appendChild(Createelementsdiv);
         StockDataBlock.appendChild(FiveDayDataDiv);
-
         //#endregion
 
         //#region Five Month
-
         //five month subtitle 
         TempP = document.createElement("p");
-        TempP.innerText = ("Five Month");
+        TempP.innerText = ("Previous 5 months");
         TempP.style = StyleString;
         StockDataBlock.appendChild(TempP);
-
 
         var FiveMonthDataArray = DataArray[x];
         FiveMonthDataArray = FiveMonthDataArray.split("!");
@@ -150,7 +108,7 @@ function DataToHTML(Data) {
         ContentWrapper.appendChild(StockDataBlock);
     }
 }
-//takes an array of P elements and shades them according to if the value is higher or low than the previous 
+
 function CreateElements(Dates, Values) {
 
     var WrapperDiv = document.createElement('div');
@@ -180,7 +138,7 @@ function CreateElements(Dates, Values) {
             FullData.style = "color:red; margin-bottom:0px; margin-top:0px;";
         }
         else {
-            FullData.style = "color:#03fc49; margin-bottom:0px; margin-top:0px;";
+            FullData.style = "color:#90EE90; margin-bottom:0px; margin-top:0px;";
         }
 
         TextWrapper.appendChild(FullData);
@@ -222,30 +180,6 @@ function div_show() {
 function div_hide() {
     document.getElementById('popupform').style.display = "none";
 }
-function ClassClick(e) {
-
-    var Target = e.originalTarget;
-    if (Target.className === "StockName") {
-
-        var StockName = Target.innerText;
-
-        //have a confirmation dialogue here cause its a pain repopulating data
-        $.ajax({
-            url: "DeleteStock.php",
-            type: 'GET',
-            data: {
-                StockNamePost: String(StockName),
-
-            },
-            success: function (data) {
-                location.reload();
-
-            }
-        });
-
-    }
-    e.stopPropagation();
-}
 function LoadPreferences() {
     var ColourMode = localStorage.ColourMode;
     if (ColourMode == "light") {
@@ -261,4 +195,72 @@ function LoadPreferences() {
 
 
     }
+}
+function SearchEndpoint(){
+var SymbolText = document.getElementById("InputBox").value;
+
+var Response;
+$.ajax({
+    type: "GET",
+    url: 'SymbolLookup.php',
+    data : {
+        Symbol : SymbolText // will be accessible in $_POST['Symbol']
+      },
+    async: false,
+    dataType: 'html',
+    success: function (data) //on recieve of reply
+    {
+        Response = data;            
+    }
+});
+//parse response to json and scope into array of results
+Response =JSON.parse(Response); Response =Response.bestMatches;
+
+
+//write results to the screen 
+//select and clear results div
+var SearchResultWrapper = document.getElementById("SearchResults");
+SearchResultWrapper.innerHTML = "";
+
+//get symbol and name from results and write to screeen
+for(var x = 0; x<Response.length;x++){
+    console.log(Response[x]);
+
+    //create text element with name, ticker and style 
+    var Heading = document.createElement("p");
+    Heading.setAttribute("id","ResultHeading");
+    Heading.innerText = Response[x]["1. symbol"] + " - " + Response[x]["2. name"];
+    
+    
+    //function to add new stock 
+    Heading.onclick = OnclickAddNew;
+
+    //append text to wrapper 
+    SearchResultWrapper.appendChild(Heading);
+}
+
+
+//append results to page
+var popupform = document.getElementById("popupform");
+popupform.appendChild(SearchResultWrapper);
+
+function OnclickAddNew(){
+    var TextString = this.innerText;
+    var SplitValues = TextString.split(" - ");
+    console.log(SplitValues);
+    
+    $.ajax({
+        type: "GET",
+        url: 'NewStock.php',
+        data : {
+            StockName : SplitValues[1],
+            StockTicker: SplitValues[0]
+          },
+        async: false,
+        success: function (data) //on recieve of reply
+        {
+            console.log(data);          
+        }
+    });
+}
 }
