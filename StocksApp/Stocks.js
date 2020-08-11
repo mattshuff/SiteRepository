@@ -218,7 +218,7 @@ for(var x = 0; x<Response.length;x++){
 var popupform = document.getElementById("popupform");
 popupform.appendChild(SearchResultWrapper);
 
-location.reload(); 
+
 function OnclickAddNew(){
     var TextString = this.innerText;
     var SplitValues = TextString.split(" - ");
@@ -237,5 +237,6 @@ function OnclickAddNew(){
             console.log(data);          
         }
     });
+    location.reload();
 }
 }
