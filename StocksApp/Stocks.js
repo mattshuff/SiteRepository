@@ -54,7 +54,7 @@ function DataToHTML(Data) {
         //write name to wrapper
         var StockNameP = document.createElement("p");
         StockNameP.innerText = DataArray[x]; x++;
-        StockNameP.style = StyleString;
+        StockNameP.setAttribute("class","StockName");
         StockDataBlock.appendChild(StockNameP);
 
         //#region Five Day
@@ -145,35 +145,9 @@ function CreateElements(Dates, Values) {
     }
     WrapperDiv.appendChild(TextWrapper);
 
-    var ChartWrapper = document.createElement("div");
-    ChartWrapper.setAttribute('id', "ChartWrapper");
-    
-    chart = CreateChart(Dates,Values);
-    ChartWrapper.appendChild(chart);
-    
-    WrapperDiv.appendChild(ChartWrapper);
     return WrapperDiv;
 }
-function CreateChart(Dates,Values){
-    var ctx = document.createElement("canvas");
 
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: Dates,
-            datasets: [{
-            
-            data: Values,
-            }]
-        },
-        options: {
-            responsive: false,
-        }
-    });
-    ctx.width="400px";
-    ctx.height="200px";
-    return ctx;
-}
 function div_show() {
     document.getElementById('popupform').style.display = "block";
 }
@@ -244,6 +218,7 @@ for(var x = 0; x<Response.length;x++){
 var popupform = document.getElementById("popupform");
 popupform.appendChild(SearchResultWrapper);
 
+location.reload(); 
 function OnclickAddNew(){
     var TextString = this.innerText;
     var SplitValues = TextString.split(" - ");

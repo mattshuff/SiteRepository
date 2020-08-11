@@ -14,8 +14,31 @@
     position: relative;
     margin: 1px;
     margin-right: 20px;
+    width: 223px;
 
   }
   #ResultHeading {
       cursor: pointer;
+      font-weight: bolder;
   }
+  .StockName {
+font-weight: bolder;
+margin-bottom: 0px;
+margin-top: 0px;
+}
+#Pbutton {
+  cursor: pointer;
+  font-weight: bolder;
+  font-style: italic;
+  display: inline;
+  font-size: 30px;
+}
+#InputBox{
+  display: inline;
+  border: none;
+  height: 25px;
+}
+#Exit_Button{
+  font-size: 30px;
+  display: inline;
+}
