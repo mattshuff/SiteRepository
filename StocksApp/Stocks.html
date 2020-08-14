@@ -24,10 +24,13 @@
 
 
   <div id="popupform">
-    <p onclick="div_hide()" id="Pbutton" style="padding-right: 60px;">X</p>
-    <input id="InputBox" placeholder="Search"></input>
-    
-    <p onclick="SearchEndpoint()" id="Pbutton">Search!</p>
+    <p onclick="div_hide()" id="Exit_Button" style="padding-right: 60px;">X</p>
+
+      <div id ="InputWrapper">
+        <input id="InputBox" placeholder="..."></input>    
+        <p onclick="SearchEndpoint()" id="Pbutton">Search!</p>
+      </div>
+
     <div id ="SearchResults"></div>
   </div>
 

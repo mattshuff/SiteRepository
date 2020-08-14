@@ -26,8 +26,8 @@ $InsertInto= "INSERT INTO `Stocks`(`StockTicker`, `StockNickName`, `FiveDayData`
 $Values = " VALUES (". "'" .$StockTicker. "' , '".$StockName ."' , '". RefreshDayValues($StockTicker,$connect). "' , '".RefreshMonthValues($StockTicker,$connect)."' , '".$CurrentIndex."');";
 
 $sql = $InsertInto.=$Values;
-echo $sql;
-//$Result = mysqli_query($connect, $sql);
+//echo $sql;
+$Result = mysqli_query($connect, $sql);
 
 function RefreshDayValues($Ticker,$connect){
     //fetch data from Alpha Vantage

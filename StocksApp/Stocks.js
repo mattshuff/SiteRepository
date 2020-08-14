@@ -156,14 +156,13 @@ function div_hide() {
 }
 function LoadPreferences() {
     var ColourMode = localStorage.ColourMode;
+    var body = document.getElementsByTagName('body')[0];
+    
     if (ColourMode == "light") {
-
-        var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "seashell";
         body.style.color = "black";
     }
     else {
-        var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "#2C2F33";
         body.style.color = "antiquewhite";
 
@@ -207,36 +206,37 @@ for(var x = 0; x<Response.length;x++){
     
     
     //function to add new stock 
-    Heading.onclick = OnclickAddNew;
+    Heading.ondblclick = OnclickAddNew;
 
     //append text to wrapper 
     SearchResultWrapper.appendChild(Heading);
 }
 
-
 //append results to page
 var popupform = document.getElementById("popupform");
 popupform.appendChild(SearchResultWrapper);
 
-
 function OnclickAddNew(){
-    var TextString = this.innerText;
-    var SplitValues = TextString.split(" - ");
-    console.log(SplitValues);
-    
-    $.ajax({
-        type: "GET",
-        url: 'NewStock.php',
-        data : {
-            StockName : SplitValues[1],
-            StockTicker: SplitValues[0]
-          },
-        async: false,
-        success: function (data) //on recieve of reply
-        {
-            console.log(data);          
-        }
-    });
-    location.reload();
-}
-}
+
+        var TextString = this.innerText;
+        var SplitValues = TextString.split(" - ");
+        console.log(SplitValues);
+        
+        //submit new stock 
+        $.ajax({
+            type: "GET",
+            url: 'NewStock.php',
+            data : {
+                StockName : SplitValues[1],
+                StockTicker: SplitValues[0]
+            },
+            async: false,
+            success: function (data) //on recieve of reply
+            {
+                console.log(data);          
+            }
+        });
+        //reload to see new record
+        location.reload();
+     }
+    }

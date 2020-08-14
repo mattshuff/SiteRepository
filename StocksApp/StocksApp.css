@@ -30,17 +30,38 @@ margin-top: 0px;
   cursor: pointer;
   font-weight: bolder;
   font-style: italic;
-  display: inline;
+  display: block;
+  margin: 0px;
   font-size: 30px;
   
 
 }
-#InputBox{
-  display: inline;
-  border: none;
-  height: 25px;
-}
+
 #Exit_Button{
+  cursor: pointer;
+  font-weight: bolder;
+  font-style: italic;
+  float: inline-end;
+  margin: 0px;
   font-size: 30px;
-  display: inline;
+  padding-bottom: 30px;
+
+}
+#InputBox{
+  height: 25px;
+  background-color: transparent;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-width: 5px;
+
+  color:antiquewhite;
+  font-size: 30px;
+  font-weight: lighter;
+  font-style: italic;
+}
+#InputWrapper{
+  display:flex;
 }
