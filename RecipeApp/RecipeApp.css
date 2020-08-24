@@ -1,0 +1,21 @@
+#popupform {
+    width: 100%;
+    height: 100%;
+    opacity: .95;
+    top: 0;
+    left: 0;
+    display: none;
+    position: fixed;
+    background-color: #313131;
+    overflow: auto
+  }
+  #Exit_Button{
+    cursor: pointer;
+    font-weight: bolder;
+    font-style: italic;
+    float: inline-end;
+    margin: 0px;
+    font-size: 60px;
+    padding-bottom: 30px;
+  
+  }

@@ -1,151 +1,77 @@
-// Disable caching of AJAX responses
-$.ajaxSetup({
-  cache: false
-});
-
-//run on document ready
 $(document).ready(function () {
 
-  //input popup stuff
-  var AddNewRecipeButton = document.getElementById("AddNew");
-  AddNewRecipeButton.addEventListener('click', function () {
-    div_show();
-  })
-
-  //submit popup
-  var PopUpSubmitButton = document.getElementById("RecipeInputSubmit");
-  PopUpSubmitButton.addEventListener('click', function () {
-
-    //get values
-    var RecipeName = document.getElementById("RecipeNameInput").value;
-    var RecipeIngredients = document.getElementById("RecipeIngredientsInput").value;
-    var RecipeMethod = document.getElementById("RecipeMethodInput").value;
-
-    //submit recipe
-    $.ajax({
-      url: "NewRecipe.php",
-      type: 'GET',
-      data: {
-        RecipeName: String(RecipeName),
-        RecipeIngredients: String(RecipeIngredients),
-        RecipeMethod: String(RecipeMethod)
-      },
-      success: function (data) {
-        div_hide();
-
-        RecipeName.value="";
-        RecipeIngredients.value="";
-        RecipeMethod.value="";
-        
-        location.reload();
-      }
-    })
-  })
-
-  //exit popup
-  var ExitButton = document.getElementById("EscapeRecipeInput");
-  ExitButton.addEventListener('click',function(){
-    div_hide();
-  })
-
-  //populates list and then gives everything the hover and onclick functions
-  $.ajax(
-    'IngredientSearch.php', {
-      success: function (data) {
-
-        var DataArray = data.split("*");
-        for (var x = 0; x < DataArray.length; x++) {
-
-          var ul = document.getElementById("RecipeList");
-          var li = document.createElement("li");
-          li.appendChild(document.createTextNode(DataArray[x]));
-
-          //on hover event
-          li.onmouseover = function () {
-            var MouseOverValue = this.innerHTML;
-
-            $.ajax({
-              url: "RecipeMouseOver.php",
-              type: 'GET',
-              data: {
-                QueryValue: String(MouseOverValue)
-              },
-
-              success: function (Data) {
-                var x = document.getElementById("IngredientsNotes");
-                var y = document.getElementById("MethodNotes");
-                var Lines = Data.split("*");
-                x.innerHTML = Lines[0];
-                y.innerHTML = Lines[1];
-              }
-            });
-          }
-          ul.appendChild(li);
-        }
-      },
-      error: function () {
-        alert('There was some error performing the AJAX call!');
-      }
-    })
+    //eventually need to be able to write categories in by hand 
+var x = document.getElementById("RecipeCategory");
+var y = document.createElement("option");
+y.text = "main";
+x.appendChild(y);
 
 
-    
-  //live search feature:
-  var input = document.getElementById('TextInput');
-  input.addEventListener('keyup', function () {
-    var x = document.getElementById('RecipeList');
-    $(x).empty();
+//Fill Categories Selection
+var CategoriesDiv = document.getElementById("Categories");
+$.ajax({
+    type: "GET",
+    url: '/RecipeApp/PHP/GetCategories.php',
+    async: false,
+    dataType: 'html',
+    success: function (data) //on recieve of reply
+    {
+        var Data = JSON.parse(data);
+        var count = Object.keys(Data).length;
+        for(var i = 0; i < count;i++){
+            var Category = Data[i]["RecipeCategory"];
+            
+            var CategoryNode = document.createElement("p");
+            CategoryNode.innerText = Category;
+            CategoryNode.onclick = CategoryPClick;
 
-    $.ajax({
-      url: "LiveSearchQuery.php",
-      type: 'GET',
-      data: {
-        QueryValue: String(TextInput.value),
-      },
-      success: function (data) {
-        var DataArray = data.split("*");
-        for (var x = 0; x < DataArray.length; x++) {
+            CategoriesDiv.appendChild(CategoryNode);
 
-          var ul = document.getElementById("RecipeList");
-          var li = document.createElement("li");
-          li.appendChild(document.createTextNode(DataArray[x]));
+            
+            
+        }    
+    }
+});
 
-          li.onmouseover = function () {
-            var MouseOverValue = this.innerHTML;
 
-            $.ajax({
-              url: "RecipeMouseOver.php",
-              type: 'GET',
-              data: {
-                QueryValue: String(MouseOverValue)
-              },
+//Fetch all existing recipes and convert into json 
+var JSONstring;
+$.ajax({
+    type: "GET",
+    url: '/RecipeApp/PHP/FetchAll.php',
+    async: false,
+    dataType: 'html',
+    success: function (data) //on recieve of reply
+    {
+        JSONstring = data;       
+    }
+});
+var JSONobject = JSON.parse(JSONstring);
 
-              success: function (Data) {
-                var x = document.getElementById("IngredientsNotes");
 
-                var y = document.getElementById("MethodNotes");
-
-                var Lines = Data.split("*");
-
-                x.innerHTML = Lines[0];
-                y.innerHTML = Lines[1];
-
-              }
-            });
-          }
-          ul.appendChild(li);
-        }
-      }
-    })
-  })
-})
-
-//general functions
-function div_show() {
-  document.getElementById('popupform').style.display = "block";
+//iterate over each recipe
+var count = Object.keys(JSONobject).length;
+for(var i = 0; i < count;i++){
+    console.log(JSONobject[i]);
 }
 
-//Function to Hide Popup
+
+});
+
+
+
+
+
+//when user clicks a category, this function fires to show the relevant recipies.
+function CategoryPClick(event){
+    console.log(event);
+    var ClickedText = event.originalTarget.textContent;
+
+}
+
+function div_show() {
+    document.getElementById('popupform').style.display = "block";
+}
 function div_hide() {
-  document.getElementById('popupform').style.display = "none";
+    document.getElementById('popupform').style.display = "none";
 }

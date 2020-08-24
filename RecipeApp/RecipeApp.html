@@ -2,60 +2,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="RecipeApp.js"></script>
     <link rel="stylesheet" type="text/css" href="/BaseStyle.css">
+    <link rel="stylesheet" type="text/css" href="/RecipeApp/RecipeApp.css">
     <meta charset="UTF-8">
 </head>
 
 <body>
-
-    <a href="https://matt-shuff.co.uk/" id="MainTitle">MATT-SHUFF.co.uk</a>
+    <div>
+        <a href="https://matt-shuff.co.uk/" id="MainTitle">MATT-SHUFF.co.uk</a>
+        <img id="SunIMG" src="/LandingPage/Assets/sun.png" style="float: inline-end;" onclick="SwapColourMode(event)">
+    </div>
+    <br>
     <br>
 
-    <div class="column" id="SearchColumn">
-        <h1 id="subtitle">Search:</h1>
-        
+    <div>
+    <div id="Categories" class="column" style="width: 20%;">
+    </div>
 
-        <input type="text" id="TextInput" placeholder="Search...">
+    <div id="SubRecipes" class="column" style="width: 30%;">
+    </div>
+
+    <div id="ImageBox" class="column" style="width: 40%">
+    </div>
+
+    <button onclick="div_show()">Add New</button> 
+
+    <div id="popupform">
+        <p onclick="div_hide()" id="Exit_Button" style="padding-right: 60px;">X</p>
+    <form action="/RecipeApp/PHP/" method="post" enctype="multipart/form-data">
+        Recipe name
+        <input type="text" name ="RecipeName" id="RecipeName">
+        
         <br>
+        Recipe Category
+        <select name ="RecipeCategory" id="RecipeCategory"></select>
 
-        <div class="left_contentlist">
-            <div class="ScrollingList">
+        <br>
+        Select Ingredients Image
+        <input type="file" name="IngredientsImage" id="IngredientsImage">
 
-                <ul id="RecipeList"></ul>
-                <p id="AddNew">Add New Recipe...</p>
+        <br>
+        Select Method Image
+        <input type=file name ="MethodImage" id ="MethodImage">
 
-                <!–– Popup Function ––>
-                <div id="popupform">
-
-                    <p id="EscapeRecipeInput">exit recipe input</p>
-                    <P>Recipe Name:</P>
-                    <input id="RecipeNameInput" type="text" placeholder="Recipe Name.."><br>
-
-                    <P>Recipe Ingredients:</P>
-                    <textarea id="RecipeIngredientsInput" rows="4" cols="50"></textarea>
-
-                    <P>Recipe Method:</P>
-                    <textarea id="RecipeMethodInput" rows="4" cols="50"></textarea><br>
-
-                    <p id="RecipeInputSubmit">submit</p>
-                </div>
-            </div>
-        </div>
+        <br>
+        <input type="submit" value="Submit Recipe" name="submit">
+      </form>
     </div>
 
-    <div class="column" name="ResultsColumn">
-
-        <h1 id="subtitle">Ingredients:</h1>
-
-        
-
-        <p id="IngredientsNotes"> </p>
-    </div>
-
-    <div class="column" id="NotesColumn">
-
-        <h1 id="subtitle">Notes:</h1>
-
-        <p id="MethodNotes"> </p>
-    </div>
 
 </body>
