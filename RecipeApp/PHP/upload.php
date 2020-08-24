@@ -3,7 +3,7 @@
 
 #region Image Uploads
 //handle ingredients image inputs
-$target_dir = getcwd()."\\Images\\";
+$target_dir = dirname(getcwd())."//Images//";
 
 $RecipeName = $_POST["RecipeName"];
 $IngredientsImage = $_FILES["IngredientsImage"];
