@@ -11,6 +11,7 @@ $IngredientsImage = $_FILES["IngredientsImage"];
 $Extension = explode(".",$IngredientsImage["name"])[1];
 //combine file name and base directory into the target path
 $FileName = $RecipeName."IngredientsImage.".$Extension;
+$FileName = urlencode($FileName);
 $IngredientsTargetPath = $target_dir . basename($FileName);
 
 //handle method image inputs
@@ -19,6 +20,7 @@ $MethodImage = $_FILES["MethodImage"];
 $Extension = explode(".",$MethodImage["name"])[1];
 //combine file name and base directory into the target path
 $FileName = $RecipeName."MethodImage.".$Extension;
+$FileName = urlencode($FileName);
 $MethodTargetPath = $target_dir . basename($FileName);
 
 //check file type and size of images, return true if checks pass
