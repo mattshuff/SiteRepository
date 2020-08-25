@@ -4,14 +4,14 @@
 #region Image Uploads
 //handle ingredients image inputs
 $target_dir = dirname(getcwd())."//Images//";
-
+ 
 $RecipeName = $_POST["RecipeName"];
 $IngredientsImage = $_FILES["IngredientsImage"];
 //get file extension 
 $Extension = explode(".",$IngredientsImage["name"])[1];
 //combine file name and base directory into the target path
 $FileName = $RecipeName."IngredientsImage.".$Extension;
-$FileName = urlencode($FileName);
+echo $FileName;
 $IngredientsTargetPath = $target_dir . basename($FileName);
 
 //handle method image inputs
@@ -20,7 +20,6 @@ $MethodImage = $_FILES["MethodImage"];
 $Extension = explode(".",$MethodImage["name"])[1];
 //combine file name and base directory into the target path
 $FileName = $RecipeName."MethodImage.".$Extension;
-$FileName = urlencode($FileName);
 $MethodTargetPath = $target_dir . basename($FileName);
 
 //check file type and size of images, return true if checks pass
