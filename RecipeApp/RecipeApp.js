@@ -83,6 +83,10 @@ BaseUrl = BaseUrl.slice(0,-14);
 var IngredientsImageURL = BaseUrl + "Images/" + RecipeName + "IngredientsImage.jpg";
 var MethodImageURL = BaseUrl + "Images/" + RecipeName + "MethodImage.jpg";
 
+console.log(RecipeName);
+console.log(IngredientsImageURL);
+
+
 console.log(IngredientsImageURL);
 console.log(MethodImageURL);
 //append images to the page
