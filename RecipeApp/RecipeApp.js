@@ -80,8 +80,8 @@ var BaseUrl = window.location.href;
 BaseUrl = BaseUrl.slice(0,-14);
 
 //construct urls, this code assumes everything is a jpg, need to update php to reflect this 
-var IngredientsImageURL = BaseUrl + "Images/" + RecipeName + "IngredientsImage.jpg";
-var MethodImageURL = BaseUrl + "Images/" + RecipeName + "MethodImage.jpg";
+var IngredientsImageURL = BaseUrl + "Images/" + RecipeName + "IngredientsImage.JPG";
+var MethodImageURL = BaseUrl + "Images/" + RecipeName + "MethodImage.JPG";
 
 console.log(RecipeName);
 console.log(IngredientsImageURL);
