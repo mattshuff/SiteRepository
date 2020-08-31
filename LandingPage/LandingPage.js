@@ -135,8 +135,6 @@ function LoadPreferences() {
         body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = "#2C2F33";
         body.style.color = "antiquewhite";
-
-
     }
 }
 function parseRSS() {

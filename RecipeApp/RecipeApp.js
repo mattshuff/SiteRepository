@@ -1,14 +1,11 @@
 $(document).ready(function () {
 
-    //eventually need to be able to write categories in by hand 
-var x = document.getElementById("RecipeCategory");
-var y = document.createElement("option");
-y.text = "main";
-x.appendChild(y);
+    LoadPreferences();
 
-
-//Fill Categories Selection
+//Fill Categories Form section
 var CategoriesDiv = document.getElementById("Categories");
+var CategorySelect = document.getElementById("RecipeCategory");
+
 $.ajax({
     type: "GET",
     url: '/RecipeApp/PHP/GetCategories.php',
@@ -28,8 +25,14 @@ $.ajax({
             CategoryNode.setAttribute("class","NodeP");
 
             CategoriesDiv.appendChild(CategoryNode);
-
+            var BRelement = document.createElement("br");
+            CategoriesDiv.appendChild(BRelement);
             
+
+            //also add the options to the form
+            var Option = document.createElement("option");
+            Option.textContent = Category;
+            CategorySelect.appendChild(Option);
             
         }    
     }
@@ -54,22 +57,62 @@ function GetRecipes(){
 
 //when user clicks a category, this function fires to show the relevant recipies.
 function CategoryPClick(event){
-    console.log(event);
+
     var ClickedText = event.originalTarget.textContent;
     var RecipeJSON = GetRecipes();
 
     var RecipesDiv = document.getElementById("SubRecipes");
+    RecipesDiv.innerHTML="";
+    //iterate through all recipies, only fetching text so should bve fine to just filter them here rather than in SQL
     for(var i = 0; i < Object.keys(RecipeJSON).length; i++){
 
-        if(RecipeJSON[i].RecipeCategory == ClickedText){
+
+        //if the category is correct
+        if(RecipeJSON[i].RecipeCategory == ClickedText && RecipeJSON[i].RecipeName !=""){
+            var RecipeWrapper = document.createElement("div");
+
+            var DeleteButton = document.createElement("p");
+            DeleteButton.innerText="X  ";
+            DeleteButton.style="display: inline; cursor:pointer; color:antiquewhite";
+            DeleteButton.onclick = DeleteRecipe;
+            RecipeWrapper.appendChild(DeleteButton);
+
+
             var RecipeNode = document.createElement("p");
             RecipeNode.setAttribute("class","NodeP");
             RecipeNode.innerText = RecipeJSON[i].RecipeName;
             RecipeNode.onclick = FetchImages;
-            
-                RecipesDiv.appendChild(RecipeNode); 
+            RecipeWrapper.appendChild(RecipeNode);
+
+
+                RecipesDiv.appendChild(RecipeWrapper); 
         }
     }
+}
+
+function DeleteRecipe(event){
+
+var CurrentColour = this.style.color;
+
+if(CurrentColour!="red"){
+this.style = "display: inline; cursor:pointer; color:red";
+}
+else{
+    var RecipeName = event.originalTarget.nextElementSibling.textContent;
+  
+    $.ajax({
+        type: "GET",
+        url: '/RecipeApp/PHP/DeleteRecipe.php',
+        async: false,
+        dataType: 'html',
+        data: {RecipeName: RecipeName},
+        success: function (data) //on recieve of reply
+        {
+                console.log(data);
+                location.reload();
+            }    
+        });
+}
 }
 
 function FetchImages(event){
@@ -104,9 +147,75 @@ MethodImageIMG.setAttribute("class","RecipeImage");
 ImageBox.appendChild(MethodImageIMG);
 }
 
+
 function div_show() {
     document.getElementById('popupform').style.display = "block";
 }
 function div_hide() {
     document.getElementById('popupform').style.display = "none";
+}
+function LoadPreferences() {
+    var ColourMode = localStorage.ColourMode;
+    var Image;
+    var body = document.getElementsByTagName('body')[0];
+    if (ColourMode == "light") {
+
+        Image = document.getElementById("SunIMG");
+        Image.src = "/LandingPage/Assets/moon.png";
+        Image.id = "MoonIMG";
+
+        body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "seashell";
+        body.style.color = "black";
+    }
+    else if (ColourMode == "dark") {
+
+        Image = document.getElementById("SunIMG");
+        Image.src = "/LandingPage/Assets/Sun.png";
+        Image.id = "SunIMG";
+
+        body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = "#2C2F33";
+        body.style.color = "antiquewhite";
+    }
+}
+function SwapColourMode(e) {
+    var SenderImageID = e.originalTarget.id;
+
+    if (SenderImageID == "SunIMG") {
+        //change to light mode
+        localStorage.ColourMode = "light";
+
+        ApplyTheme();
+    }
+    else if (SenderImageID == "MoonIMG") {
+        //change to dark mode 
+        localStorage.ColourMode = "dark";
+
+        ApplyTheme();
+
+    }
+}
+function ApplyTheme() {
+    var ColourMode = localStorage.ColourMode;
+    var Image;
+    var body = document.getElementsByTagName('body')[0];
+    if (ColourMode == "light") {
+
+        Image = document.getElementById("SunIMG");
+        Image.src = "/LandingPage/Assets/moon.png";
+        Image.id = "MoonIMG";
+
+        body.style.backgroundColor = "seashell";
+        body.style.color = "black";
+    }
+    else if (ColourMode == "dark") {
+
+        Image = document.getElementById("MoonIMG");
+        Image.src = "/LandingPage/Assets/sun.png";
+        Image.id = "SunIMG";
+
+        body.style.backgroundColor = "#2C2F33";
+        body.style.color = "antiquewhite";
+    }
 }

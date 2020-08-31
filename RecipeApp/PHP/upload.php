@@ -55,6 +55,8 @@ $SQL = $INSERT . $VALUES;
 $Result = mysqli_query($connect, $SQL);
 #endregion
 
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+
 function CheckFile($Image,$Path){
     if (file_exists($Path)) {
         echo "Sorry, file already exists.";

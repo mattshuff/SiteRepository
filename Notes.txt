@@ -2,7 +2,6 @@ general notes:
 	keep event bubbling in mind for listeners
 
 things to build on in stocks app:
-	symbol lookup form company name
 	symbol validate
 	check for duplicates
 
@@ -12,6 +11,8 @@ spotify app:
 	show similar suggestions
 	rework get images function to be able to do everything mentioned above 
 
+Recipe App:
+	need to make "fetch all .php" better, do the filtering in SQL
 
 settings page:
 	style settings (accent colours etc)

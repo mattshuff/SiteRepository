@@ -14,7 +14,7 @@
     <br>
     <br>
 
-    <div>
+    <div id="ContentWrapper">
     <div id="Categories" class="column" style="width: 20%;">
     </div>
 
@@ -24,29 +24,31 @@
     <div id="ImageBox" class="column" style="width: 40%">
     </div>
 
-    <button onclick="div_show()">Add New</button> 
+    <button onclick="div_show()" style="position: absolute; bottom: 0; left: 0;">Add New</button> 
+    
+
 
     <div id="popupform">
         <p onclick="div_hide()" id="Exit_Button" style="padding-right: 60px;">X</p>
-    <form action="/RecipeApp/PHP/upload.php" method="post" enctype="multipart/form-data">
-        Recipe name
-        <input type="text" name ="RecipeName" id="RecipeName">
-        
-        <br>
-        Recipe Category
-        <select name ="RecipeCategory" id="RecipeCategory"></select>
+            <form action="/RecipeApp/PHP/upload.php" method="post" enctype="multipart/form-data" target="_self">
+                Recipe name
+                <input type="text" name ="RecipeName" id="RecipeName">
+                
+                <br>
+                Recipe Category
+                <select name ="RecipeCategory" id="RecipeCategory"></select>
 
-        <br>
-        Select Ingredients Image
-        <input type="file" name="IngredientsImage" id="IngredientsImage">
+                <br>
+                Select Ingredients Image
+                <input type="file" name="IngredientsImage" id="IngredientsImage" class="FileUpload">
 
-        <br>
-        Select Method Image
-        <input type=file name ="MethodImage" id ="MethodImage">
+                <br>
+                Select Method Image
+                <input type=file name ="MethodImage" id ="MethodImage" class="FileUpload">
 
-        <br>
-        <input type="submit" value="Submit Recipe" name="submit">
-      </form>
+                <br>
+                <input type="submit" value="Submit Recipe" name="submit">
+            </form>
     </div>
 
 
