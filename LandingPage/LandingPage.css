@@ -1,69 +1,29 @@
-  .column {
-      float: left;
-      width: 400px;
-      padding-right: 50px;
-      padding-left: 10px;
+  #Weather{
 
-      margin-top: 50px;
+    background-color: blanchedalmond;
+    height: auto;
+    width: 300px;
+}
 
-
-      border-top-style: none;
-      border-right-style: solid;
-      border-bottom-style: none;
-      border-left-style: none;
-
-      touch-action: manipulation;
-  }
-
-
-  body,
-  a {
-      background-color: #2C2F33;
-      color: antiquewhite;
-      font-size: 22px;
-      padding-bottom: 5px;
-      font-family: 'Helvetica';
-      font-weight: normal;
-      font-style: normal;
-      color: antiquewhite;
-      word-wrap: normal;
-      text-decoration: none;
-
-      touch-action: manipulation;
-  }
-
-  input[type=text] {
+input[type=text] {
       padding: 1px;
       border-color: antiquewhite;
       border-width: 3px;
-      background: #2C2F33;
-      color: antiquewhite;
   }
-
-  li,
-  ul {
-      display: block;
-      list-style-type: disc;
-      padding: 1px;
-      font-size: 22px;
-      cursor: pointer;
-
-
-  }
-
-  #subtitle {
-      padding-top: 5px;
-      font-size: 32px;
-      margin: 0;
-  }
-
-  #mainTitle {
-      font-family: arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      padding: 5px;
-      color: inherit;
-      text-decoration: none;
-      font-size: 44px;
-      word-wrap: normal;
-      text-align: left;
-      font-weight: bold;
-  }
+.WeatherImage{
+    height: 90px;
+    width: 90px;
+    filter: grayscale(90%);
+    
+}
+.LocationScrollButton{
+    display: inline;
+    font-size: 40px;
+    font-weight: bolder;
+    padding: 11px;
+    cursor: pointer;
+}
+#LocationScrollBar{
+    align-items: center;
+    justify-content: center;
+}

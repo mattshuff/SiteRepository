@@ -1,6 +1,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/BaseStyle.css">
+    <link rel="stylesheet" type="text/css" href="/LandingPage/LandingPage.css">
     <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <script src="/LandingPage/LandingPage.js">
@@ -9,6 +10,10 @@
 </head>
 
 <body>
+
+
+
+
     <div>
         <a href="https://matt-shuff.co.uk/" id="MainTitle">MATT-SHUFF.co.uk</a>
         <img id="SunIMG" src="/LandingPage/Assets/sun.png" style="float: inline-end;" onclick="SwapColourMode(event)">
@@ -22,12 +27,15 @@
 
     </div>
 
+
+
+
     <div id="FurtherApps" class="column" style="width: auto;">
         <h2 id="subtitle">MORE APPS:</h2>
         <a href="MusicApp\MusicApp.html">Spotify Control Panel</a><br>
         <a href="StocksApp\Stocks.html">Stocks</a><br>
         <a href="RecipeApp/RecipeApp.html">Recipe</a><br>
-        <a href ="SettingsApp/Settings.html">Settings</a>
+        <a href ="SettingsApp/Settings.html">Settings</a><br>
         <a href="TestingPage\TestingPage.html">PHP Tests</a>
     </div>
 
@@ -41,6 +49,29 @@
 
         <h2 id="subtitle">THE TIMES:</h2>
         <div id = "PoliticsFeed" style="height: auto;"></div>
+    </div>
+
+
+
+
+
+    <div id ="Weather" class="column">
+        <h2 id ="subtitle">WEATHER:</h2>
+
+        <p id="LocationHeader">Sandbach</p>
+
+        <div id="WeatherImages">
+       <img class="WeatherImage" src="/LandingPage/Assets/WeatherRain.png">  <br>     
+       <img class="WeatherImage" src="/LandingPage/Assets/WeatherSun.png"><br> 
+       <img class="WeatherImage" src="/LandingPage/Assets/WeatherCloud.png"><br> 
+       <img class="WeatherImage" src="/LandingPage/Assets/WeatherStorm.png">
+        </div>
+
+        <div id = "LocationScrollBar" style="display: flex;">
+            <p class="LocationScrollButton" onclick="LocationButtonClick()">.</p>
+            <p class="LocationScrollButton" onclick="LocationButtonClick()">.</p>
+            <p class="LocationScrollButton" onclick="LocationButtonClick()">.</p>
+        </div>
     </div>
 
 

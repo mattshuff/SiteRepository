@@ -11,7 +11,9 @@ $(document).ready(function () {
 
     //fill news section
     PopulateNews();
-    //parseRSS();
+    
+    //apply current weather to box
+    GetWeather();
 
 
 
@@ -176,8 +178,6 @@ function parseRSS() {
                 googlefeed.appendChild(BuisinessBody);
             }
 
-
-
             var TechXML;
             TechXML = parser.parseFromString(XMLStrings[1], "text/xml");
             TopicArticles = TechXML.children[0].children[0].children;
@@ -267,7 +267,7 @@ function PopulateNews() {
             try {
                 ArticleText = ArticleText.split("<li>")[1];
                 
-                if(ArticleText==undefined){ArticleText="";};
+                if(ArticleText==undefined){ArticleText="";}
 
             } catch (error) {
                 console.log("ERROR CAUGHT");
@@ -296,7 +296,7 @@ function PopulateNews() {
             try {
                 ArticleText = ArticleText.split("<li>")[1];
                 
-                if(ArticleText==undefined){ArticleText="";};
+                if(ArticleText==undefined){ArticleText="";}
 
             } catch (error) {
                 console.log("ERROR CAUGHT");
@@ -340,4 +340,18 @@ function PopulateNews() {
     //functions to build each section so we can wait for ajax request to resolve
 
 
+}
+//filter: grayscale(100%);
+function GetWeather(){
+    //call to api, daily -weather - description "heavy rain"
+    //shade appropriate weather icon
+       
+    //humidity bar, move element realtive to percentage 
+
+    //feels like 
+
+    //scroll thgrough locations 
+}
+function LocationButtonClick(){
+    //get index of button that was clicked and swap to relevant page of weather info 
 }

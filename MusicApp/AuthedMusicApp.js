@@ -78,10 +78,16 @@ function ImageOnclick(){
   var SongTextInfoWrapper = document.createElement('div');
   SongTextInfoWrapper.style.width="800px";
 
-  //title wrapper
+  //title
   var SongTitle = document.createElement('p');
   SongTitle.innerText=SongData.name;
+  SongTitle.setAttribute("id","SubTitle");
   SongTextInfoWrapper.appendChild(SongTitle);
+
+  //artist
+  var SongArtist = document.createElement('p');
+  SongArtist.innerText = SongData.artists[0].name;
+  SongTextInfoWrapper.appendChild(SongArtist);
 
   AlbumArtFlex.appendChild(SongTextInfoWrapper);
 

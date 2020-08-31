@@ -2,10 +2,10 @@ general notes:
 	keep event bubbling in mind for listeners
 
 things to build on in stocks app:
-	symbol validate
-	check for duplicates
 
 spotify app:
+
+	need to set up a way to develop this on localhost, doesnt want to work :(
 
 	play samples too
 	show similar suggestions
@@ -29,9 +29,7 @@ potential features:
 	make links in localhost link back to localhost instead of main site 
 	password access (google account probably?)
 	guest access / portfolio use
-	sockets so things update live?
 	hide passwords in a settings file
-	news / updates page / morning digest
 
 
 useful line of php that gets the date 
