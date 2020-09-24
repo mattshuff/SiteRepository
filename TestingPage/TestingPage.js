@@ -51,7 +51,7 @@ function ChartTest() {
 function TestPHP() {
     $.ajax({
         type: "POST",
-        url: '/UpdateNewsStorage.php',
+        url: '../Test.php',
         data: "",
         async: false,
         success: function (data) //on recieve of reply

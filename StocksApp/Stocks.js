@@ -145,7 +145,33 @@ function CreateElements(Dates, Values) {
     }
     WrapperDiv.appendChild(TextWrapper);
 
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawTitleSubtitle); 
     return WrapperDiv;
+
+    function drawTitleSubtitle() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Price'],
+          [Dates[4], Values[4]],
+          [Dates[3], Values[3]],
+          [Dates[2], Values[2]],
+          [Dates[1], Values[1]],
+          [Dates[0], Values[0]]
+        ]);
+        var Options = {
+          bars: 'vertical',
+          vAxis: {
+            title: 'Hours',
+            ticks: [0,1,140]
+        }
+        };
+
+
+
+        var Chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        Chart.draw(data, Options);
+      }
 }
 
 function div_show() {

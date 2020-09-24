@@ -1,8 +1,6 @@
   #Weather{
-
-    background-color: blanchedalmond;
     height: auto;
-    width: 300px;
+    width: auto;
 }
 
 input[type=text] {
@@ -13,9 +11,23 @@ input[type=text] {
 .WeatherImage{
     height: 90px;
     width: 90px;
+/*
     filter: grayscale(90%);
+*/
+
+    animation-name: FadeIn;
+    animation-duration: 4s;
+    
+  animation-timing-function: linear;
     
 }
+@keyframes FadeIn {
+    0%   {opacity: 0%; scale: 0%;}
+    25%  {opacity: 25%; scale: 25%;}
+    50%  {opacity: 50%;scale: 50%;}
+    75% {opacity: 50%; scale: 75%;}
+    100% {opacity: 100%; scale:100%;}
+  }
 .LocationScrollButton{
     display: inline;
     font-size: 40px;

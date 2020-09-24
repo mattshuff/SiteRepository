@@ -1,8 +1,6 @@
 general notes:
 	keep event bubbling in mind for listeners
 
-things to build on in stocks app:
-
 spotify app:
 
 	need to set up a way to develop this on localhost, doesnt want to work :(
@@ -18,7 +16,8 @@ settings page:
 	style settings (accent colours etc)
 	db access settings
 	tracked songkick user 
-	news settings?
+	news settings - change news sources
+
 
 daily digest:
 	twitter trending

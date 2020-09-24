@@ -26,7 +26,7 @@ function InputBoxhandler(event) {
         var Input = document.getElementById("textinput");
 
         $.ajax({
-            url: "/LandingPage/PHP-Controls/AddToDo.php",
+            url: "PHP-Controls/AddToDo.php",
             type: 'GET',
             data: {
                 QueryValue: String(Input.value)
@@ -45,7 +45,7 @@ function DeleteListItem(e) {
     var TextValue = e.originalTarget.innerText;
 
     $.ajax(
-        "/LandingPage/PHP-Controls/DeleteToDo.php", {
+        "PHP-Controls/DeleteToDo.php", {
         data: { QueryValue: TextValue },
         success: function (Data) {
             PopulateToDo();
@@ -59,7 +59,7 @@ function PopulateToDo() {
 
     //fetch to do elements and append to list
     $.ajax(
-        "/LandingPage/PHP-Controls/LoadToDo.php", {
+        "PHP-Controls/LoadToDo.php", {
         success: function (data) {
             var ToDoItemsJson = JSON.parse(data);
 
@@ -98,7 +98,7 @@ function ApplyTheme() {
     if (ColourMode == "light") {
 
         Image = document.getElementById("SunIMG");
-        Image.src = "/LandingPage/Assets/moon.png";
+        Image.src = "Assets/moon.png";
         Image.id = "MoonIMG";
 
         body.style.backgroundColor = "seashell";
@@ -107,7 +107,7 @@ function ApplyTheme() {
     else if (ColourMode == "dark") {
 
         Image = document.getElementById("MoonIMG");
-        Image.src = "/LandingPage/Assets/sun.png";
+        Image.src = "Assets/sun.png";
         Image.id = "SunIMG";
 
         body.style.backgroundColor = "#2C2F33";
@@ -121,7 +121,7 @@ function LoadPreferences() {
     if (ColourMode == "light") {
 
         Image = document.getElementById("SunIMG");
-        Image.src = "/LandingPage/Assets/moon.png";
+        Image.src = "Assets/moon.png";
         Image.id = "MoonIMG";
 
         body = document.getElementsByTagName('body')[0];
@@ -131,7 +131,7 @@ function LoadPreferences() {
     else if (ColourMode == "dark") {
 
         Image = document.getElementById("SunIMG");
-        Image.src = "/LandingPage/Assets/Sun.png";
+        Image.src = "Assets/Sun.png";
         Image.id = "SunIMG";
 
         body = document.getElementsByTagName('body')[0];
@@ -141,7 +141,7 @@ function LoadPreferences() {
 }
 function parseRSS() {
     $.ajax({
-        url: '/LandingPage/PHP-Controls/FetchRss.php',
+        url: 'PHP-Controls/FetchRss.php',
         async: true,
         success: function (data) {
             var XMLStrings = data.split("\n");
@@ -231,7 +231,7 @@ function PopulateNews() {
     var JsonStrings;
     $.ajax({
         type: "GET",
-        url: '/FetchAllFromNews.php',
+        url: 'PHP-controls/FetchAllFromNews.php',
         async: false,
 
 
