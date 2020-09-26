@@ -26,7 +26,7 @@ function InputBoxhandler(event) {
         var Input = document.getElementById("textinput");
 
         $.ajax({
-            url: "PHP-Controls/AddToDo.php",
+            url: "/LandingPage/PHP-Controls/AddToDo.php",
             type: 'GET',
             data: {
                 QueryValue: String(Input.value)
@@ -59,7 +59,7 @@ function PopulateToDo() {
 
     //fetch to do elements and append to list
     $.ajax(
-        "PHP-Controls/LoadToDo.php", {
+        "/LandingPage/PHP-Controls/LoadToDo.php", {
         success: function (data) {
             var ToDoItemsJson = JSON.parse(data);
 
@@ -231,7 +231,7 @@ function PopulateNews() {
     var JsonStrings;
     $.ajax({
         type: "GET",
-        url: 'PHP-controls/FetchAllFromNews.php',
+        url: '/LandingPage/PHP-controls/FetchAllFromNews.php',
         async: false,
 
 
