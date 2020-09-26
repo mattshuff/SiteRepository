@@ -110,7 +110,7 @@ function DataToHTML(Data) {
 }
 
 function CreateElements(Dates, Values) {
-
+    
     var WrapperDiv = document.createElement('div');
     WrapperDiv.setAttribute('id', "WrapperDiv");
     //loop through every record 
@@ -145,30 +145,57 @@ function CreateElements(Dates, Values) {
     }
     WrapperDiv.appendChild(TextWrapper);
 
+    var GraphDiv = document.createElement("span");
+    GraphDiv.style="width:300px;height:900px";  
+    var GraphName = Math.random();
+    GraphDiv.setAttribute("id","Graph"+GraphName.toString());
+
+
     google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawTitleSubtitle); 
+    
+    
+    
+    WrapperDiv.appendChild(GraphDiv);
+    
     return WrapperDiv;
 
     function drawTitleSubtitle() {
         var data = google.visualization.arrayToDataTable([
           ['Date', 'Price'],
-          [Dates[4], Values[4]],
-          [Dates[3], Values[3]],
-          [Dates[2], Values[2]],
-          [Dates[1], Values[1]],
-          [Dates[0], Values[0]]
+          [Dates[0],parseFloat(Values[0]) ],
+          [Dates[1],parseFloat(Values[1])],
+          [Dates[2],parseFloat(Values[2])],
+          [Dates[3],parseFloat(Values[3])],
+          [Dates[4],parseFloat(Values[4])]
         ]);
+        
+        //... operater is a spread, takes all the values out of an array and passes them as arguments 
+        AxisTicks= [0];
+        AxisTicks.push(Math.round(Math.min(...Values)/2));
+        AxisTicks.push(Math.round(Math.min(...Values)));
+        AxisTicks.push(Math.round(Math.max(...Values)));
+
         var Options = {
-          bars: 'vertical',
-          vAxis: {
-            title: 'Hours',
-            ticks: [0,1,140]
-        }
+            vAxis: { ticks: AxisTicks },
+            'width':300,
+            'height':300,
+            'legend':'none',
+            'backgroundColor': {
+                'fill': 'transparent',
+                'opacity': 1
+             },
+             chartArea:{
+                left:30,
+                top: 10,
+
+            },
+            bar: { groupWidth: '35%' },
         };
 
 
 
-        var Chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        var Chart = new google.visualization.ColumnChart(document.getElementById("Graph"+GraphName.toString()));
 
         Chart.draw(data, Options);
       }
