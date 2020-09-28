@@ -98,7 +98,7 @@ function ApplyTheme() {
     if (ColourMode == "light") {
 
         Image = document.getElementById("SunIMG");
-        Image.src = "Assets/moon.png";
+        Image.src = "/LandingPage/Assets/moon.png";
         Image.id = "MoonIMG";
 
         body.style.backgroundColor = "seashell";
@@ -107,7 +107,7 @@ function ApplyTheme() {
     else if (ColourMode == "dark") {
 
         Image = document.getElementById("MoonIMG");
-        Image.src = "Assets/sun.png";
+        Image.src = "/Landingpage/Assets/sun.png";
         Image.id = "SunIMG";
 
         body.style.backgroundColor = "#2C2F33";
@@ -121,7 +121,7 @@ function LoadPreferences() {
     if (ColourMode == "light") {
 
         Image = document.getElementById("SunIMG");
-        Image.src = "Assets/moon.png";
+        Image.src = "/Landingpage/Assets/moon.png";
         Image.id = "MoonIMG";
 
         body = document.getElementsByTagName('body')[0];
@@ -131,7 +131,7 @@ function LoadPreferences() {
     else if (ColourMode == "dark") {
 
         Image = document.getElementById("SunIMG");
-        Image.src = "Assets/Sun.png";
+        Image.src = "/Landingpage/Assets/sun.png";
         Image.id = "SunIMG";
 
         body = document.getElementsByTagName('body')[0];
@@ -231,7 +231,7 @@ function PopulateNews() {
     var JsonStrings;
     $.ajax({
         type: "GET",
-        url: '/LandingPage/PHP-controls/FetchAllFromNews.php',
+        url: '/LandingPage/PHP-Controls/FetchAllFromNews.php',
         async: false,
 
 
