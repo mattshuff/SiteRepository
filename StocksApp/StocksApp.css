@@ -9,7 +9,7 @@
     background-color: #313131;
     overflow: auto
   }
-  #HistoryWrapper {
+  #StockDataBlock {
     display: inline-block;
     position: relative;
     margin: 1px;
