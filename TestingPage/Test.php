@@ -1,6 +1,6 @@
 <?php
 $hostname = "localhost";
-$username = "admin";
+$username = "root";
 $password = "Sagwala@1";
 $databaseName = "matt_SiteData";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
