@@ -7,7 +7,7 @@ $(document).ready(function () {
 function TestPHP() {
     $.ajax({
         type: "POST",
-        url: 'Test.py',
+        url: 'Test.php',
         data: "",
         async: false,
         success: function (data) //on recieve of reply
