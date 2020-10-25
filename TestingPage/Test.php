@@ -7,7 +7,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
 //INSERT INTO `ToDo` (`ToDoID`, `ToDoContent`) VALUES (NULL, 'test') 
 
-$Value = $_GET['QueryValue'];
+$Value = "test";
 $sql = "INSERT INTO ToDo (`ToDoContent`) VALUES ('" .$Value ."')"; ;
 
 if (mysqli_query($connect, $sql)) {
