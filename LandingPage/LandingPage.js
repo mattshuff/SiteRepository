@@ -75,7 +75,17 @@ function PopulateToDo() {
 
 }
 function SwapColourMode(e) {
-    var SenderImageID = e.originalTarget.id;
+    console.log(e);
+    var SenderImageID = "";
+     try {
+         //firefox compatiable
+        SenderImageID=e.originalTarget.id;
+    } catch (error) {
+        //chrome comptaiable
+        SenderImageID=e.path[0].id;
+    }
+    
+    
 
     if (SenderImageID == "SunIMG") {
         //change to light mode
