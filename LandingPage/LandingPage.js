@@ -45,7 +45,7 @@ function DeleteListItem(e) {
     var TextValue = e.originalTarget.innerText;
 
     $.ajax(
-        "./PHP-Controls/DeleteToDo.php", {
+        "/PHP-Controls/DeleteToDo.php", {
         data: { QueryValue: TextValue },
         success: function (Data) {
             PopulateToDo();
