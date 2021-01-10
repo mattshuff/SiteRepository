@@ -29,6 +29,7 @@ potential features:
 	password access (google account probably?)
 	guest access / portfolio use
 	hide passwords in a settings file
+	use server to ping phone with bitcoin price 
 
 
 useful line of php that gets the date 

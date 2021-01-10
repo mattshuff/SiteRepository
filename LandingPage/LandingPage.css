@@ -39,3 +39,17 @@ input[type=text] {
     align-items: center;
     justify-content: center;
 }
+#MainBody{
+  display: flex;
+}
+
+
+
+@media only screen and (max-width: 1400px) {
+  #MainBody{
+    flex-direction: column;
+  }
+  #MainBody > *{
+    width: auto;
+  }
+}
